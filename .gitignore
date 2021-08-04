@@ -1,0 +1,3 @@
+#ignores ide configurations for webstorm
+.idea/*
+.DS_Store
