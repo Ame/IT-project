@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./client/src/index.js"
+    "start": "node ./client/src/app.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
