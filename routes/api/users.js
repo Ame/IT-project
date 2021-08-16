@@ -5,7 +5,6 @@ const UsersCtrl = require("../../controllers/users.js");
 // Most of these packages will be used later for hashing and token stuff
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require("../../config/keys");
 
 
 // @route POST api/users/register

@@ -1,12 +1,21 @@
 {
-  "name": "react-backend",
-  "version": "0.0.0",
+  "name": "ijane",
+  "version": "1.0.0",
   "private": true,
   "main": "app.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node app",
-    "dev": "cross-env NODE_ENV=development nodemon app"
+    "dev": "cross-env NODE_ENV=development nodemon app",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ame/IT-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ame/IT-project/issues"
+  },
+  "homepage": "https://github.com/Ame/IT-project#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
