@@ -1,0 +1,25 @@
+{
+  "name": "ijane",
+  "version": "1.0.0",
+  "description": "iJane CRM Software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ame/IT-project.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Ame/IT-project/issues"
+  },
+  "homepage": "https://github.com/Ame/IT-project#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  }
+}
