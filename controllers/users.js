@@ -25,7 +25,7 @@ static async apiRegisterUser(req,res){
 }
 
 static async apiLoginUser(req,res){
-
+    
 }
 
 }
