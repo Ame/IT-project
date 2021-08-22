@@ -1,8 +1,16 @@
+const User = require("../models/Users.js");
+const validateRegister = require("../validation/register");
+const validateLogin = require("../validation/login");
+
 // Class contains logic for user register and login
 module.exports =  class UsersController {
 
-static async apiRegisterUser(req,res){
-    
+static async apiRegisterUser(req,res,next){
+    const { errors, isValid } = validateRegister(req.body);
+        // Check validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
     User.findOne({ email: req.body.email }).then(user => {
     // User already exists
     if (user) {
@@ -25,7 +33,11 @@ static async apiRegisterUser(req,res){
 }
 
 static async apiLoginUser(req,res){
-    
+    const { errors, isValid } = validateLogin(req.body);
+    // Check validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
 }
 
 }

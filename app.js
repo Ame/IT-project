@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv')
 const path = require('path');
 const morgan = require('morgan');
-const connectDB = require('./config/db.js')
+const connectDB = require('./config/db.js');
 
 // Load config
 dotenv.config({path: './config/config.env' })
@@ -12,10 +12,15 @@ connectDB()
 
 const app = express();
 
+app.use(express.urlencoded({extended: true})); 
+app.use(express.json());
+
+
 // logger - only use in dev mode
 if (process.env.NODE_ENV === 'development'){
   app.use(morgan('dev'))
 }
+
 const PORT = process.env.PORT || 5000
 
 app.listen(
@@ -24,9 +29,10 @@ app.listen(
 )
 
 // Routes
-app.use('/',require('./routes/api/users'))
+app.use('/api/users',require('./routes/api/users'))
 
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 module.exports = app;
