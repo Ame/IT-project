@@ -1,8 +1,9 @@
 // https://dev.to/diraskreact/create-simple-login-form-in-react-227b for log in
 
 
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 // import "style.css";
 
 const appStyle = {
@@ -47,43 +48,31 @@ const submitStyle = {
   display: 'block'
 };
 
-const Field = React.forwardRef(({label, type}, ref) => {
-  return (
-    <div>
-      <label style={labelStyle} >{label}</label>
-      <input ref={ref} type={type} style={inputStyle} />
-    </div>
-  );
-});
+async function loginUser(credentials) {
+  return fetch('http://localhost:8080/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
 
-const Form = ({onSubmit}) => {
-  const emailRef = React.useRef();
-  const passwordRef = React.useRef();
-  const handleSubmit = e => {
-      e.preventDefault();
-      const data = {
-          email: emailRef.current.value,
-          password: passwordRef.current.value
-      };
-      onSubmit(data);
-  };
-  return (
-    <form style={formStyle} onSubmit={handleSubmit} >
-      <Field ref={emailRef} label="Email:" type="text" />
-      <Field ref={passwordRef} label="Password:" type="password" />
-      <div>
-        <button style={submitStyle} type="submit">Submit</button>
-      </div>
-    </form>
-  );
-};
 
-function Home(props) {
-  const handleSubmit = data => {
-    const json = JSON.stringify(data, null, 4);
-    console.clear();
-    console.log(json);
-};
+function Home({setToken}) {
+  const [email, setEmailName] = useState();
+  const [password, setPassword] = useState();
+
+const handleSubmit = async e => {
+  e.preventDefault();
+  const token = await loginUser({
+    email,
+    password
+  });
+  setToken(token);
+}
+
   return (
     <div className="home">
       <div class="container">
@@ -96,11 +85,22 @@ function Home(props) {
             />
           </div>
           <div class="col-lg-5">
-            <h1 class="font-weight-light">Log in</h1>
-            <p>Start networking with iJane CRM</p>
-            <div style={appStyle}>
-            <Form onSubmit={handleSubmit} />
-            </div>
+          <div className="login-wrapper">
+          <h1>Please Log In</h1>
+          <form onSubmit = {handleSubmit}>
+            <label>
+              <p>Email</p>
+                <input type="text" onChange={e => setEmailName(e.target.value)}/>
+              </label>
+              <label>
+          <p>Password</p>
+          <input type="password" onChange={e => setPassword(e.target.value)}/>
+        </label>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
             <p>Don't have an account? <Link to="/signup">Sign up</Link> here!</p>
           </div>
         </div>
@@ -109,5 +109,8 @@ function Home(props) {
   );
 }
 
+Home.propTypes = {
+  setToken: PropTypes.func.isRequired
+}
 
 export default Home;
