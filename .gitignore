@@ -1,5 +1,7 @@
 #ignores ide configurations for webstorm
 .idea/*
 .DS_Store
-*.env
-**/node_modules
+/node_modules
+npm-debug.log
+/*.env
+server.js
