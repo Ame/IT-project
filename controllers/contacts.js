@@ -13,7 +13,7 @@ module.exports =  class UsersController {
             if (contact) return res.status(400).json({ msg: "Contact already exists" });
 
             // Create new user
-            const newContact = new User({
+            const newContact = new Contact({
                 name: req.body.name,
                 email: req.body.email,
                 user: req.user.id
