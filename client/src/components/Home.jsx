@@ -1,77 +1,99 @@
 // https://dev.to/diraskreact/create-simple-login-form-in-react-227b for log in
 
 
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import {Link} from "react-router-dom";
-import PropTypes from 'prop-types';
-// import "style.css";
 
-const appStyle = {
-  height: '250px',
-  display: 'flex'
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+
+import AuthService from "../services/auth.service";
+
+
+// async function loginUser(credentials) {
+//   return fetch('http://localhost:8080/login', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(credentials)
+//   })
+//     .then(data => data.json())
+//  }
+
+ const required = (value) => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
 };
 
-const formStyle = {
-  margin: 'auto',
-  padding: '10px',
-  border: '1px solid #c9c9c9',
-  borderRadius: '5px',
-  background: '#f5f5f5',
-  width: '220px',
-  display: 'block'
-};
 
-const labelStyle = {
-  margin: '10px 0 5px 0',
-  fontFamily: 'Arial, Helvetica, sans-serif',
-  fontSize: '15px',
-};
+function Home(props) {
+  const form = useRef();
+  const checkBtn = useRef();
 
-const inputStyle = {
-  margin: '5px 0 10px 0',
-  padding: '5px', 
-  border: '1px solid #bfbfbf',
-  borderRadius: '3px',
-  boxSizing: 'border-box',
-  width: '100%'
-};
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
-const submitStyle = {
-  margin: '10px 0 0 0',
-  padding: '7px 10px',
-  border: '1px solid #efffff',
-  borderRadius: '3px',
-  background: '#3085d6',
-  width: '100%', 
-  fontSize: '15px',
-  color: 'white',
-  display: 'block'
-};
+// const handleSubmit = async e => {
+//   e.preventDefault();
+//   const token = await loginUser({
+//     email,
+//     password
+//   });
+//   setToken(token);
+// }
 
-async function loginUser(credentials) {
-  return fetch('http://localhost:8080/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
- }
+const onChangeEmail = (e) => {
+    const email = e.target.value;
+    setEmail(email);
+  };
 
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
 
-function Home({setToken}) {
-  const [email, setEmailName] = useState();
-  const [password, setPassword] = useState();
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-const handleSubmit = async e => {
-  e.preventDefault();
-  const token = await loginUser({
-    email,
-    password
-  });
-  setToken(token);
-}
+    setMessage("");
+    setLoading(true);
+
+    form.current.validateAll();
+
+    if (checkBtn.current.context._errors.length === 0) {
+      console.log(email, password);
+      AuthService.login(email, password).then(
+        () => {
+          // open the dashboard page once the Auth service has verified login 
+          props.history.push("/dashboard");
+          window.location.reload();
+        },
+        // if there is an error, display it
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setLoading(false);
+          setMessage(resMessage);
+        }
+      );
+    } else {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="home">
@@ -87,19 +109,49 @@ const handleSubmit = async e => {
           <div class="col-lg-5">
           <div className="login-wrapper">
           <h1>Please Log In</h1>
-          <form onSubmit = {handleSubmit}>
-            <label>
-              <p>Email</p>
-                <input type="text" onChange={e => setEmailName(e.target.value)}/>
-              </label>
-              <label>
-          <p>Password</p>
-          <input type="password" onChange={e => setPassword(e.target.value)}/>
-        </label>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+          <Form onSubmit={handleLogin} ref={form}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <Input
+              type="text"
+              className="form-control"
+              name="email"
+              value={email}
+              onChange={onChangeEmail}
+              validations={[required]}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <Input
+              type="password"
+              className="form-control"
+              name="password"
+              value={password}
+              onChange={onChangePassword}
+              validations={[required]}
+            />
+          </div>
+
+          <div className="form-group">
+            <button className="btn btn-primary btn-block" disabled={loading}>
+              {loading && (
+                <span className="spinner-border spinner-border-sm"></span>
+              )}
+              <span>Login</span>
+            </button>
+          </div>
+
+          {message && (
+            <div className="form-group">
+              <div className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            </div>
+          )}
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+        </Form>
     </div>
             <p>Don't have an account? <Link to="/signup">Sign up</Link> here!</p>
           </div>
@@ -109,8 +161,5 @@ const handleSubmit = async e => {
   );
 }
 
-Home.propTypes = {
-  setToken: PropTypes.func.isRequired
-}
 
 export default Home;
