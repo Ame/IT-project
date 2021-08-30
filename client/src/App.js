@@ -1,9 +1,11 @@
 // https://www.techomoro.com/how-to-create-a-multi-page-website-with-react-in-5-minutes/ for whole general structure
 
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navigation, Footer, Home, Signup, Contact } from "./components";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { Navigation, Footer, Home, Signup, Contact, Dashboard} from "./components";
+
 function App() {
+
   return (
     <div className="App">
       <Router>
@@ -11,6 +13,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={() => <Home />} />
           <Route path="/signup" exact component={() => <Signup />} />
+          <Route path="/dashboard" exact component={() => <Dashboard />} />
           <Route path="/contact" exact component={() => <Contact />} />
         </Switch>
         <Footer />
