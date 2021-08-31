@@ -12,8 +12,16 @@ router.post("/add", passport.authenticate('jwt', {session: false}), ContactsCtrl
 // @route GET api/contacts/getContacts
 // @desc Gets all Contacts
 // @access Private
-router.get('/', async (req, res) => {
+router.get('/getAll', passport.authenticate('jwt', {session: false}), async (req, res) => {
     const contacts = await Contact.find({ user: req.user.id }).sort({date: -1});
+    res.json(contacts);
+});
+
+// @route GET api/contacts/getContacts
+// @desc Gets a specific Contact
+// @access Private
+router.get('/getContact', passport.authenticate('jwt', {session: false}), async (req, res) => {
+    const contacts = await Contact.find({ user: req.user.id, email: req.body.email});
     res.json(contacts);
 });
 
