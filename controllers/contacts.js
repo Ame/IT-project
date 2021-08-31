@@ -9,10 +9,10 @@ module.exports =  class UsersController {
             return res.status(400).json(errors);
         }
         Contact.findOne({ email: req.body.email , req.user.id}).then(contact => {
-            // User already exists
+            // Contact already exists
             if (contact) return res.status(400).json({ msg: "Contact already exists" });
 
-            // Create new user
+            // Create new contact
             const newContact = new Contact({
                 name: req.body.name,
                 email: req.body.email,
