@@ -3,9 +3,16 @@
 
 import React from "react";
 import AuthService from "../services/auth.service";
+import { useHistory } from "react-router-dom"
 
 function Dashboard(props) {
-  const currentUser = AuthService.getCurrentUser();
+  const currentUser = AuthService.getCurrentUser().user;
+  let history = useHistory();
+
+  const logoutHandler = () =>{
+    history.push("/");
+    AuthService.logout();
+  }
 
   
   return (
@@ -16,9 +23,9 @@ function Dashboard(props) {
             <h1 class="font-weight-light">Dashboard</h1>
             <p>Start networking with iJane CRM</p>
             <h3>
-              <strong>{currentUser.name}</strong> Profile
-              <h3>Email: {currentUser.email}</h3>
-            </h3>
+              <strong>{currentUser.name}</strong> 's Profile </h3>
+              <h4>Email: {currentUser.email}</h4>
+              <button onClick={logoutHandler}>Logout</button>
           </div>
         </div>
       </div>

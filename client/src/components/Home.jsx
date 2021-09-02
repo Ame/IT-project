@@ -2,25 +2,13 @@
 
 
 import React, {useState, useRef} from "react";
-import {Link} from "react-router-dom";
+import {Link, withRouter, useHistory} from "react-router-dom";
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import AuthService from "../services/auth.service";
-
-
-// async function loginUser(credentials) {
-//   return fetch('http://localhost:8080/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(credentials)
-//   })
-//     .then(data => data.json())
-//  }
 
  const required = (value) => {
   if (!value) {
@@ -34,6 +22,9 @@ import AuthService from "../services/auth.service";
 
 
 function Home(props) {
+
+  let history = useHistory();
+
   const form = useRef();
   const checkBtn = useRef();
 
@@ -42,14 +33,6 @@ function Home(props) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-// const handleSubmit = async e => {
-//   e.preventDefault();
-//   const token = await loginUser({
-//     email,
-//     password
-//   });
-//   setToken(token);
-// }
 
 const onChangeEmail = (e) => {
     const email = e.target.value;
@@ -70,13 +53,13 @@ const onChangeEmail = (e) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      console.log(email, password);
       AuthService.login(email, password).then(
         () => {
           // open the dashboard page once the Auth service has verified login 
-          props.history.push("/dashboard");
+          history.push("/dashboard");
           window.location.reload();
         },
+
         // if there is an error, display it
         (error) => {
           const resMessage =
@@ -162,4 +145,4 @@ const onChangeEmail = (e) => {
 }
 
 
-export default Home;
+export default withRouter(Home);

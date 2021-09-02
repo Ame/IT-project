@@ -74,11 +74,6 @@ const vpassword = (value) => {
 };
 
 function Signup(props) {
-  // const handleSubmit = data => {
-  //   const json = JSON.stringify(data, null, 4);
-  //   console.clear();
-  //   console.log(json);
-  // }
 
   const form = useRef();
   const checkBtn = useRef();
