@@ -3,6 +3,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import { Navigation, Footer, Home, Signup, Contact, Dashboard} from "./components";
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={() => <Home />} />
           <Route path="/signup" exact component={() => <Signup />} />
-          <Route path="/dashboard" exact component={() => <Dashboard />} />
+          <PrivateRoute path="/dashboard" exact component={() => <Dashboard />} />
           <Route path="/contact" exact component={() => <Contact />} />
         </Switch>
         <Footer />

@@ -31,11 +31,19 @@ const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
+const isLoggedIn = () => {
+  if (localStorage.getItem("user") !== null){
+    return true;
+  }
+  return false;
+}
+
 const exportedObjects = {
   register,
   login,
   logout,
   getCurrentUser,
+  isLoggedIn,
 };
 
 export default exportedObjects;
