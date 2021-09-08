@@ -8,7 +8,7 @@ module.exports =  class UsersController {
         if (!isValid) {
             return res.status(400).json(errors);
         }
-        Contact.findOne({ email: req.body.email , req.user.id}).then(contact => {
+        Contact.findOne({ email: req.body.email , id: req.body.id}).then(contact => {
             // Contact already exists
             if (contact) return res.status(400).json({ msg: "Contact already exists" });
 

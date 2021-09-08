@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const UsersCtrl = require("../../controllers/contacts.js");
 const passport = require('passport');
 require('../../middleware/passport')(passport)
 
