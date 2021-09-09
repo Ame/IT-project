@@ -1,8 +1,8 @@
 import React from "react";
 
-function Contact() {
+function About() {
   return (
-    <div className="contact">
+    <div className="about">
       <div class="container">
         <div class="row align-items-center my-5">
           <div class="col-lg-7">
@@ -13,7 +13,7 @@ function Contact() {
             />
           </div>
           <div class="col-lg-5">
-            <h1 class="font-weight-light">Contact</h1>
+            <h1 class="font-weight-light">About Us</h1>
             <p>
               This was developed by iJane! We are students at the Univeristy of Melbourne :)
             </p>
@@ -24,4 +24,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default About;
