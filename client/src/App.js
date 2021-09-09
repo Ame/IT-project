@@ -2,7 +2,7 @@
 
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Navigation, Footer, Home, Signup, Contact, Dashboard} from "./components";
+import { Navigation, Footer, Login, Signup, Contact, Dashboard} from "./components";
 import PrivateRoute from './components/PrivateRoute'
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Navigation />
         <Switch>
-          <Route path="/" exact component={() => <Home />} />
+          <Route path="/" exact component={() => <Login />} />
           <Route path="/signup" exact component={() => <Signup />} />
           <PrivateRoute path="/dashboard" exact component={() => <Dashboard />} />
           <Route path="/contact" exact component={() => <Contact />} />

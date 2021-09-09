@@ -18,7 +18,7 @@ function Navigation(props) {
                 }`}
               >
                 <Link class="nav-link" to="/">
-                  Home
+                  Login
                   <span class="sr-only">(current)</span>
                 </Link>
               </li>

@@ -21,7 +21,7 @@ import AuthService from "../services/auth.service";
 };
 
 
-function Home(props) {
+function Login(props) {
 
   let history = useHistory();
 
@@ -79,7 +79,7 @@ const onChangeEmail = (e) => {
   };
 
   return (
-    <div className="home">
+    <div className="login">
       <div class="container">
         <div class="row align-items-center my-5">
           <div class="col-lg-7">
@@ -145,4 +145,4 @@ const onChangeEmail = (e) => {
 }
 
 
-export default withRouter(Home);
+export default withRouter(Login);
