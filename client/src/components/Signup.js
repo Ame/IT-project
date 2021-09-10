@@ -132,17 +132,17 @@ function Signup(props) {
 
   return (
     <div className="signup">
-      <div class="container">
-        <div class="row align-items-center my-5">
-          <div class="col-lg-7">
+      <div className="container">
+        <div className="row align-items-center my-5">
+          <div className="col-lg-7">
             <img
-              class="img-fluid rounded mb-4 mb-lg-0"
+              className="img-fluid rounded mb-4 mb-lg-0"
               src="http://placehold.it/900x400"
               alt=""
             />
           </div>
-          <div class="col-lg-5">
-            <h1 class="font-weight-light">Signup</h1>
+          <div className="col-lg-5">
+            <h1 className="font-weight-light">Signup</h1>
             <p>Start networking with iJane CRM</p>
             <div>
             {/*<Form onSubmit={handleRegister} ref={form}/>*/}
