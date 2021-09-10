@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require('passport');
+const ContactsCtrl = require("../../controllers/contacts.js");
 require('../../middleware/passport')(passport)
 
 // @route POST api/contacts/addContact
@@ -23,5 +24,18 @@ router.get('/', passport.authenticate('jwt', {session: false}), async (req, res)
     const contacts = await Contact.find({ user: req.user.id, email: req.body.email});
     res.json(contacts);
 });
+
+
+// @route POST api/contacts/addTag
+// @desc Add tag(s) to the contact
+// @access Private
+router.post("/addTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiAddTag);
+
+// @route POST api/contacts/tags/deleteTag
+// @desc Remove tag(s) from contact
+// @access Private
+router.post("/deleteTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiDeleteTag);
+
+
 
 module.exports = router

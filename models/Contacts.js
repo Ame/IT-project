@@ -15,9 +15,7 @@ const ContactSchema = new Schema({
         type: String,
         required: true
     },
-    tags :{
-        
-    }
+    tags : []
 });
 
 module.exports = Contact = mongoose.model("contact", ContactSchema);
