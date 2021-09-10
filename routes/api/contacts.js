@@ -31,11 +31,15 @@ router.get('/', passport.authenticate('jwt', {session: false}), async (req, res)
 // @access Private
 router.post("/addTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiAddTag);
 
-// @route POST api/contacts/tags/deleteTag
+// @route POST api/contacts/deleteTag
 // @desc Remove tag(s) from contact
 // @access Private
 router.post("/deleteTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiDeleteTag);
 
 
+// @route POST api/contacts/getContactTag
+// @desc Remove tag(s) from contact
+// @access Private
+router.post("/getContactTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiGetContactTag);
 
 module.exports = router
