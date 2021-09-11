@@ -8,7 +8,7 @@ const AddContact = () => {
 
  return (
     <div className='max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50'>
-      <form onSubmit={handleSubmit()}>
+      <form onSubmit={handleSubmit()}> 
         <div className='flex items-center justify-between p-2'>
           <div className='flex flex-col'>
             <div className='flex items-center py-1.5 flex-1'>
