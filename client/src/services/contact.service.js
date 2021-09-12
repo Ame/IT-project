@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/contact/";
+
+const API_URL = "/api/contacts/";
 
 const config = {
   headers: { Authorization: `Bearer ${token}` },
@@ -19,6 +20,7 @@ const addContact = (name, email, phoneNum, address, birthday, notes) => {
 };
 
 const editContact = (name, email, phoneNum, address, birthday, notes) => {
+
   return axios.put(API_URL + "editContact", {
     name,
     email,
@@ -30,11 +32,11 @@ const editContact = (name, email, phoneNum, address, birthday, notes) => {
 };
 
 const deleteContact = () => {
-    return axios.delete(API_URL + 'delete/{}')
+    return axios.delete(API_URL + 'delete', config)
 }
 
 const getContacts = () => {
-    return axios.get(API_URL + "contacts")
+    return axios.get(API_URL + "getContacts", config)
 }
 
 
