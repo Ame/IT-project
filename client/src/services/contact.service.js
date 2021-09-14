@@ -39,5 +39,14 @@ const getContacts = () => {
     return axios.get(API_URL + "getContacts", config)
 }
 
+const exportedObjects = {
+  addContact,
+  editContact,
+  deleteContact,
+  getContacts,
+};
+
+export default exportedObjects;
+
 
 
