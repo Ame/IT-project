@@ -1,6 +1,9 @@
 import axios from "axios";
+import AuthService from "../services/auth.service"
 
 const API_URL = "/api/contacts/";
+
+const token = AuthService.getCurrentUser();
 
 const config = {
   headers: { Authorization: `Bearer ${token}` },

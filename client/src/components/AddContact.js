@@ -1,22 +1,16 @@
 import React from 'react'
 import ContactService from "../services/contact.service"
+import { useForm } from "react-hook-form";
 
 const AddContact = () => {
 
-    // const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
 
 
  return (
    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50">
      <form
-       onSubmit={ContactService.addContact(
-         name,
-         email,
-         phoneNum,
-         address,
-         birthday,
-         notes
-       )}
+       onSubmit={handleSubmit()}
      >
        <div className="flex items-center justify-between p-2">
          <div className="flex flex-col">

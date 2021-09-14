@@ -4,7 +4,14 @@ import { HiOutlineTrash, HiOutlineCheck } from "react-icons/hi";
 import ContactService from "../services/contact.service";
 
 function Contacts() {
-  const contacts = ContactService.getContacts();
+
+  const [contacts, setContacts] = useState([]);
+
+  // get the contact data from the server
+  useEffect(() => {
+    ContactService.getContacts().then((res) => setContacts(res.data));
+  }, []);
+
 
   return (
     <div className="max-w-xl pt-8 pb-12 mx-auto">
@@ -22,7 +29,7 @@ function Contacts() {
             </p>
           </div>
           <ul className="pt-5">
-            {contacts.map((contact) => (
+            {contacts.products.map((contact) => (
               <li
                 key={contact._id}
                 className="flex flex-row items-start justify-between py-2.5"
