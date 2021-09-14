@@ -19,6 +19,14 @@ module.exports =  class ContactsController {
                 user: req.user.id
             });
         })
+        newContact
+            .save()
+            .then(() => {
+                return res.status(201).json({
+                    success: true,
+                    id: newContact._id,
+                })
+            })
     }
     static async apiAddTag(req,res,next){
         console.log(req.user);
