@@ -16,7 +16,11 @@ module.exports =  class ContactsController {
             const newContact = new Contact({
                 name: req.body.name,
                 email: req.body.email,
-                user: req.user.id
+                user: req.user.id,
+                phone: req.body.phone,
+                address: req.body.address,
+                birthday: req.body.birthday,
+                notes: req.body.notes
             });
         })
         newContact
