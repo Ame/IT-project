@@ -14,7 +14,8 @@ const ContactSchema = new Schema({
     email: {
         type: String,
         required: true
-    }
+    },
+    tags : []
 });
 
 module.exports = Contact = mongoose.model("contact", ContactSchema);

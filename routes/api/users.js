@@ -17,7 +17,8 @@ router.post("/login", UsersCtrl.apiLoginUser);
 
 // route to test that passport authentication middleware verifies correctly
 // passport.authenticate is called before callback to check auth
-router.get('/protected',passport.authenticate('jwt', {session: false}), (req,res,next) =>{
+router.get('/protected',passport.authenticate('jwt', {session: false}), (req,res) =>{
+    console.log(req.user);
     res.status(200).json({success:true,msg :'You are authorized!'});
 });
 
