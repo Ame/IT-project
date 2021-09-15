@@ -9,13 +9,31 @@ const ContactSchema = new Schema({
     },
     name: {
         type: String,
-        required: false
+        required: true
     },
     email: {
         type: String,
         required: true
     },
-    tags : []
+    phonenumber:{
+        type:String,
+        required: false
+    },
+    address: {
+        type:String
+    },
+    birthday: {
+        type:Date,
+        required: false
+    },
+    notes: {
+        type:String,
+        required:false
+    },
+    tags : {
+        type:Array,
+        required:false
+    }
 });
 
 module.exports = Contact = mongoose.model("contact", ContactSchema);

@@ -7,12 +7,12 @@ require('../../middleware/passport')(passport)
 // @route POST api/contacts/addContact
 // @desc Register contact
 // @access Private
-router.post("/", passport.authenticate('jwt', {session: false}), ContactsCtrl.apiAddContact);
+router.post("/addContact", passport.authenticate('jwt', {session: false}), ContactsCtrl.apiAddContact);
 
 // @route GET api/contacts/getContacts
 // @desc Gets all Contacts
 // @access Private
-router.get('/', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.get('/getContacts3', passport.authenticate('jwt', {session: false}), async (req, res) => {
     const contacts = await Contact.find({ user: req.user.id }).sort({date: -1});
     res.json(contacts);
 });
@@ -29,17 +29,17 @@ router.get('/', passport.authenticate('jwt', {session: false}), async (req, res)
 // @route POST api/contacts/addTag
 // @desc Add tag(s) to the contact
 // @access Private
-router.post("/addTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiAddTag);
+router.put("/addTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiAddTag);
 
 // @route POST api/contacts/deleteTag
 // @desc Remove tag(s) from contact
 // @access Private
-router.post("/deleteTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiDeleteTag);
+router.put("/deleteTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiDeleteTag);
 
 
 // @route POST api/contacts/getContactTag
-// @desc Remove tag(s) from contact
+// @desc Get contacts with specified tags
 // @access Private
-router.post("/getContactTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiGetContactTag);
+router.get("/getContactTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiGetContactTag);
 
 module.exports = router
