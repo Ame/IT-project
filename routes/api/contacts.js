@@ -12,7 +12,7 @@ router.post("/addContact", passport.authenticate('jwt', {session: false}), Conta
 // @route GET api/contacts/getContacts
 // @desc Gets all Contacts
 // @access Private
-router.get('/getContacts3', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.get('/getContacts', passport.authenticate('jwt', {session: false}), async (req, res) => {
     const contacts = await Contact.find({ user: req.user.id }).sort({date: -1});
     res.json(contacts);
 });
