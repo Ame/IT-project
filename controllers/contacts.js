@@ -20,7 +20,8 @@ module.exports =  class ContactsController {
                 phone: req.body.phone,
                 address: req.body.address,
                 birthday: req.body.birthday,
-                notes: req.body.notes
+                notes: req.body.notes,
+                tags: []
             });
             newContact
                 .save()
@@ -33,46 +34,48 @@ module.exports =  class ContactsController {
             })
 
     }
+    // tested
     static async apiAddTag(req,res,next){
-        console.log(req.user);
-        // Find contact 
-        Contact.findOne({ email: req.email , ref: req.user.id}).then(contact => {
+        Contact.findOne({ email: req.body.email , user: req.user.id}).then( contact => {
+
             if (!contact) {
                 return res.status(404).json({ msg: "Contact not found" });
-            }
-
-            // update tags
-            const tags = req.body.tags
-            const newTags = [...new Set(tags.concat(contact.tags))]
+            } 
+            const tags = Array.from(req.body.tags);
+            const cat = tags.concat(contact.tags);
+            const set = new Set(cat)
             // remove duplicates through set conversion
-            Contact.updateOne({ email: req.user.email , ref: req.user.id}
-                ,{tags: newTags});
-
-            res.status(200).json({success:true,contact:contact}); 
-        }).catch(err => next(err,null))
+            const newTags = [...set]
+            console.log(newTags);
+            // now update the tag
+            Contact.updateOne({ email: req.body.email , user: req.user.id} ,{tags: newTags}).then(result => {
+                
+                return res.status(200).json({success:true,tags:newTags});
+            })
+        })
 
     }
+    // tested
     static async apiDeleteTag(req,res){
-        console.log(req.user);
         // Find contact 
-        Contact.findOne({ email: req.user.email , ref: req.user.id}).then(contact => {
+        Contact.findOne({ email: req.body.email , user: req.user.id}).then(contact => {
             if (!contact) {
                 return res.status(404).json({ msg: "Contact not found" });
             }
             const tags = contact.tags
+            console.log(tags);
             // get index of tag to remove
             const index = tags.indexOf(req.body.tag);
-            if (index > -1) {
-                tags.splice(index, 1);
-            }
-            Contact.updateOne({ email: req.user.email , ref: req.user.id}
-                ,{tags: tags});
+            tags.splice(index, 1);
+            console.log(tags);
+            Contact.updateOne({ email: req.body.email , user: req.user.id},{tags: tags}).then(contact => {
+                res.status(200).json({success:true,tags:tags});
+            })
 
-            res.status(200).json({success:true,contact:contact});
         })
- 
-    }
 
+    }
+    // tested
     static async apiGetContactTag(req,res){
         const tags = req.body.tags
         // get all contacts that match tags
