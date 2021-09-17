@@ -23,7 +23,7 @@ module.exports =  class ContactsController {
     static async apiAddTag(req,res,next){
         console.log(req.user);
         // Find contact 
-        Contact.findOne({ email: req.user.email , ref: req.user.id}).then(contact => {
+        Contact.findOne({ email: req.email , ref: req.user.id}).then(contact => {
             if (!contact) {
                 return res.status(404).json({ msg: "Contact not found" });
             }
