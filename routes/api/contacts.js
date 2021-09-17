@@ -29,13 +29,17 @@ router.get('/getContact', passport.authenticate('jwt', {session: false}), async 
 // @route POST api/contacts/addTag
 // @desc Add tag(s) to the contact
 // @access Private
-router.post("/addTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiAddTag);
+router.put("/addTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiAddTag);
 
-// @route POST api/contacts/tags/deleteTag
+// @route POST api/contacts/deleteTag
 // @desc Remove tag(s) from contact
 // @access Private
-router.post("/deleteTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiDeleteTag);
+router.put("/deleteTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiDeleteTag);
 
 
+// @route POST api/contacts/getContactTag
+// @desc Get contacts with specified tags
+// @access Private
+router.get("/getContactTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiGetContactTag);
 
 module.exports = router
