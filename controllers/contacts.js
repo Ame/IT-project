@@ -1,5 +1,5 @@
 const User = require("../models/Contacts.js");
-const validateRegister = require("../validation/addContact");
+const validateContact = require("../validation/addContact");
 
 module.exports =  class ContactsController {
     static async apiAddContact(req,res){
@@ -22,15 +22,16 @@ module.exports =  class ContactsController {
                 birthday: req.body.birthday,
                 notes: req.body.notes
             });
-        })
-        newContact
-            .save()
-            .then(() => {
-                return res.status(201).json({
-                    success: true,
-                    id: newContact._id,
+            newContact
+                .save()
+                .then(() => {
+                    return res.status(201).json({
+                        success: true,
+                        id: newContact._id,
+                    })
                 })
             })
+
     }
     static async apiAddTag(req,res,next){
         console.log(req.user);

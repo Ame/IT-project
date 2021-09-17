@@ -9,14 +9,14 @@ module.exports = function validateContact(contact){
     contact.email = !isEmpty(contact.email) ? contact.email : "";
 
     // Name checks
-    if (Validator.isEmpty(user.name)) {
+    if (Validator.isEmpty(contact.name)) {
         errors.name = "Name field is required";
     }
 
     // Email checks
-    if (Validator.isEmpty(user.email)) {
+    if (Validator.isEmpty(contact.email)) {
         errors.email = "Email field is required";
-    } else if (!Validator.isEmail(user.email)) {
+    } else if (!Validator.isEmail(contact.email)) {
         errors.email = "Invalid Email";
     }
 
