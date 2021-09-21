@@ -94,7 +94,7 @@ const AddContact = (e) => {
     
     if (checkBtn.current.context._errors.length === 0) {
       console.log(name, email, phone, address, birthday, notes);
-      ContactService.register(name, email, phone, address, birthday, notes).then(
+      ContactService.addContact(name, email, phone, address, birthday, notes).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
@@ -117,14 +117,12 @@ const AddContact = (e) => {
 
  return (
    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50">
-     <form
-       onSubmit={handleAddContact}
-     >
-       <div className="flex items-center justify-between p-2">
-         <div className="flex flex-col">
-           <div className="flex items-center py-1.5 flex-1">
-             <label htmlFor="name">Name:</label>
-             <Input 
+     <Form onSubmit={handleAddContact} ref={form}>
+          {!successful && (
+            <div>
+              <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <Input 
               type="text"
               className = "form-control"
               name="name"
@@ -132,69 +130,91 @@ const AddContact = (e) => {
               onChange={onChangeName}
               validations={[required]}
             // {...register("name", { required: true })} 
-            />
-           </div>
-           <div>
-             <label htmlFor="description">Email:</label>
-             <Input 
-              type="text"
-              className = "form-control"
-              name="email"
-              value={email}
-              onChange={onChangeEmail}
-              validations={[required]}
-            // {...register("email", { required: true })} 
-            />
-           </div>
-           <div>
-             <label htmlFor="phone">Phone Number:</label>
-             <Input 
-              type="text"
-              className = "form-control"
-              name="phone"
-              value={phone}
-              onChange={onChangePhone}
-              placeholder="+61"
-            // {...register("phone", { required: false })} 
-            />
-           </div>
-           <div>
-             <label htmlFor="address">Address:</label>
-             <Input 
-              type="text"
-              className = "form-control"
-              name="address"
-              value={address}
-              onChange={onChangeAddress}
-            // {...register("address", { required: false })} 
-            />
-           </div>
-           <div>
-             <label htmlFor="birthday">Birthday:</label>
-             <Input 
-              type="text"
-              className = "form-control"
-              name="birthday"
-              value={birthday}
-              onChange={onChangeBirthday}
-            // {...register("birthday", { required: false })} 
-            />
-           </div>
-           <div>
-             <label htmlFor="notes">Notes:</label>
-             <Input 
-              type="text"
-              className = "form-control"
-              name="notes"
-              value={notes}
-              onChange={onChangeNotes}
-            // {...register("notes", { required: false })} 
-            />
-           </div>
-         </div>
-         <button>Submit</button>
-       </div>
-     </form>
+              />
+              </div>
+              <div className="form-group">
+                <label htmlFor="description">Email:</label>
+                <Input 
+                type="text"
+                className = "form-control"
+                name="email"
+                value={email}
+                onChange={onChangeEmail}
+                validations={[required]}
+                // {...register("email", { required: true })} 
+                />
+              </div>
+
+              <div className="form-group">
+              <label htmlFor="phone">Phone Number:</label>
+                <Input 
+                type="text"
+                className = "form-control"
+                name="phone"
+                value={phone}
+                onChange={onChangePhone}
+                placeholder="+61"
+                // {...register("phone", { required: false })} 
+                />
+              </div>
+
+              <div className="form-group">
+              <label htmlFor="phone">Address:</label>
+                <Input 
+                type="text"
+                className = "form-control"
+                name="address"
+                value={address}
+                onChange={onChangeAddress}
+                />
+              </div>
+
+              <div className="form-group">
+              <label htmlFor="phone">Birthday:</label>
+                <Input 
+                type="text"
+                className = "form-control"
+                name="birthday"
+                value={birthday}
+                onChange={onChangeBirthday}
+                placeholder="DD-MM-YYYY"
+                />
+              </div>
+
+              <div className="form-group">
+              <label htmlFor="phone">Notes:</label>
+                <Input 
+                type="text"
+                className = "form-control"
+                name="notes"
+                value={notes}
+                onChange={onChangeNotes}
+                />
+              </div>
+
+              <div className="form-group">
+                <button className="btn btn-primary btn-block">Submit</button>
+              </div>
+            </div>
+          )}
+
+          {message && (
+            <div className="form-group">
+              <div
+                className={ successful ? "alert alert-success" : "alert alert-danger" }
+                role="alert"
+              >
+                {message}
+              </div>
+            </div>
+          )}
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+        </Form>
+     
+     
+     
+     
+    
    </div>
  );
  
