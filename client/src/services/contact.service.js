@@ -4,8 +4,11 @@ import AuthService from "../services/auth.service"
 
 const API_URL = "http://localhost:3000/api/contacts/";
 
-const token = AuthService.getCurrentUser().token.token;
-
+const user = AuthService.getCurrentUser()
+var token = ""
+if (user) {
+  token = user.token.token;
+} 
 const config = {
   headers: { Authorization: token},
 };
