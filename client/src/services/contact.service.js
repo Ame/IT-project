@@ -1,6 +1,7 @@
 import axios from "axios";
 import AuthService from "../services/auth.service"
 
+
 const API_URL = "http://localhost:3000/api/contacts/";
 
 const token = AuthService.getCurrentUser();
@@ -11,7 +12,9 @@ const config = {
 
 
 const addContact = (name, email, phoneNum, address, birthday, notes) => {
+  const currentUser = AuthService.getCurrentUser().user;
   return axios.post(API_URL + "addContact", {
+    currentUser,
     name,
     email,
     phoneNum,
@@ -44,10 +47,11 @@ const exportedObjects = {
   addContact,
   editContact,
   deleteContact,
-  getContacts,
+  getContacts
 };
 
 export default exportedObjects;
+
 
 
 

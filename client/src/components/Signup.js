@@ -149,7 +149,6 @@ function Signup(props) {
             <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
-
               <div className="form-group">
                 <label htmlFor="name">Name</label>
                 <Input
