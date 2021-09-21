@@ -29,22 +29,22 @@ function Contacts() {
                   {contact.phone !== "" ? (
                     <h6>Phone Number: {contact.phone}</h6>
                   ) : (
-                    <h6></h6>
+                    null
                   )}
                   {contact.address !== "" ? (
                     <h6>Address: {contact.address}</h6>
                   ) : (
-                    <h6></h6>
+                    null
                   )}
                   {contact.birthday !== null ? (
                     <h6>Birthday: {contact.birthday}</h6>
                   ) : (
-                    <h6></h6>
+                    null
                   )}
                   {contact.notes !== "" ? (
                     <h6>Notes: {contact.notes}</h6>
                   ) : (
-                    <h6></h6>
+                    null
                   )}
                 </div>
                 <div>
