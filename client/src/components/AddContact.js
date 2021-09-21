@@ -5,6 +5,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import { isEmail } from "validator";
 import ContactService from "../services/contact.service";
+import { useHistory } from "react-router-dom";
 //import { addContact } from '../services/contact.service';
 
 
@@ -37,6 +38,7 @@ const validEmail = (value) => {
 };
 
 const AddContact = (e) => {
+  let history = useHistory();
 
  // const { register, onSubmit} = useForm();
 
@@ -91,13 +93,13 @@ const AddContact = (e) => {
 
     form.current.validateAll();
 
-    
     if (checkBtn.current.context._errors.length === 0) {
       console.log(name, email, phone, address, birthday, notes);
       ContactService.addContact(name, email, phone, address, birthday, notes).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
+          history.push("/contacts");
         },
         (error) => {
           const resMessage =
@@ -113,7 +115,6 @@ const AddContact = (e) => {
       );
     }
   };
-
 
  return (
    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50">

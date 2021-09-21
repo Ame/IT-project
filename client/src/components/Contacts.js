@@ -27,6 +27,7 @@ function Contacts() {
                   <h6>Name: {contact.name}</h6>
                   <h6>Email: {contact.email}</h6>
                   <h6>Birthday: {contact.birthday}</h6>
+                  <h6>Phone Number: {contact.phone}</h6>
                 </div>
                 <div>
                   <button
