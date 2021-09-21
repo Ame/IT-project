@@ -87,7 +87,7 @@ function Home(props) {
           </div>
           <div className="col-lg-5">
             <div className="login-wrapper">
-              <h1>Please Log In</h1>
+              <h1 className="font-weight-light">Please Log In</h1>
               <Form onSubmit={handleLogin} ref={form}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
