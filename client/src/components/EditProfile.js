@@ -11,12 +11,18 @@ function EditProfile(props) {
     <div className="editProfile">
       <div className="container">
         <div className="row align-items-center my-5 relative-right">
-          <div className="col-lg-5">
+          <div className="col-lg-7">
             <h1 className="font-weight-light">Edit Profile</h1>
-            <p>Start networking with iJane CRM</p>
-            <h3>
-              <strong>{currentUser.name}</strong> 's Profile </h3>
-              <h4>Email: {currentUser.email}</h4>
+            <p>Change your user details</p>
+
+            <form action="/action_page.php">
+                <label for="fname">First name:</label><br />
+                <input type="text" id="fname" name="fname" value="John" /><br />
+                <label for="lname">Last name:</label><br />
+                <input type="text" id="lname" name="lname" value="Doe" /><br /><br />
+                <input type="submit" value="Submit" />
+            </form>
+
           </div>
         </div>
       </div>

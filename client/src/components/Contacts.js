@@ -14,7 +14,9 @@ function Contacts() {
 
 
   return (
-    <div className="max-w-xl pt-8 pb-12 mx-auto">
+    <div className="contacts my-5 align-items-center">
+      <h1 className="font-weight-light">Contacts</h1>
+      <div className="max-w-xl pt-8 pb-12 mx-auto">
       <Link to="/addContact">
         <button>Add Contact</button>{" "}
       </Link>
@@ -86,6 +88,7 @@ function Contacts() {
           </ul>
         </div>
       )}
+    </div>
     </div>
   );
 }
