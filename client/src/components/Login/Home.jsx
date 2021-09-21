@@ -8,9 +8,9 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
- const required = (value) => {
+export const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -19,7 +19,6 @@ import AuthService from "../services/auth.service";
     );
   }
 };
-
 
 function Home(props) {
 
@@ -34,7 +33,7 @@ function Home(props) {
   const [message, setMessage] = useState("");
 
 
-const onChangeEmail = (e) => {
+  const onChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
   };
