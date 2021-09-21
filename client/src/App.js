@@ -15,8 +15,8 @@ function App() {
           <Route path="/signup" exact component={() => <Signup />} />
           <PrivateRoute path="/dashboard" exact component={() => <Dashboard />} />
           <Route path="/about" exact component={() => <About/>} />
-          <Route path="/contacts" exact component={() => <Contacts/>} />
-          <Route path="/addContact" exact component={() => <AddContact/>} />
+          <PrivateRoute path="/contacts" exact component={() => <Contacts/>} />
+          <PrivateRoute path="/addContact" exact component={() => <AddContact/>} />
         </Switch>
         <Footer />
       </Router>

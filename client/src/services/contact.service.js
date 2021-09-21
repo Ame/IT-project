@@ -4,7 +4,7 @@ import AuthService from "../services/auth.service"
 
 const API_URL = "http://localhost:3000/api/contacts/";
 
-const user = AuthService.getCurrentUser()
+const user = AuthService.getCurrentUser();
 var token = ""
 if (user) {
   token = user.token.token;
@@ -38,8 +38,8 @@ const editContact = (name, email, phone, address, birthday, notes) => {
   }, config);
 };
 
-const deleteContact = () => {
-    return axios.delete(API_URL + 'delete', config)
+const deleteContact = (id) => {
+    return axios.delete(API_URL + "delete", config, { data: {_id: id}});
 }
 
 const getContacts = () => {

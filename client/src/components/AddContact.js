@@ -1,21 +1,10 @@
 import React, { useState, useRef}  from 'react'
-//import {editContact, deleteContact, getContacts} from "../services/contact.service"
-import { useForm } from "react-hook-form";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import { isEmail } from "validator";
 import ContactService from "../services/contact.service";
 import { useHistory } from "react-router-dom";
-//import { addContact } from '../services/contact.service';
-
-
-// import React, { useState, useRef} from "react";
-import {Link} from "react-router-dom";
-// import Form from "react-validation/build/form";
-// import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-// import { isEmail } from "validator";
-import AuthService from "../services/auth.service";
 
 const required = (value) => {
   if (!value) {

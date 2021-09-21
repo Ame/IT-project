@@ -18,22 +18,40 @@ function Contacts() {
       ) : (
         <div>
           <div>
-            <h6>Your contacts</h6>
+            <h3>Your contacts</h3>
           </div>
-          <ul className="pt-5">
+          <ul>
             {contacts.map((contact) => (
               <li key={contact._id}>
                 <div>
                   <h6>Name: {contact.name}</h6>
                   <h6>Email: {contact.email}</h6>
-                  <h6>Birthday: {contact.birthday}</h6>
-                  <h6>Phone Number: {contact.phone}</h6>
+                  {contact.phone !== "" ? (
+                    <h6>Phone Number: {contact.phone}</h6>
+                  ) : (
+                    <h6></h6>
+                  )}
+                  {contact.address !== "" ? (
+                    <h6>Address: {contact.address}</h6>
+                  ) : (
+                    <h6></h6>
+                  )}
+                  {contact.birthday !== null ? (
+                    <h6>Birthday: {contact.birthday}</h6>
+                  ) : (
+                    <h6></h6>
+                  )}
+                  {contact.notes !== "" ? (
+                    <h6>Notes: {contact.notes}</h6>
+                  ) : (
+                    <h6></h6>
+                  )}
                 </div>
                 <div>
                   <button
                     type="button"
                     onClick={() => {
-                      console.log("Delete");
+                      console.log('delete');
                     }}
                   >
                     {" "}
@@ -46,11 +64,14 @@ function Contacts() {
               </li>
             ))}
           </ul>
-          <Link to="/addContact">
-            <button>Add Contact</button>{" "}
-          </Link>
         </div>
       )}
+      <Link to="/addContact">
+        <button>Add Contact</button>{" "}
+      </Link>
+      <Link to="/dashboard">
+        <button>Back</button>{" "}
+      </Link>
     </div>
   );
 }
