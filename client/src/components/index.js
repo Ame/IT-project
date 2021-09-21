@@ -8,3 +8,4 @@ export { default as PrivateRoute } from "./PrivateRoute"
 export {default as Contacts} from "./Contacts";
 export {default as AddContact} from './AddContact';
 export {default as Sidebar} from './Sidebar';
+export {default as EditProfile} from './EditProfile';

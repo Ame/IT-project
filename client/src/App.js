@@ -2,7 +2,7 @@
 // <PrivateRoute path={["/dashboard", "/contacts"]} exact component={() => <Sidebar />} />
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Navigation, Footer, Home, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar} from "./components";
+import { Navigation, Footer, Home, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile } from "./components";
 
 function App() {
 
@@ -14,6 +14,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={() => <Home />} />
           <Route path="/signup" exact component={() => <Signup />} />
+          <Route path="/about" exact component={() => <About/>} />
           <PrivateRoute path="/dashboard">
               <div className="row">
                <div className="col-lg-3">
@@ -24,7 +25,6 @@ function App() {
                 </div>
               </div>
           </PrivateRoute>
-          <Route path="/about" exact component={() => <About/>} />
           <Route path="/contacts">
             <div className="row">
                <div className="col-lg-3">
@@ -36,6 +36,16 @@ function App() {
               </div>
           </Route>
           <Route path="/addContact" exact component={() => <AddContact/>} />
+          <Route path="/editProfile">
+              <div className="row">
+               <div className="col-lg-3">
+                  <Sidebar />
+                </div>
+                <div className = "col-lg-5">
+                  <EditProfile />
+                </div>
+              </div>
+          </Route>
         </Switch>
         <Footer />
       </Router>
