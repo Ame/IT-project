@@ -7,7 +7,7 @@ const API_URL = "http://localhost:3000/api/contacts/";
 const token = AuthService.getCurrentUser().token.token;
 
 const config = {
-  headers: { Authorization: token },
+  headers: { Authorization: token},
 };
 
 
