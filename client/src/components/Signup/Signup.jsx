@@ -5,10 +5,10 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
 
-const required = (value) => {
+export const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -18,7 +18,7 @@ const required = (value) => {
   }
 };
 
-const validEmail = (value) => {
+export const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -29,8 +29,8 @@ const validEmail = (value) => {
 };
 
 
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
+export const vpassword = (value) => {
+  if (value.length < 6) {
     return (
       <div className="alert alert-danger" role="alert">
         The password must be between 6 and 40 characters.
@@ -98,23 +98,23 @@ function Signup(props) {
 
   return (
     <div className="signup">
-      <div className="container">
-        <div className="row align-items-center my-5">
-          <div className="col-lg-7">
+      <div class="container">
+        <div class="row align-items-center my-5">
+          <div class="col-lg-7">
             <img
-              className="img-fluid rounded mb-4 mb-lg-0"
+              class="img-fluid rounded mb-4 mb-lg-0"
               src="http://placehold.it/900x400"
               alt=""
             />
           </div>
-          <div className="col-lg-5">
-            <h1 className="font-weight-light">Signup</h1>
+          <div class="col-lg-5">
+            <h1 class="font-weight-light">Signup</h1>
             <p>Start networking with iJane CRM</p>
             <div>
-            {/*<Form onSubmit={handleRegister} ref={form}/>*/}
             <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
+
               <div className="form-group">
                 <label htmlFor="name">Name</label>
                 <Input

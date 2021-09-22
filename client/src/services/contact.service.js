@@ -1,39 +1,45 @@
 import axios from "axios";
 import AuthService from "../services/auth.service"
 
+
 const API_URL = "http://localhost:3000/api/contacts/";
 
-const token = AuthService.getCurrentUser();
+const user = AuthService.getCurrentUser();
+var token = ""
+if (user) {
+  token = user.token.token;
+} 
 
 const config = {
-  headers: { Authorization: `Bearer ${token}` },
+  headers: { Authorization: token},
 };
 
-
-const addContact = (name, email, phoneNum, address, birthday, notes) => {
+const addContact = (name, email, phone, address, birthday, notes) => {
+  const currentUser = AuthService.getCurrentUser().user;
   return axios.post(API_URL + "addContact", {
+    currentUser,
     name,
     email,
-    phoneNum,
+    phone,
     address,
     birthday,
     notes,
   }, config);
 };
 
-const editContact = (name, email, phoneNum, address, birthday, notes) => {
+const editContact = (name, email, phone, address, birthday, notes) => {
   return axios.put(API_URL + "editContact", {
     name,
     email,
-    phoneNum,
+    phone,
     address,
     birthday,
     notes,
   }, config);
 };
 
-const deleteContact = () => {
-    return axios.delete(API_URL + 'delete', config)
+const deleteContact = (id) => {
+    return axios.delete(API_URL + "delete", config, { data: {_id: id}});
 }
 
 const getContacts = () => {
@@ -44,10 +50,11 @@ const exportedObjects = {
   addContact,
   editContact,
   deleteContact,
-  getContacts,
+  getContacts
 };
 
 export default exportedObjects;
+
 
 
 
