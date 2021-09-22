@@ -9,11 +9,6 @@ function Dashboard(props) {
   const currentUser = AuthService.getCurrentUser().user;
   let history = useHistory();
 
-  const logoutHandler = () =>{
-    history.push("/");
-    AuthService.logout();
-  }
-
   
   return (
     <div className="dashboard">
@@ -25,7 +20,6 @@ function Dashboard(props) {
             <h3>
               <strong>{currentUser.name}</strong> 's Profile </h3>
               <h4>Email: {currentUser.email}</h4>
-              <button onClick={logoutHandler}>Logout</button>
           </div>
         </div>
       </div>

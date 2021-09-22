@@ -1,8 +1,10 @@
 // https://www.techomoro.com/how-to-create-a-multi-page-website-with-react-in-5-minutes/ for whole general structure
 
+//TODO: put sidebar and dashboard elements in flex-boxes (relative sizing!!)
+
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Navigation, Footer, Home, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact} from "./components";
+import { Navigation, Footer, Home, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile } from "./components";
 
 function App() {
 
@@ -10,13 +12,42 @@ function App() {
     <div className="App">
       <Router>
         <Navigation />
+        
         <Switch>
           <Route path="/" exact component={() => <Home />} />
           <Route path="/signup" exact component={() => <Signup />} />
-          <PrivateRoute path="/dashboard" exact component={() => <Dashboard />} />
           <Route path="/about" exact component={() => <About/>} />
-          <PrivateRoute path="/contacts" exact component={() => <Contacts/>} />
-          <PrivateRoute path="/addContact" exact component={() => <AddContact/>} />
+          <PrivateRoute path="/dashboard">
+              <div className="row">
+               <div className="col-lg-3">
+                  <Sidebar />
+                </div>
+                <div className = "col-lg-7">
+                  <Dashboard />
+                </div>
+              </div>
+          </PrivateRoute>
+          <Route path="/contacts">
+            <div className="row">
+               <div className="col-lg-3">
+                  <Sidebar />
+                </div>
+                <div className = "col-lg-5">
+                  <Contacts />
+                </div>
+              </div>
+          </Route>
+          <Route path="/addContact" exact component={() => <AddContact/>} />
+          <Route path="/editProfile">
+              <div className="row">
+               <div className="col-lg-3">
+                  <Sidebar />
+                </div>
+                <div className = "col-lg-7">
+                  <EditProfile />
+                </div>
+              </div>
+          </Route>
         </Switch>
         <Footer />
       </Router>
