@@ -1,0 +1,19 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul.contactList {
+    list-style-type: none; /* removes bullets */
+    text-align: center;
+}
+
+h3.headings {
+    text-align: center;
+    padding: 1em;
+}
+
+.back {
+    margin-left: 50px;
+    margin-top: 50px;
+}

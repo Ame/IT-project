@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ContactService from "../services/contact.service";
+import ContactService from "../../services/contact.service";
+import "./Contacts.css"
+
+const convertToDate = (date) => {
+    const toDate = new Date(date);
+    return toDate.toLocaleDateString();
+}
 
 function Contacts() {
   const [contacts, setContacts] = useState([]);
@@ -18,9 +24,12 @@ function Contacts() {
       ) : (
         <div>
           <div>
-            <h3>Your contacts</h3>
+            <Link to="/dashboard">
+              <button className="back">Back</button>{" "}
+            </Link>
+            <h3 className="headings">Your contacts</h3>
           </div>
-          <ul>
+          <ul className="contactList">
             {contacts.map((contact) => (
               <li key={contact._id}>
                 <div>
@@ -28,30 +37,22 @@ function Contacts() {
                   <h6>Email: {contact.email}</h6>
                   {contact.phone !== "" ? (
                     <h6>Phone Number: {contact.phone}</h6>
-                  ) : (
-                    null
-                  )}
+                  ) : null}
                   {contact.address !== "" ? (
                     <h6>Address: {contact.address}</h6>
-                  ) : (
-                    null
-                  )}
+                  ) : null}
                   {contact.birthday !== null ? (
-                    <h6>Birthday: {contact.birthday}</h6>
-                  ) : (
-                    null
-                  )}
+                    <h6>Birthday: {convertToDate(contact.birthday)}</h6>
+                  ) : null}
                   {contact.notes !== "" ? (
                     <h6>Notes: {contact.notes}</h6>
-                  ) : (
-                    null
-                  )}
+                  ) : null}
                 </div>
                 <div>
                   <button
                     type="button"
                     onClick={() => {
-                      console.log('delete');
+                      console.log("delete");
                     }}
                   >
                     {" "}
@@ -68,9 +69,6 @@ function Contacts() {
       )}
       <Link to="/addContact">
         <button>Add Contact</button>{" "}
-      </Link>
-      <Link to="/dashboard">
-        <button>Back</button>{" "}
       </Link>
     </div>
   );
