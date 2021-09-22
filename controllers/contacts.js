@@ -77,7 +77,6 @@ module.exports =  class ContactsController {
         var contact = {
             name: req.body.name,
             email: req.body.email,
-            user: req.user.id,
             phone: req.body.phone,
             address: req.body.address,
             birthday: req.body.birthday,
@@ -92,5 +91,12 @@ module.exports =  class ContactsController {
                 res.send();
             }
         });
+    }
+
+    static async apiRemoveContact(req,res){
+        console.log(req.user);
+        var _id = req.body._id;
+        const user = await Contact.findByIdAndRemove(_id);
+        res.status(200).json({success:true});
     }
 }

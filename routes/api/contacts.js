@@ -36,10 +36,15 @@ router.post("/addTag",passport.authenticate('jwt', {session: false}),ContactsCtr
 // @access Private
 router.post("/deleteTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiDeleteTag);
 
-// @route POST api/contacts/tags/updateUser
+// @route POST api/contacts/updateContact
 // @desc Update Contact
 // @access Private
-router.post("/updateUser",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiEditContact);
+router.post("/updateContact",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiEditContact);
+
+// @route POST api/contacts/removeContact
+// @desc Remove Contact
+// @access Private
+router.post("/removeContact",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiRemoveContact);
 
 
 
