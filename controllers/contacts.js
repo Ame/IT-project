@@ -70,4 +70,27 @@ module.exports =  class ContactsController {
 
         res.status(200).json({success:true,contact:contact}); 
     }
+
+    static async apiEditContact(req,res){
+        console.log(req.user);
+        var _id = req.body._id;
+        var contact = {
+            name: req.body.name,
+            email: req.body.email,
+            user: req.user.id,
+            phone: req.body.phone,
+            address: req.body.address,
+            birthday: req.body.birthday,
+            notes: req.body.notes
+        };
+        Contact.findByIdAndUpdate(_id, { $set: contact }, { new: true }, function (err, contact) {
+            if (err) {
+                res.status(500);
+                res.send(err);
+            } else {
+                res.status(200);
+                res.send();
+            }
+        });
+    }
 }

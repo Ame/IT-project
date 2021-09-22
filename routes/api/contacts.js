@@ -36,6 +36,11 @@ router.post("/addTag",passport.authenticate('jwt', {session: false}),ContactsCtr
 // @access Private
 router.post("/deleteTag",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiDeleteTag);
 
+// @route POST api/contacts/tags/updateUser
+// @desc Update Contact
+// @access Private
+router.post("/updateUser",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiEditContact);
+
 
 
 module.exports = router
