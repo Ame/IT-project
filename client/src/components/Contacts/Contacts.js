@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ContactService from "../../services/contact.service";
-import "./Contacts.css"
+import "./Contacts.css";
 
 const convertToDate = (date) => {
-    const toDate = new Date(date);
-    return toDate.toLocaleDateString();
-}
+  const toDate = new Date(date);
+  return toDate.toLocaleDateString();
+};
 
 function Contacts() {
   const [contacts, setContacts] = useState([]);
@@ -31,7 +31,7 @@ function Contacts() {
           </div>
           <ul className="contactList">
             {contacts.map((contact) => (
-              <li key={contact._id}>
+              <li className="contact" key={contact._id}>
                 <div>
                   <h6>Name: {contact.name}</h6>
                   <h6>Email: {contact.email}</h6>

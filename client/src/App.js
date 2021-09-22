@@ -27,7 +27,7 @@ function App() {
                 </div>
               </div>
           </PrivateRoute>
-          <Route path="/contacts">
+          <PrivateRoute path="/contacts">
             <div className="row">
                <div className="col-lg-3">
                   <Sidebar />
@@ -36,8 +36,8 @@ function App() {
                   <Contacts />
                 </div>
               </div>
-          </Route>
-          <Route path="/addContact" exact component={() => <AddContact/>} />
+          </PrivateRoute>
+          <PrivateRoute path="/addContact" exact component={() => <AddContact/>} />
           <Route path="/editProfile">
               <div className="row">
                <div className="col-lg-3">
