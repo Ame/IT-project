@@ -28,7 +28,9 @@ const addContact = (name, email, phone, address, birthday, notes) => {
 };
 
 const editContact = (name, email, phone, address, birthday, notes) => {
+  const currentUser = AuthService.getCurrentUser().user;
   return axios.put(API_URL + "editContact", {
+    currentUser,
     name,
     email,
     phone,

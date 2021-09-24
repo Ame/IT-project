@@ -27,7 +27,7 @@ const validEmail = (value) => {
   }
 };
 
-const AddContact = (e) => {
+const EditContact = (e) => {
   let history = useHistory();
 
  // const { register, onSubmit} = useForm();
@@ -75,7 +75,7 @@ const AddContact = (e) => {
   };
 
 
-  const handleAddContact = (e) => {
+  const handleEditContact = (e) => {
     e.preventDefault();
 
     setMessage("");
@@ -85,7 +85,7 @@ const AddContact = (e) => {
 
     if (checkBtn.current.context._errors.length === 0) {
       console.log(name, email, phone, address, birthday, notes);
-      ContactService.addContact(name, email, phone, address, birthday, notes).then(
+      ContactService.editContact(name, email, phone, address, birthday, notes).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
@@ -111,8 +111,8 @@ const AddContact = (e) => {
      <Link to="/contacts">
        <button>Back</button>{" "}
      </Link>
-     <p>Add Contact </p>
-     <Form onSubmit={handleAddContact} ref={form}>
+     <p>Edit Contact </p>
+     <Form onSubmit={handleEditContact} ref={form} style = {{overflow:'scroll'}}>
        {!successful && (
          <div>
            <div className="form-group">
@@ -123,7 +123,6 @@ const AddContact = (e) => {
                name="name"
                value={name}
                onChange={onChangeName}
-               validations={[required]}
                // {...register("name", { required: true })}
              />
            </div>
@@ -135,7 +134,6 @@ const AddContact = (e) => {
                name="email"
                value={email}
                onChange={onChangeEmail}
-               validations={[required, validEmail]}
                // {...register("email", { required: true })}
              />
            </div>
@@ -212,4 +210,4 @@ const AddContact = (e) => {
  
 }
 
-export default AddContact;
+export default EditContact;

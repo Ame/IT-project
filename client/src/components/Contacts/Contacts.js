@@ -29,7 +29,7 @@ function Contacts() {
             </Link>
             <h3 className="headings">Your contacts</h3>
           </div>
-          <ul className="contactList">
+          <ul className="contactList" >
             {contacts.map((contact) => (
               <li className="contact" key={contact._id}>
                 <div>
@@ -58,9 +58,10 @@ function Contacts() {
                     {" "}
                     Delete
                   </button>
+                  <Link to="/editContact">
                   <button type="button" onClick={() => console.log("Edit")}>
                     Edit
-                  </button>
+                  </button></Link>
                 </div>
               </li>
             ))}
