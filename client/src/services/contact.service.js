@@ -41,18 +41,23 @@ const editContact = (name, email, phone, address, birthday, notes) => {
 };
 
 const deleteContact = (id) => {
-    return axios.delete(API_URL + "delete", config, { data: {_id: id}});
+    return axios.post(API_URL + "removeContact", config, { data: {_id: id}});
 }
 
 const getContacts = () => {
     return axios.get(API_URL + "getContacts", config)
 }
 
+const getContact = () => {
+  return axios.get(API_URL + "getContact", config)
+}
+
 const exportedObjects = {
   addContact,
   editContact,
   deleteContact,
-  getContacts
+  getContacts,
+  getContact
 };
 
 export default exportedObjects;

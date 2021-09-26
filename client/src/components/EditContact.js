@@ -43,6 +43,8 @@ const EditContact = (e) => {
   const [notes, setNotes] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
+
+  const {data} = this.props.location
   
   const onChangeName = (e) => {
       const name = e.target.value;
@@ -109,9 +111,9 @@ const EditContact = (e) => {
  return (
    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50">
      <Link to="/contacts">
-       <button>Back</button>{" "}
+       <button>Back</button>{" "}<input type="text" value =" Edit Contact"/>
      </Link>
-     <p>Edit Contact </p>
+     
      <Form onSubmit={handleEditContact} ref={form} style = {{overflow:'scroll'}}>
        {!successful && (
          <div>
@@ -133,6 +135,7 @@ const EditContact = (e) => {
                className="form-control"
                name="email"
                value={email}
+               validation = {validEmail}
                onChange={onChangeEmail}
                // {...register("email", { required: true })}
              />

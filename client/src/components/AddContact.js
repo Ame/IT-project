@@ -109,9 +109,8 @@ const AddContact = (e) => {
  return (
    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50">
      <Link to="/contacts">
-       <button>Back</button>{" "}
+       <button>Back</button>{" "} <input type="text" value =" Add Contact"/>
      </Link>
-     <p>Add Contact </p>
      <Form onSubmit={handleAddContact} ref={form}>
        {!successful && (
          <div>
