@@ -44,7 +44,7 @@ router.post("/updateContact",passport.authenticate('jwt', {session: false}),Cont
 // @route POST api/contacts/removeContact
 // @desc Remove Contact
 // @access Private
-router.post("/removeContact",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiRemoveContact);
+router.delete("/removeContact/:id",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiRemoveContact);
 
 
 // @route POST api/contacts/getContactTag

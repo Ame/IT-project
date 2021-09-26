@@ -27,10 +27,9 @@ const addContact = (name, email, phone, address, birthday, notes) => {
   }, config);
 };
 
-const editContact = (name, email, phone, address, birthday, notes) => {
-  const currentUser = AuthService.getCurrentUser().user;
-  return axios.put(API_URL + "editContact", {
-    currentUser,
+const editContact = (id, name, email, phone, address, birthday, notes) => {
+  return axios.put(API_URL + "updateContact", {
+    id,
     name,
     email,
     phone,
@@ -41,7 +40,8 @@ const editContact = (name, email, phone, address, birthday, notes) => {
 };
 
 const deleteContact = (id) => {
-    return axios.post(API_URL + "removeContact", config, { data: {_id: id}});
+    console.log(id);
+    return axios.delete(API_URL + `removeContact/${id}`, config);
 }
 
 const getContacts = () => {

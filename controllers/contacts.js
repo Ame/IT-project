@@ -108,8 +108,8 @@ module.exports =  class ContactsController {
     }
 
     static async apiRemoveContact(req,res){
-        console.log(req.user);
-        var _id = req.body._id;
+        // console.log(req.params.id);
+        var _id = req.params.id;
         const user = await Contact.findByIdAndRemove(_id);
         res.status(200).json({success:true});
     }

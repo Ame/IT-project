@@ -18,13 +18,17 @@ function Contacts() {
   }, []);
 
 
-  const handleDeleteContact = (e) => {
+  const handleDeleteContact = (e, id) => {
     e.preventDefault();
     console.log("delete");
-    ContactService.deleteContact(ContactService.getContact());    
+    ContactService.deleteContact(id);
+
+    const removeItem = contacts.filter((contact) => {
+      return contact._id !== id;
+    })
+    setContacts(removeItem);    
   };
 
-  const backURL = '/editContact'
   return (
     <div>
       {contacts.length === 0 ? (
@@ -43,9 +47,7 @@ function Contacts() {
                 <div>
                   
                 
-                <Link to={{pathname: `/editContact${contact._id}`}} >
-
-
+                <Link to="editContact" >
 
                   <h6>Name: {contact.name}</h6>
                   <h6>Email: {contact.email}</h6>
@@ -64,11 +66,7 @@ function Contacts() {
                     
                   </Link>
 
-
-
-                  
-                
-                  <button onClick={handleDeleteContact}>
+                  <button onClick={(e) => handleDeleteContact(e, contact._id)}>
                           Delete
                   </button>
                   <Link to="/editContact">

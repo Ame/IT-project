@@ -44,7 +44,7 @@ const EditContact = (e) => {
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
-  const {data} = this.props.location
+  //const {data} = this.props.location
   
   const onChangeName = (e) => {
       const name = e.target.value;
@@ -114,7 +114,7 @@ const EditContact = (e) => {
        <button>Back</button>{" "}<input type="text" value =" Edit Contact"/>
      </Link>
      
-     <Form onSubmit={handleEditContact} ref={form} style = {{overflow:'scroll'}}>
+     <Form onSubmit={handleEditContact} ref={form} style= {{overflow:'scroll'}}>
        {!successful && (
          <div>
            <div className="form-group">
