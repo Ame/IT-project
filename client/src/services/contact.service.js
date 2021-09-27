@@ -46,6 +46,13 @@ const addTags = (email, tags) => {
   }, config);
 }
 
+const deleteTag = (email, tag) => {
+  return axios.put(API_URL + "deleteTag", {
+    email,
+    tag
+  }, config);
+}
+
 const deleteContact = (id) => {
     console.log(id);
     return axios.delete(API_URL + `removeContact/${id}`, config);
@@ -65,7 +72,8 @@ const exportedObjects = {
   deleteContact,
   getContacts,
   getContact,
-  addTags
+  addTags,
+  deleteTag
 };
 
 export default exportedObjects;

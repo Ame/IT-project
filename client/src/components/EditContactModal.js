@@ -6,6 +6,9 @@ import { isEmail } from "validator";
 import CheckButton from "react-validation/build/button";
 import ContactService from "../services/contact.service";
 import { useHistory } from "react-router-dom";
+import Tags from "./Tags"
+
+// A modal is a child window that will pop up on the contacts page in order to edit a contact
 
 const required = (value) => {
   if (!value) {
@@ -27,7 +30,8 @@ const validEmail = (value) => {
   }
 };
 
-const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, contactPhone, contactAddress, contactBirthday, contactNotes, convertDate }) => {
+
+const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, contactPhone, contactAddress, contactBirthday, contactNotes, contactTags, convertDate }) => {
     const form = useRef();
     const checkBtn = useRef();
     let history = useHistory();
@@ -40,15 +44,23 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
     const [notes, setNotes] = useState();
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
+    const [tags, setTags] = useState([]);
+    const [tagToDelete, setTagToDelete] = useState("");
 
-    useEffect(() => {
+    useEffect(() => { // initialise all values for contact with existing ones in the database
       setName(contactName);
       setEmail(contactEmail);
       setPhone(contactPhone);
       setAddress(contactAddress);
       setBirthday(contactBirthday);
       setNotes(contactNotes);
-    }, [contactName, contactEmail, contactPhone, contactAddress, contactBirthday, contactNotes]);
+      setTags(contactTags);
+    }, [contactName, contactEmail, contactPhone, contactAddress, contactBirthday, contactNotes, contactTags]);
+
+    // function fetches any tags added by the child component and updates this component accordingly
+    const fetchTags = (tag) => {
+      setTags([...tags, tag]);
+    };
 
     const onChangeName = (e) => {
       const name = e.target.value;
@@ -80,6 +92,15 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
       setNotes(notes);
     };
 
+    // Add tags to a specified contact
+    const addTags = (email, tagList) => {
+      ContactService.addTags(email, tagList).then((response) => {
+        setMessage(response.data.message);
+        setSuccessful(true);
+      });
+    };
+
+    // function adds a new contact to the backend for the currently logged in user
     const handleEditContact = (e) => {
       e.preventDefault();
 
@@ -89,7 +110,7 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
       form.current.validateAll();
 
       if (checkBtn.current.context._errors.length === 0) {
-        console.log(id, name, email, phone, address, birthday, notes);
+        console.log(id, name, email, phone, address, birthday, notes, tags);
         ContactService.editContact(
           id, 
           name,
@@ -102,6 +123,8 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
           (response) => {
             setMessage(response.data.message);
             setSuccessful(true);
+            // add any added tags to this contact
+            addTags(email, tags);
             history.push("/contacts");
           },
           (error) => {
@@ -120,6 +143,11 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
 
       handleClose();
     };
+
+    const handleDeleteTag = (tagToDelete) => { 
+      ContactService.deleteTag(email, tagToDelete); // deletes the specified tag from the backend for this particular contact
+      setTags([...tags.filter((tag) => tag !== tagToDelete)]); // update the tags array to reflect deletion
+    }
 
 
     if (!show){
@@ -181,7 +209,6 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
                     name="address"
                     value={address}
                     onChange={onChangeAddress}
-                    placeholder={contactAddress}
                   />
                 </div>
 
@@ -191,9 +218,8 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
                     type="text"
                     className="form-control"
                     name="birthday"
-                    value={birthday}
+                    value={convertDate(birthday)}
                     onChange={onChangeBirthday}
-                    placeholder={contactBirthday ? convertDate(contactBirthday): "DD-MM-YYYY"}
                   />
                 </div>
 
@@ -205,8 +231,12 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
                     name="notes"
                     value={notes}
                     onChange={onChangeNotes}
-                    placeholder={contactNotes}
                   />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="tags">Tags:</label>
+                  <Tags sendTags={fetchTags} existingTags={tags} isEdit={true} tagToBeDeleted={handleDeleteTag}></Tags>
                 </div>
 
                 <div className="form-group">

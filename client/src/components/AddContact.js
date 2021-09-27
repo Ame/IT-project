@@ -95,6 +95,7 @@ const AddContact = (e) => {
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
+          // add any specified tags to the new contact
           addTags(email, tags);
           history.push("/contacts");
         },
@@ -113,10 +114,12 @@ const AddContact = (e) => {
     }
   };
 
+  // updates the tags state with any added from the child component
   const fetchTags = (tag) => {
       setTags([...tags, tag]);
   };
 
+  // add new tags for a contact to the database
   const addTags = (email, tagList) => {
       ContactService.addTags(email, tagList).then((response) => {
         setMessage(response.data.message);
@@ -203,7 +206,7 @@ const AddContact = (e) => {
 
             <div className="form-group">
               <label htmlFor="tags">Tags:</label>
-              <Tags sendTags={fetchTags}></Tags>
+              <Tags sendTags={fetchTags} existingTags={tags} isEdit={false}></Tags>
             </div>
 
             <div className="form-group">
