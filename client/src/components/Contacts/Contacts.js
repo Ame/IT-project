@@ -10,6 +10,7 @@ const convertToDate = (date) => {
   return toDate.toLocaleDateString();
 };
 
+//Returns items from contacts that contain the query
 const filterContacts = (contacts, query) => {
   if (!query) {
       return contacts;
@@ -37,7 +38,6 @@ function Contacts() {
   const query = new URLSearchParams(search).get('s');
   const [searchQuery, setSearchQuery] = useState(query || '');
   const filteredContacts = filterContacts(contacts, searchQuery);
-  console.log(filteredContacts);
 
 
   return (
@@ -55,15 +55,12 @@ function Contacts() {
           </div>
 
           <div id="container">
-          <Search
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-            />
+            <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
     
             <ul className="contactList" id="results">
             {filteredContacts.map((contact) => (
               <li className="contact" key={contact._id}>
-                <div id="contact">
+                <div className="col-lg-3" id="contact">
                   <h6>Name: {contact.name}</h6>
                   <h6>Email: {contact.email}</h6>
                   {contact.phone !== "" ? (
@@ -99,12 +96,12 @@ function Contacts() {
           
           </div>
           
-          
+          <Link to="/addContact">
+        <button>Add Contact</button>{" "}
+      </Link> 
         </div>
       )}
-      <Link to="/addContact">
-        <button>Add Contact</button>{" "}
-      </Link>
+
     </div>
   );
 }

@@ -1,4 +1,5 @@
-
+//Searchbar display element. 
+//Referenced from: https://www.emgoto.com/react-search-bar/
 
 const Search = ({ searchQuery, setSearchQuery }) => (
     

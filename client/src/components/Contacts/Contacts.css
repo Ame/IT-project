@@ -3,9 +3,45 @@
   margin: 0;
 }
 
+button {
+  background-color: #7dc598;
+  border: 10px solid;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  float: inline-end;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #4caf50;
+}
+
 ul.contactList {
   list-style-type: none; /* removes bullets */
   text-align: center;
+}
+
+ul.ml {
+  list-style-type: none;
+  text-align: left;
+  padding: 10px;
+}
+
+a.side-link:link,
+a.side-link:visited {
+  background-color: none;
+  color: rgb(0, 0, 0);
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+}
+
+a.side-link:hover,
+a.side-link:active {
+  color: rgb(14, 212, 186);
 }
 
 h3.headings {
