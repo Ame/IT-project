@@ -65,11 +65,6 @@ function Contacts() {
     setContacts(removeItem);
   };
 
-  const handleEditContact = (e) => {
-    e.preventDefault();
-    console.log("edit");
-  };
-
   return (
     <div>
       {contacts.length === 0 ? (
@@ -100,6 +95,12 @@ function Contacts() {
                     ) : null}
                     {contact.notes !== "" ? (
                       <h6>Notes: {contact.notes}</h6>
+                    ) : null}
+                    {contact.tags !== [] ? (
+                      <div>
+                        <h6>Tags: </h6>
+                        <ul>{contact.tags.join(", ")}</ul>
+                      </div>
                     ) : null}
                   </Link>
 
