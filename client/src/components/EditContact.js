@@ -27,7 +27,7 @@ const validEmail = (value) => {
   }
 };
 
-const EditContact = (e) => {
+const EditContact = ({ contactId }) => {
   let history = useHistory();
 
  // const { register, onSubmit} = useForm();
