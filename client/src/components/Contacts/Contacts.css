@@ -5,7 +5,7 @@
 
 button {
   background-color: #7dc598;
-  border: 10px solid;
+  border: 5px solid;
   color: white;
   padding: 10px 20px;
   text-align: center;
@@ -63,6 +63,16 @@ h3.headings {
   margin: 0 auto;
   margin-top: 20px;
   background-color: rgb(104, 175, 169);
+}
+
+#tags {
+  display: flex;
+  padding-bottom: 20px;
+  background-color: rgb(17, 97, 86);
+  color: white;
+}
+#tags strong {
+  color: rgb(104, 175, 169);
 }
 
 #search {
