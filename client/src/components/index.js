@@ -9,3 +9,4 @@ export {default as Contacts} from "./Contacts/Contacts";
 export {default as AddContact} from './AddContact';
 export {default as Sidebar} from './Sidebar';
 export {default as EditProfile} from './EditProfile';
+export {default as Searchbar} from './Searchbar';

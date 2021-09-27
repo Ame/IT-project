@@ -1,7 +1,5 @@
 // https://www.techomoro.com/how-to-create-a-multi-page-website-with-react-in-5-minutes/ for whole general structure
 
-//TODO: put sidebar and dashboard elements in flex-boxes (relative sizing!!)
-
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import { Navigation, Footer, Home, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile } from "./components";
@@ -32,7 +30,7 @@ function App() {
                <div className="col-lg-3">
                   <Sidebar />
                 </div>
-                <div className = "col-lg-5">
+                <div className = "col-lg-7">
                   <Contacts />
                 </div>
               </div>
