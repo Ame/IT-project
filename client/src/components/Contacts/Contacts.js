@@ -43,37 +43,29 @@ function Contacts() {
   return (
 
     <div>
-      {contacts.length === 0 ? (
-        <p>No Contacts found. Add some! </p>
-      ) : (
-        <div>
-          <div>
-            <Link to="/dashboard">
-              <button className="back">Back</button>{" "}
-            </Link>
-            <h3 className="headings">Your contacts</h3>
-          </div>
-
+      <h3 className="headings">Your contacts</h3>
           <div id="container">
             <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-    
+            {contacts.length === 0 ? (
+              <p className="contactList" id="notFound">No Contacts found. Add some! </p>
+             ) : (
             <ul className="contactList" id="results">
             {filteredContacts.map((contact) => (
               <li className="contact" key={contact._id}>
-                <div className="col-lg-3" id="contact">
-                  <h6>Name: {contact.name}</h6>
-                  <h6>Email: {contact.email}</h6>
+                <div className="col-lg-5" id="contact">
+                  <h6><strong>Name:</strong> {contact.name}</h6>
+                  <h6><strong>Email:</strong> {contact.email}</h6>
                   {contact.phone !== "" ? (
-                    <h6>Phone Number: {contact.phone}</h6>
+                    <h6><strong>Phone Number:</strong> {contact.phone}</h6>
                   ) : null}
                   {contact.address !== "" ? (
-                    <h6>Address: {contact.address}</h6>
+                    <h6><strong>Address:</strong> {contact.address}</h6>
                   ) : null}
                   {contact.birthday !== null ? (
-                    <h6>Birthday: {convertToDate(contact.birthday)}</h6>
+                    <h6><strong>Birthday:</strong> {convertToDate(contact.birthday)}</h6>
                   ) : null}
                   {contact.notes !== "" ? (
-                    <h6>Notes: {contact.notes}</h6>
+                    <h6><strong>Notes:</strong> {contact.notes}</h6>
                   ) : null}
                 </div>
                 <div>
@@ -93,6 +85,7 @@ function Contacts() {
               </li>
             ))}
             </ul>
+             )}
           
           </div>
           
@@ -100,9 +93,8 @@ function Contacts() {
         <button>Add Contact</button>{" "}
       </Link> 
         </div>
-      )}
+      
 
-    </div>
   );
 }
 

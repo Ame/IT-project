@@ -1,3 +1,10 @@
+/* Style Notes
+- potentially add scrollbar
+- flexboxes!! (esp for sidebar) (move sidebar logic from App.js to indiv. pages)
+- vh-100 on body containers to push the damn footer to the bottom
+- use table (row/col) tags to align elements (e.g sidebar + content, contact info + buttons)
+- change from the default bootstrap to custom stylesheet??? maybe (to make the site look more original > template?)
+*/
 * {
   padding: 0;
   margin: 0;
@@ -16,8 +23,15 @@ button {
 
 button:hover {
   background-color: #4caf50;
+  font: lighter;
+}
+h6 {
+  text-align: left;
 }
 
+h6 strong {
+  color: rgb(17, 97, 86);
+}
 ul.contactList {
   list-style-type: none; /* removes bullets */
   text-align: center;
@@ -47,6 +61,7 @@ a.side-link:active {
 h3.headings {
   text-align: center;
   padding: 1em;
+  padding-top: 2em;
 }
 
 .back {
@@ -58,6 +73,11 @@ h3.headings {
   padding-bottom: 2em;
 }
 
+#notFound {
+  padding: 20px;
+  background-color: white;
+  font-weight: bold;
+}
 #container {
   width: 100%;
   margin: 0 auto;
