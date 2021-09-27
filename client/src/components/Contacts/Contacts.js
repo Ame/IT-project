@@ -2,6 +2,8 @@ import { createRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ContactService from "../../services/contact.service";
 import "./Contacts.css";
+import Search from './Search.js';
+
 
 const convertToDate = (date) => {
   const toDate = new Date(date);
@@ -30,6 +32,14 @@ function Contacts() {
     console.log(contacts);
   }, []);
 
+  //parameters for search
+  const { search } = window.location;
+  const query = new URLSearchParams(search).get('s');
+  const [searchQuery, setSearchQuery] = useState(query || '');
+  const filteredContacts = filterContacts(contacts, searchQuery);
+  console.log(filteredContacts);
+
+
   return (
 
     <div>
@@ -43,14 +53,15 @@ function Contacts() {
             </Link>
             <h3 className="headings">Your contacts</h3>
           </div>
+
           <div id="container">
-            <div id="search">
-              <label for="searchInput">Find <i class="fa fa-search"></i>Contacts</label>
-              <input id="searchInput" type="text" placeholder="Search" />
-            </div>
+          <Search
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+            />
     
             <ul className="contactList" id="results">
-            {contacts.map((contact) => (
+            {filteredContacts.map((contact) => (
               <li className="contact" key={contact._id}>
                 <div id="contact">
                   <h6>Name: {contact.name}</h6>
@@ -84,7 +95,7 @@ function Contacts() {
                 </div>
               </li>
             ))}
-          </ul>
+            </ul>
           
           </div>
           
