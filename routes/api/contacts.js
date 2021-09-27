@@ -39,7 +39,7 @@ router.put("/deleteTag",passport.authenticate('jwt', {session: false}),ContactsC
 // @route POST api/contacts/updateContact
 // @desc Update Contact
 // @access Private
-router.post("/updateContact",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiEditContact);
+router.put("/updateContact",passport.authenticate('jwt', {session: false}),ContactsCtrl.apiEditContact);
 
 // @route POST api/contacts/removeContact
 // @desc Remove Contact

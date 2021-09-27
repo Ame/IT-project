@@ -1,9 +1,11 @@
 import './modal.css'
 import Form from "react-validation/build/form";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Input from "react-validation/build/input";
 import { isEmail } from "validator";
 import CheckButton from "react-validation/build/button";
+import ContactService from "../services/contact.service";
+import { useHistory } from "react-router-dom";
 
 const required = (value) => {
   if (!value) {
@@ -28,15 +30,25 @@ const validEmail = (value) => {
 const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, contactPhone, contactAddress, contactBirthday, contactNotes, convertDate }) => {
     const form = useRef();
     const checkBtn = useRef();
+    let history = useHistory();
 
-    const [name, setName] = useState(contactName);
-    const [email, setEmail] = useState(contactEmail);
-    const [phone, setPhone] = useState(contactPhone);
-    const [address, setAddress] = useState(contactAddress);
-    const [birthday, setBirthday] = useState(contactBirthday);
-    const [notes, setNotes] = useState(contactNotes);
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [phone, setPhone] = useState();
+    const [address, setAddress] = useState();
+    const [birthday, setBirthday] = useState();
+    const [notes, setNotes] = useState();
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
+
+    useEffect(() => {
+      setName(contactName);
+      setEmail(contactEmail);
+      setPhone(contactPhone);
+      setAddress(contactAddress);
+      setBirthday(contactBirthday);
+      setNotes(contactNotes);
+    }, [contactName, contactEmail, contactPhone, contactAddress, contactBirthday, contactNotes]);
 
     const onChangeName = (e) => {
       const name = e.target.value;
@@ -68,8 +80,46 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
       setNotes(notes);
     };
 
-    const handleEditContact = () => {
-    }
+    const handleEditContact = (e) => {
+      e.preventDefault();
+
+      setMessage("");
+      setSuccessful(false);
+
+      form.current.validateAll();
+
+      if (checkBtn.current.context._errors.length === 0) {
+        console.log(id, name, email, phone, address, birthday, notes);
+        ContactService.editContact(
+          id, 
+          name,
+          email,
+          phone,
+          address,
+          birthday,
+          notes
+        ).then(
+          (response) => {
+            setMessage(response.data.message);
+            setSuccessful(true);
+            history.push("/contacts");
+          },
+          (error) => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+
+            setMessage(resMessage);
+            setSuccessful(false);
+          }
+        );
+      }
+
+      handleClose();
+    };
 
 
     if (!show){
@@ -79,7 +129,7 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
     return (
       <div className="modal display-block">
         <section className="modal-main">
-          <h2>Edit Contact: {id}</h2>
+          <h2>Edit Contact: {contactEmail}</h2>
           <button type="button" onClick={handleClose}>
             x
           </button>
@@ -98,7 +148,6 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
                     name="name"
                     value={name}
                     onChange={onChangeName}
-                    placeholder={contactName}
                   />
                 </div>
                 <div className="form-group">
@@ -110,7 +159,6 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
                     value={email}
                     validation={validEmail}
                     onChange={onChangeEmail}
-                    placeholder={contactEmail}
                   />
                 </div>
 
@@ -122,7 +170,6 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
                     name="phone"
                     value={phone}
                     onChange={onChangePhone}
-                    placeholder={contactPhone}
                   />
                 </div>
 

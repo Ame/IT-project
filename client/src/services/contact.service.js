@@ -27,9 +27,9 @@ const addContact = (name, email, phone, address, birthday, notes) => {
   }, config);
 };
 
-const editContact = (id, name, email, phone, address, birthday, notes) => {
+const editContact = (_id, name, email, phone, address, birthday, notes) => {
   return axios.put(API_URL + "updateContact", {
-    id,
+    _id,
     name,
     email,
     phone,
