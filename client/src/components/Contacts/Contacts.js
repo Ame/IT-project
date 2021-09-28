@@ -13,13 +13,13 @@ const convertToDate = (date) => {
 
 //Returns items from contacts that contain the query
 const filterContacts = (contacts, query) => {
-  if (!query) {
+  if (!query.toLowerCase()) {
       return contacts;
   }
 
   return contacts.filter((contact) => {
       const contactName = contact.name.toLowerCase();
-      return contactName.includes(query);
+      return contactName.includes(query.toLowerCase());
   });
 };
 
@@ -168,10 +168,11 @@ function Contacts() {
               convertDate={convertToDate}
             ></EditContactModal></>
               )}
-        <Link to="/addContact">
+        
+      </div>
+      <Link to="/addContact">
           <button>Add Contact</button>{" "}
         </Link> 
-      </div>
   </div>
   );
 }

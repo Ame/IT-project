@@ -11,7 +11,8 @@ const Search = ({ searchQuery, setSearchQuery }) => (
               <button type="submit">Search</button>
         </div>
         <div className="container" id="tags">
-            <strong>Filter by tags:&nbsp; </strong> list tags here
+            <strong>Filter by tags:&nbsp; </strong> 
+            
         </div>
     </form>
 );
