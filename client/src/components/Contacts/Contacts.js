@@ -113,7 +113,7 @@ function Contacts() {
             ) : (
               <>
                 <ul className="contactList" id="results">
-                  {(filteredContacts || []).map((contact) => (
+                  {[].map((contact) => (
                     <li className="contact" key={contact._id}>
                       <div className="col-lg-5" id="contact">
                         <h6>
