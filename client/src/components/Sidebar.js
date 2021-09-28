@@ -12,7 +12,7 @@ function Sidebar(props) {
       AuthService.logout();
     }
   return (
-    <div className="sidebar">
+    <div className="sidebar vh-100">
       <nav className="bg-light vh-100">
         <div className="container">
           <div>
@@ -20,23 +20,23 @@ function Sidebar(props) {
               <li className={`side-item  ${
                   props.location.pathname === "/dashboard" ? "active" : ""
                 }`}>
-                <Link className="link" to="/dashboard">
+                <Link className="side-link" to="/dashboard">
                   Dashboard
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
-              <li className={`nav-item  ${
+              <li className={`side-item  ${
                   props.location.pathname === "/contacts" ? "active" : ""
                 }`}>
-                <Link className="link" to="/contacts">
+                <Link className="side-link" to="/contacts">
                   Contacts
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
-              <li className={`nav-item  ${
+              <li className={`side-item  ${
                   props.location.pathname === "/editProfile" ? "active" : ""
                 }`}>
-                <Link className="link" to="/editProfile">
+                <Link className="side-link" to="/editProfile">
                   Edit Profile
                   <span className="sr-only">(current)</span>
                 </Link>

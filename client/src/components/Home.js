@@ -75,7 +75,7 @@ function Home(props) {
   };
 
   return (
-    <div className="home">
+    <div className="home vh-100">
       <div className="container">
         <div className="row align-items-center my-5">
           <div className="col-lg-7">
