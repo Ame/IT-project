@@ -21,6 +21,11 @@ button {
   font-size: 16px;
 }
 
+h3.headings {
+  padding-top: 1em;
+  padding-bottom: 2em;
+}
+
 button:hover {
   background-color: #4caf50;
   font: lighter;
