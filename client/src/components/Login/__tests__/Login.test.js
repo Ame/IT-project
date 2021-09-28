@@ -1,4 +1,4 @@
-import { required } from '../Home'
+import { required } from '../Login'
 
 test("required function returns warning message if nothing is inputted", () => {
   expect(required()).toStrictEqual(
