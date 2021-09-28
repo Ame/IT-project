@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import ContactService from "../services/contact.service";
+import ContactService from "../../services/contact.service";
 
 // https://dev.to/prvnbist/create-a-tags-input-component-in-reactjs-ki
 // https://blog.logrocket.com/building-a-tag-input-field-component-for-react/

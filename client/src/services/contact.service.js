@@ -15,9 +15,7 @@ const config = {
 };
 
 const addContact = (name, email, phone, address, birthday, notes) => {
-  const currentUser = AuthService.getCurrentUser().user;
   return axios.post(API_URL + "addContact", {
-    currentUser,
     name,
     email,
     phone,

@@ -4,8 +4,8 @@ import ContactService from "../../services/contact.service";
 import "./Contacts.css";
 import Search from './Search.js';
 import Form from "react-validation/build/form";
-import EditContactModal from "../EditContactModal";
-import Sidebar from "../Sidebar";
+import EditContact from "../EditContact/EditContact";
+import Sidebar from "../Sidebar/Sidebar";
 
 const convertToDate = (date) => {
   const toDate = new Date(date);
@@ -176,7 +176,7 @@ function Contacts() {
                     </li>
                   ))}
                 </ul>
-                <EditContactModal
+                <EditContact
                   show={modalIsOpen}
                   handleClose={setModalIsOpenToFalse}
                   onExit={reload}
@@ -189,7 +189,7 @@ function Contacts() {
                   contactNotes={currentContactNotes}
                   contactTags={currentContactTags}
                   convertDate={convertToDate}
-                ></EditContactModal>
+                ></EditContact>
               </>
             )}
             <Link to="/addContact">

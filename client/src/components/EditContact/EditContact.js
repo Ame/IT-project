@@ -1,12 +1,12 @@
-import './modal.css'
+import './EditContact.css'
 import Form from "react-validation/build/form";
 import React, { useState, useRef, useEffect } from "react";
 import Input from "react-validation/build/input";
 import { isEmail } from "validator";
 import CheckButton from "react-validation/build/button";
-import ContactService from "../services/contact.service";
+import ContactService from "../../services/contact.service";
 import { useHistory } from "react-router-dom";
-import Tags from "./Tags"
+import Tags from "../Tags/Tags"
 
 // A modal is a child window that will pop up on the contacts page in order to edit a contact
 
@@ -31,7 +31,7 @@ const validEmail = (value) => {
 };
 
 
-const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, contactPhone, contactAddress, contactBirthday, contactNotes, contactTags, convertDate }) => {
+const EditContact = ( { show, handleClose, id, contactName, contactEmail, contactPhone, contactAddress, contactBirthday, contactNotes, contactTags, convertDate }) => {
     const form = useRef();
     const checkBtn = useRef();
     let history = useHistory();
@@ -266,4 +266,4 @@ const EditContactModal = ( { show, handleClose, id, contactName, contactEmail, c
     );
 }
 
-export default EditContactModal;
+export default EditContact;

@@ -1,9 +1,9 @@
 // https://dev.to/diraskreact/create-simple-login-form-in-react-227b for log in
 
 import React from "react";
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 import { useHistory } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 
 function Dashboard(props) {
   const currentUser = AuthService.getCurrentUser().user;
