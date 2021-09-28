@@ -81,7 +81,7 @@ function Contacts() {
   const { search } = window.location;
   const query = new URLSearchParams(search).get('s');
   const [searchQuery, setSearchQuery] = useState(query || '');
-  const filteredContacts = filterContacts(contacts, searchQuery);
+  const [filteredContacts] = filterContacts(contacts, searchQuery);
 
   // deletes a specified contact from the backend and updates the contacts state in this component accordingly
   const handleDeleteContact = (e, id) => {
