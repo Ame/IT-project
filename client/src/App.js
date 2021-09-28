@@ -15,29 +15,11 @@ function App() {
           <Route path="/" exact component={() => <Home />} />
           <Route path="/signup" exact component={() => <Signup />} />
           <Route path="/about" exact component={() => <About/>} />
-          <PrivateRoute path="/dashboard">
-              <div className="row">
-               <div className="col-lg-3">
-                  <Sidebar />
-                </div>
-                <div className = "col-lg-7">
-                  <Dashboard />
-                </div>
-              </div>
-          </PrivateRoute>
-          <PrivateRoute path="/contacts">
-            <div className="row">
-               <div className="col-lg-3">
-                  <Sidebar />
-                </div>
-                <div className = "col-lg-7">
-                  <Contacts />
-                </div>
-              </div>
-          </PrivateRoute>
+          <PrivateRoute path="/dashboard" exact component={() => <Dashboard/>}/>
+          <PrivateRoute path="/contacts" exact component={() => <Contacts/>}/>
           <PrivateRoute path="/addContact" exact component={() => <AddContact/>} />
           <PrivateRoute path="/editContact" exact component={() => <EditContact/>} />
-          <Route path="/editProfile">
+          <PrivateRoute path="/editProfile">
               <div className="row">
                <div className="col-lg-3">
                   <Sidebar />
@@ -46,7 +28,7 @@ function App() {
                   <EditProfile />
                 </div>
               </div>
-          </Route>
+          </PrivateRoute>
         </Switch>
         <Footer />
       </Router>
