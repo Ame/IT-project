@@ -2,7 +2,7 @@
 
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Navigation, Footer, Home, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile } from "./components";
+import { Navigation, Footer, Home, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile, EditContact} from "./components";
 
 function App() {
 
@@ -36,6 +36,7 @@ function App() {
               </div>
           </PrivateRoute>
           <PrivateRoute path="/addContact" exact component={() => <AddContact/>} />
+          <PrivateRoute path="/editContact" exact component={() => <EditContact/>} />
           <Route path="/editProfile">
               <div className="row">
                <div className="col-lg-3">
