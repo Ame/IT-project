@@ -20,14 +20,14 @@ function Contacts() {
   const [currentContactAddress, setCurrentContactAddress] = useState("");
   const [currentContactBirthday, setCurrentContactBirthday] = useState("");
   const [currentContactNotes, setCurrentContactNotes] = useState("");
+  const [currentContactTags, setCurrentContactTags] = useState([]);
 
-  const showModal = (id, name, email, phone, address, birthday, notes) => {
+  const showModal = (id, name, email, phone, address, birthday, notes, tags) => {
     setCurrentContactId(id);
     setCurrentContactName(name);
     setCurrentContactEmail(email);
 
-    if (phone) {
-      // optional attributes
+    if (phone) { // all optional attributes, my be present or not
       setCurrentContactPhone(phone);
     }
 
@@ -42,6 +42,10 @@ function Contacts() {
     if (notes) {
       setCurrentContactNotes(notes);
     }
+
+    if (tags){
+      setCurrentContactTags(tags);
+    }
     setModalIsOpen(true);
   };
 
@@ -52,11 +56,12 @@ function Contacts() {
     reload();
   };
 
-  // get the contact data from the server
+  // get the existing contact data from the server
   useEffect(() => {
     ContactService.getContacts().then((res) => setContacts(res.data));
   }, []);
 
+  // deletes a specified contact from the backend and updates the contacts state in this component accordingly
   const handleDeleteContact = (e, id) => {
     e.preventDefault();
     console.log("delete");
@@ -112,7 +117,8 @@ function Contacts() {
                         contact.phone,
                         contact.address,
                         contact.birthday,
-                        contact.notes
+                        contact.notes,
+                        contact.tags
                       )
                     }
                   >
@@ -133,6 +139,7 @@ function Contacts() {
             contactAddress={currentContactAddress}
             contactBirthday={currentContactBirthday}
             contactNotes={currentContactNotes}
+            contactTags = {currentContactTags}
             convertDate={convertToDate}
           ></EditContactModal>
         </div>
