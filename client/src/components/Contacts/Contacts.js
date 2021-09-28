@@ -89,20 +89,26 @@ function Contacts() {
             {contacts.map((contact) => (
               <li className="contact" key={contact._id}>
                 <div>
-                    <h6>Name: {contact.name}</h6>
-                    <h6>Email: {contact.email}</h6>
-                    {contact.phone !== "" ? (
-                      <h6>Phone Number: {contact.phone}</h6>
-                    ) : null}
-                    {contact.address !== "" ? (
-                      <h6>Address: {contact.address}</h6>
-                    ) : null}
-                    {contact.birthday !== null ? (
-                      <h6>Birthday: {convertToDate(contact.birthday)}</h6>
-                    ) : null}
-                    {contact.notes !== "" ? (
-                      <h6>Notes: {contact.notes}</h6>
-                    ) : null}
+                  <h6>Name: {contact.name}</h6>
+                  <h6>Email: {contact.email}</h6>
+                  {contact.phone !== "" ? (
+                    <h6>Phone Number: {contact.phone}</h6>
+                  ) : null}
+                  {contact.address !== "" ? (
+                    <h6>Address: {contact.address}</h6>
+                  ) : null}
+                  {contact.birthday !== null ? (
+                    <h6>Birthday: {convertToDate(contact.birthday)}</h6>
+                  ) : null}
+                  {contact.notes !== "" ? (
+                    <h6>Notes: {contact.notes}</h6>
+                  ) : null}
+                  {contact.tags.length > 0 ? (
+                    <div>
+                      <h6>Tags: </h6>
+                      <ul>{contact.tags.join(", ")}</ul>
+                    </div>
+                  ) : null}
 
                   <button onClick={(e) => handleDeleteContact(e, contact._id)}>
                     Delete
@@ -131,7 +137,7 @@ function Contacts() {
           <EditContactModal
             show={modalIsOpen}
             handleClose={setModalIsOpenToFalse}
-            onExit = {reload}
+            onExit={reload}
             id={currentContactId}
             contactName={currentContactName}
             contactEmail={currentContactEmail}
@@ -139,7 +145,7 @@ function Contacts() {
             contactAddress={currentContactAddress}
             contactBirthday={currentContactBirthday}
             contactNotes={currentContactNotes}
-            contactTags = {currentContactTags}
+            contactTags={currentContactTags}
             convertDate={convertToDate}
           ></EditContactModal>
         </div>
