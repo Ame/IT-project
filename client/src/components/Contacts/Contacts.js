@@ -45,8 +45,11 @@ function Contacts() {
     setModalIsOpen(true);
   };
 
+  const reload=()=>window.location.reload();
+
   const setModalIsOpenToFalse = () => {
     setModalIsOpen(false);
+    reload();
   };
 
   // get the contact data from the server
@@ -65,11 +68,6 @@ function Contacts() {
     setContacts(removeItem);
   };
 
-  const handleEditContact = (e) => {
-    e.preventDefault();
-    console.log("edit");
-  };
-
   return (
     <div>
       {contacts.length === 0 ? (
@@ -86,7 +84,6 @@ function Contacts() {
             {contacts.map((contact) => (
               <li className="contact" key={contact._id}>
                 <div>
-                  <Link to="editContact">
                     <h6>Name: {contact.name}</h6>
                     <h6>Email: {contact.email}</h6>
                     {contact.phone !== "" ? (
@@ -101,7 +98,6 @@ function Contacts() {
                     {contact.notes !== "" ? (
                       <h6>Notes: {contact.notes}</h6>
                     ) : null}
-                  </Link>
 
                   <button onClick={(e) => handleDeleteContact(e, contact._id)}>
                     Delete
@@ -129,6 +125,7 @@ function Contacts() {
           <EditContactModal
             show={modalIsOpen}
             handleClose={setModalIsOpenToFalse}
+            onExit = {reload}
             id={currentContactId}
             contactName={currentContactName}
             contactEmail={currentContactEmail}
