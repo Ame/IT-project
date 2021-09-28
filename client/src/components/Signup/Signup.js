@@ -8,7 +8,7 @@ import { isEmail } from "validator";
 import AuthService from "../../services/auth.service";
 
 
-const required = (value) => {
+export const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -18,7 +18,7 @@ const required = (value) => {
   }
 };
 
-const validEmail = (value) => {
+export const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -29,8 +29,8 @@ const validEmail = (value) => {
 };
 
 
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
+export const vpassword = (value) => {
+  if (value.length < 6) {
     return (
       <div className="alert alert-danger" role="alert">
         The password must be between 6 and 40 characters.
@@ -111,7 +111,6 @@ function Signup(props) {
             <h1 className="font-weight-light">Signup</h1>
             <p>Start networking with iJane CRM</p>
             <div>
-            {/*<Form onSubmit={handleRegister} ref={form}/>*/}
             <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
