@@ -11,3 +11,4 @@ export {default as Sidebar} from './Sidebar/Sidebar';
 export {default as EditProfile} from './EditProfile/EditProfile';
 export {default as Searchbar} from './Searchbar/Searchbar';
 export {default as EditContact} from './EditContact/EditContact';
+export {default as Admin} from './Admin/Admin';

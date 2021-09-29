@@ -2,7 +2,7 @@
 
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Navigation, Footer, Home, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile, EditContact} from "./components";
+import { Navigation, Footer, Home, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile, EditContact, Admin} from "./components";
 
 function App() {
 
@@ -26,6 +26,16 @@ function App() {
                 </div>
                 <div className = "col-lg-7">
                   <EditProfile />
+                </div>
+              </div>
+          </PrivateRoute>
+          <PrivateRoute path="/admin">
+              <div className="row">
+               <div className="col-lg-3">
+                  <Sidebar />
+                </div>
+                <div className = "col-lg-7">
+                  <Admin />
                 </div>
               </div>
           </PrivateRoute>

@@ -43,6 +43,14 @@ function Sidebar(props) {
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
+              <li className={`side-item  ${
+                  props.location.pathname === "/admin" ? "active" : ""
+                }`}>
+                <Link className="side-link" to="/admin">
+                  Admin
+                  <span className="sr-only">(current)</span>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
