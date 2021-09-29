@@ -24,10 +24,7 @@ function Admin(props) {
   let history = useHistory();
   const [users, setUsers] = useState([]);
 
-  // get the existing user data from the server
-  useEffect(() => {
-    AdminService.getUsers().then((res) => setUsers(res.data));
-  }, []);
+ 
 
    //parameters for search
    const { search } = window.location;
@@ -35,6 +32,11 @@ function Admin(props) {
    const [searchQuery, setSearchQuery] = useState(query || '');
    const filteredUsers = filterUsers(users, searchQuery);
  
+    // get the existing user data from the server
+    useEffect(() => {
+    AdminService.getUsers().then((res) => setUsers(res.data));
+    console.log(users);
+  }, []);
 
   
   return (
