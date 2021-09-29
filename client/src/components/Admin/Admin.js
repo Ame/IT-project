@@ -51,7 +51,6 @@ function Admin(props) {
                         ) : 
                         
                         <div id="container">
-                        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                         {users.length === 0 ? (
                          <p className="userList" id="notFound">
                            No users found. Add some!{" "}
