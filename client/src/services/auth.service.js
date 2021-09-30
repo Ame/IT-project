@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/users/";
+const API_URL = "/api/users/";
 
 const register = (name, email, password) => {
   return axios.post(API_URL + "register", {
@@ -31,6 +31,10 @@ const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
+const getCurrentContact = () => {
+  return JSON.parse(localStorage.getItem("contact"));
+};
+
 const isLoggedIn = () => {
   if (localStorage.getItem("user") !== null){
     return true;
@@ -43,6 +47,7 @@ const exportedObjects = {
   login,
   logout,
   getCurrentUser,
+  getCurrentContact,
   isLoggedIn,
 };
 

@@ -5,44 +5,10 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
 
-// const Field = React.forwardRef(({label, type}, ref) => {
-//   return (
-//     <div>
-//       <label style={labelStyle} >{label}</label>
-//       <input ref={ref} type={type} style={inputStyle} />
-//     </div>
-//   );
-// });
-
-// const Form = ({onSubmit}) => {
-//   const nameRef = React.useRef();
-//   const emailRef = React.useRef();
-//   const passwordRef = React.useRef();
-//   const handleSubmit = e => {
-//       e.preventDefault();
-//       const data = {
-//           name: nameRef.current.value,
-//           email: emailRef.current.value,
-//           password: passwordRef.current.value
-//       };
-//       onSubmit(data);
-//   };
-//   return (
-//     <form style={formStyle} onSubmit={handleSubmit} >
-//       <Field ref={nameRef} label="Name:" type="text" />
-//       <Field ref={emailRef} label="Email:" type="text" />
-//       <Field ref={passwordRef} label="Password:" type="password" />
-//       <div>
-//         <button style={submitStyle} type="submit">Submit</button>
-//       </div>
-//     </form>
-//   );
-// };
-
-const required = (value) => {
+export const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -52,7 +18,7 @@ const required = (value) => {
   }
 };
 
-const validEmail = (value) => {
+export const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -63,8 +29,8 @@ const validEmail = (value) => {
 };
 
 
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
+export const vpassword = (value) => {
+  if (value.length < 6) {
     return (
       <div className="alert alert-danger" role="alert">
         The password must be between 6 and 40 characters.
@@ -132,24 +98,22 @@ function Signup(props) {
 
   return (
     <div className="signup">
-      <div class="container">
-        <div class="row align-items-center my-5">
-          <div class="col-lg-7">
+      <div className="container">
+        <div className="row align-items-center my-5">
+          <div className="col-lg-7">
             <img
-              class="img-fluid rounded mb-4 mb-lg-0"
+              className="img-fluid rounded mb-4 mb-lg-0"
               src="http://placehold.it/900x400"
               alt=""
             />
           </div>
-          <div class="col-lg-5">
-            <h1 class="font-weight-light">Signup</h1>
+          <div className="col-lg-5">
+            <h1 className="font-weight-light">Signup</h1>
             <p>Start networking with iJane CRM</p>
             <div>
-            {/*<Form onSubmit={handleRegister} ref={form}/>*/}
             <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
-
               <div className="form-group">
                 <label htmlFor="name">Name</label>
                 <Input
