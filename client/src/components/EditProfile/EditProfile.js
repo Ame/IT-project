@@ -1,12 +1,11 @@
 import React from "react";
 import AuthService from "../../services/auth.service";
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 
 function EditProfile(props) {
   const currentUser = AuthService.getCurrentUser().user;
   let history = useHistory();
 
-  
   return (
     <div className="editProfile">
       <div className="container">
@@ -16,19 +15,22 @@ function EditProfile(props) {
             <p>Change your user details</p>
 
             <form action="/action_page.php">
-                <label for="fname">First name:</label><br />
-                <input type="text" id="fname" name="fname" value="John" /><br />
-                <label for="lname">Last name:</label><br />
-                <input type="text" id="lname" name="lname" value="Doe" /><br /><br />
-                <input type="submit" value="Submit" />
+              <label for="fname">First name:</label>
+              <br />
+              <input type="text" id="fname" name="fname" value="John" />
+              <br />
+              <label for="lname">Last name:</label>
+              <br />
+              <input type="text" id="lname" name="lname" value="Doe" />
+              <br />
+              <br />
+              <input type="submit" value="Submit" />
             </form>
-
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 
 export default EditProfile;

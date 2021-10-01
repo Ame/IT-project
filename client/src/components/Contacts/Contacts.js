@@ -2,7 +2,7 @@ import { createRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ContactService from "../../services/contact.service";
 import "./Contacts.css";
-import Search from './Search.js';
+import Search from "./Search.js";
 import Form from "react-validation/build/form";
 import EditContact from "../EditContact/EditContact";
 import Sidebar from "../Sidebar/Sidebar";
@@ -15,18 +15,16 @@ const convertToDate = (date) => {
 //Returns items from contacts that contain the query
 const filterContacts = (contacts, query) => {
   if (!query.toLowerCase()) {
-      return contacts;
+    return contacts;
   }
 
   return contacts.filter((contact) => {
-      const contactName = contact.name.toLowerCase();
-      return contactName.includes(query.toLowerCase());
+    const contactName = contact.name.toLowerCase();
+    return contactName.includes(query.toLowerCase());
   });
 };
 
-
 function Contacts() {
-
   const [contacts, setContacts] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentContactId, setCurrentContactId] = useState("");
@@ -38,12 +36,22 @@ function Contacts() {
   const [currentContactNotes, setCurrentContactNotes] = useState("");
   const [currentContactTags, setCurrentContactTags] = useState([]);
 
-  const showModal = (id, name, email, phone, address, birthday, notes, tags) => {
+  const showModal = (
+    id,
+    name,
+    email,
+    phone,
+    address,
+    birthday,
+    notes,
+    tags
+  ) => {
     setCurrentContactId(id);
     setCurrentContactName(name);
     setCurrentContactEmail(email);
 
-    if (phone) { // all optional attributes, my be present or not
+    if (phone) {
+      // all optional attributes, my be present or not
       setCurrentContactPhone(phone);
     }
 
@@ -59,13 +67,13 @@ function Contacts() {
       setCurrentContactNotes(notes);
     }
 
-    if (tags){
+    if (tags) {
       setCurrentContactTags(tags);
     }
     setModalIsOpen(true);
   };
 
-  const reload=()=>window.location.reload();
+  const reload = () => window.location.reload();
 
   const setModalIsOpenToFalse = () => {
     setModalIsOpen(false);
@@ -79,8 +87,8 @@ function Contacts() {
 
   //parameters for search
   const { search } = window.location;
-  const query = new URLSearchParams(search).get('s');
-  const [searchQuery, setSearchQuery] = useState(query || '');
+  const query = new URLSearchParams(search).get("s");
+  const [searchQuery, setSearchQuery] = useState(query || "");
   const filteredContacts = filterContacts(contacts, searchQuery);
 
   // deletes a specified contact from the backend and updates the contacts state in this component accordingly
