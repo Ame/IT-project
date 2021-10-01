@@ -1,10 +1,10 @@
 import React from "react";
-import AuthService from "../../services/auth.service";
-import { useHistory } from "react-router-dom"
+// import AuthService from "../../services/auth.service";
+// import { useHistory } from "react-router-dom"
 
 function EditProfile(props) {
-  const currentUser = AuthService.getCurrentUser().user;
-  let history = useHistory();
+  //const currentUser = AuthService.getCurrentUser().user;
+  //let history = useHistory();
 
   
   return (

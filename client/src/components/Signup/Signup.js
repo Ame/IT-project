@@ -39,7 +39,7 @@ export const vpassword = (value) => {
   }
 };
 
-function Signup(props) {
+function Signup() {
 
   const form = useRef();
   const checkBtn = useRef();
