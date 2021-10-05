@@ -6,6 +6,7 @@ import Search from './Search.js';
 import Form from "react-validation/build/form";
 import EditContact from "../EditContact/EditContact";
 import Sidebar from "../Sidebar/Sidebar";
+import Popup from './Popup';
 
 const convertToDate = (date) => {
   const toDate = new Date(date);
@@ -26,6 +27,13 @@ const filterContacts = (contacts, query) => {
 
 
 function Contacts() {
+
+    //states for popup
+    const [isOpen, setIsOpen] = useState(false);
+ 
+    const togglePopup = () => {
+      setIsOpen(!isOpen);
+    }
 
   const [contacts, setContacts] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -93,7 +101,9 @@ function Contacts() {
       return contact._id !== id;
     });
     setContacts(removeItem);
+    togglePopup();
   };
+  
 
   return (
     <div className="row">
@@ -115,6 +125,14 @@ function Contacts() {
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (
                     <li className="contact" key={contact._id}>
+                      {isOpen && <Popup content={<>
+                         <b>Are you sure you want to delete contact?</b>
+                          <p>{contact.name}, {contact.email}</p>
+                           <button onClick={(e)=> handleDeleteContact(e, contact._id)}>Yes</button>
+                           <button onClick={togglePopup}>No</button>
+                           </>}
+                         handleClose={togglePopup}
+                         />}
                       <div className="col-lg-5" id="contact">
                         <h6>
                           <strong>Name:</strong> {contact.name}
@@ -151,7 +169,7 @@ function Contacts() {
                         ) : null}
 
                         <button
-                          onClick={(e) => handleDeleteContact(e, contact._id)}
+                          onClick={(e) => togglePopup(e, contact._id)}
                         >
                           Delete
                         </button>
