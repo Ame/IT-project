@@ -10,15 +10,15 @@ require('../../middleware/passport')(passport)
 // @access Public
 router.get("/viewUsers",passport.authenticate('jwt', {session: false}),authRole("admin"),AdminCtrl.apiViewUsers);
 
-// @route get api/users/admin/editUser
+// @route get api/admin/editUser
 // @desc Change permissions of specified user
 // @access Public
-router.put("/editUser/:email",passport.authenticate('jwt', {session: false}),authRole("admin"),AdminCtrl.apiViewUsers);
+router.put("/editUser",passport.authenticate('jwt', {session: false}),authRole("admin"),AdminCtrl.apiEditUser);
 
-// @route get api/users/adminDeleteuser
+// @route get api/admin/deleteUser
 // @desc Deletes a specified user
 // @access Public
-router.delete("/deleteUser/:email",passport.authenticate('jwt', {session: false}),authRole("admin"),AdminCtrl.apiDeleteUser);
+router.delete("/deleteUser/:id",passport.authenticate('jwt', {session: false}),authRole("admin"),AdminCtrl.apiDeleteUser);
 
 // function to auth admin
 function authRole(role){
