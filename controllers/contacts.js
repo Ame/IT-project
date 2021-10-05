@@ -34,8 +34,10 @@ module.exports =  class ContactsController {
             })
 
     }
+    // tested
     static async apiAddTag(req,res,next){
         Contact.findOne({ email: req.body.email , user: req.user.id}).then( contact => {
+
             if (!contact) {
                 return res.status(404).json({ msg: "Contact not found" });
             } 
@@ -44,6 +46,7 @@ module.exports =  class ContactsController {
             const set = new Set(cat)
             // remove duplicates through set conversion
             const newTags = [...set]
+            console.log(newTags);
             // now update the tag
             Contact.updateOne({ email: req.body.email , user: req.user.id} ,{tags: newTags}).then(result => {
                 
@@ -60,9 +63,11 @@ module.exports =  class ContactsController {
                 return res.status(404).json({ msg: "Contact not found" });
             }
             const tags = contact.tags
+            console.log(tags);
             // get index of tag to remove
             const index = tags.indexOf(req.body.tag);
             tags.splice(index, 1);
+            console.log(tags);
             Contact.updateOne({ email: req.body.email , user: req.user.id},{tags: tags}).then(contact => {
                 res.status(200).json({success:true,tags:tags});
             })
@@ -70,7 +75,7 @@ module.exports =  class ContactsController {
         })
 
     }
-
+    // tested
     static async apiGetContactTag(req,res){
         const tags = req.body.tags
         // get all contacts that match tags
@@ -91,7 +96,6 @@ module.exports =  class ContactsController {
             birthday: req.body.birthday,
             notes: req.body.notes
         };
-        // find contact with id
         Contact.findByIdAndUpdate(_id, { $set: contact }, { new: true }, function (err, contact) {
             if (err) {
                 res.status(500);
@@ -104,6 +108,7 @@ module.exports =  class ContactsController {
     }
 
     static async apiRemoveContact(req,res){
+        // console.log(req.params.id);
         var _id = req.params.id;
         const user = await Contact.findByIdAndRemove(_id);
         res.status(200).json({success:true});
