@@ -4,8 +4,7 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app",
-    "dev": "cross-env NODE_ENV=development nodemon app",
+    "start": "node app",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
@@ -37,6 +36,6 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.13"
   }
 }

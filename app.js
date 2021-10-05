@@ -14,9 +14,11 @@ connectDB()
 
 const app = express();
 
-app.use(cors())
+app.use(cors());
+app.options('*', cors());
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 // logger - only use in dev mode
@@ -39,6 +41,10 @@ app.use('/api/admin',require('./routes/api/admin'))
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 
 
