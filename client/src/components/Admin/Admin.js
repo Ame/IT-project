@@ -3,10 +3,11 @@ import { createRef, useEffect, useState } from "react";
 import Search from '../Contacts/Search.js';
 import AuthService from "../../services/auth.service";
 import AdminService from "../../services/admin.service";
+import EditUser from "../Admin/EditUser";
 import { useHistory } from "react-router-dom"
 
 
-//Returns items from contacts that contain the query
+//Returns items from Users that contain the query
 const filterUsers = (users, query) => {
     if (!query.toLowerCase()) {
         return users;
@@ -23,8 +24,29 @@ function Admin(props) {
   const currentUser = AuthService.getCurrentUser().user;
   let history = useHistory();
   const [users, setUsers] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState("");
+  const [currentUserName, setCurrentUserName] = useState("");
+  const [currentUserEmail, setCurrentUserEmail] = useState("");
+  const [currentUserPassword, setCurrentUserPassword] = useState("");
+  const [currentUserRole, setCurrentUserRole] = useState("");
 
- 
+  const showModal = (id, name, email, password, role) => {
+    setCurrentUserId(id);
+    setCurrentUserName(name);
+    setCurrentUserEmail(email);
+    setCurrentUserEmail(password);
+    setCurrentUserEmail(role);
+
+    setModalIsOpen(true);
+  };
+
+  const reload=()=>window.location.reload();
+
+  const setModalIsOpenToFalse = () => {
+    setModalIsOpen(false);
+    reload();
+  };
 
    //parameters for search
    const { search } = window.location;
@@ -37,6 +59,18 @@ function Admin(props) {
     AdminService.getUsers().then((res) => setUsers(res.data.users));
     console.log(users);
   }, []);
+
+   // deletes a specified User from the backend and updates the Users state in this component accordingly
+   const handleDeleteUser = (e, id) => {
+    e.preventDefault();
+    console.log("delete");
+    AdminService.deleteUser(id);
+
+    const removeItem = users.filter((user) => {
+      return user._id !== id;
+    });
+    setUsers(removeItem);
+  };
 
   
   return (
@@ -68,8 +102,8 @@ function Admin(props) {
               <>
                 <ul className="userList" id="results">
                   {filteredUsers.map((user) => (
-                    <li className="contact" key={user._id}>
-                      <div className="col-lg-5" id="contact">
+                    <li className="user" key={user._id}>
+                      <div className="col-lg-5" id="user">
                         <h6>
                           <strong>Name:</strong> {user.name}
                         </h6>
@@ -85,11 +119,21 @@ function Admin(props) {
                         
 
                         <button
+                        onClick = {(e) => handleDeleteUser(e, user._id)}
                         >
                           Delete
                         </button>
                         <button
                           type="button"
+                          onClick={() =>
+                            showModal(
+                              user._id,
+                              user.name,
+                              user.email,
+                              user.password,
+                              user.role
+                            )
+                          }
                         >
                           Edit
                         </button>
@@ -97,6 +141,16 @@ function Admin(props) {
                     </li>
                   ))}
                 </ul>
+                <EditUser
+                  show={modalIsOpen}
+                  handleClose={setModalIsOpenToFalse}
+                  onExit={reload}
+                  id={currentUserId}
+                  userName={currentUserName}
+                  userEmail={currentUserEmail}
+                  userPassword={currentUserPassword}
+                  userRole={currentUserRole}
+                ></EditUser>
               </>
             )}
           </div>
@@ -104,14 +158,6 @@ function Admin(props) {
           )}
           </div>
           }
-
-
-            
-
-
-
-
-
           </div>
         </div>
       </div>
