@@ -65,6 +65,8 @@ function Home(props) {
             error.message ||
             error.toString();
 
+            console.log(error.response.status);
+
           setLoading(false);
           setMessage(resMessage);
         }
