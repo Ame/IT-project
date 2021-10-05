@@ -169,7 +169,7 @@ function Contacts() {
                         ) : null}
 
                         <button
-                          onClick={(e) => togglePopup(e, contact._id)}
+                          onClick={(e) => togglePopup()}
                         >
                           Delete
                         </button>
