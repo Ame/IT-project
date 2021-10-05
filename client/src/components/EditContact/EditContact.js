@@ -2,7 +2,7 @@ import './EditContact.css'
 import Form from "react-validation/build/form";
 import React, { useState, useRef, useEffect } from "react";
 import Input from "react-validation/build/input";
-import { isEmail } from "validator";
+import { isEmail, isMobilePhone } from "validator";
 import CheckButton from "react-validation/build/button";
 import ContactService from "../../services/contact.service";
 import { useHistory } from "react-router-dom";
@@ -19,6 +19,16 @@ const required = (value) => {
     );
   }
 };
+
+const validPhoneNumber = (value) => {
+  if (!isMobilePhone(value,['en-AU'])) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This is not a valid phone number.
+      </div>
+    );
+  }
+}
 
 const validEmail = (value) => {
   if (!isEmail(value)) {
@@ -176,6 +186,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
                     name="name"
                     value={name}
                     onChange={onChangeName}
+                    validations={[required]}
                   />
                 </div>
                 <div className="form-group">
@@ -187,6 +198,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
                     value={email}
                     validation={validEmail}
                     onChange={onChangeEmail}
+                    validations={[required, validEmail]}
                   />
                 </div>
 
@@ -198,6 +210,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
                     name="phone"
                     value={phone}
                     onChange={onChangePhone}
+                    validations={[validPhoneNumber]}
                   />
                 </div>
 
