@@ -40,19 +40,18 @@ function Signup() {
     setConfirmPassword(confirmPassword);
   };
 
+  const required = (value, field, formIsValid, errors) => {
+    if (!value){
+      formIsValid = false;
+      errors[field] = "This field is required!";
+    }
+  }
+
   const handleValidation = () => {
     const errors = {};
     let formIsValid = true;
 
-    if (!name){
-      formIsValid = false;
-      errors["name"] = "This field is required!";
-    }
-
-    if (!email){
-      formIsValid = false;
-      errors["email"] = "This field is required!";
-    }
+    required(name, "name", formIsValid, errors);
 
     if (!isEmail(email)){
       formIsValid = false;
@@ -61,18 +60,10 @@ function Signup() {
 
     if (password.length <= 6){
       formIsValid = false;
-      errors["password"] = "Password must be greater than 6 character";
+      errors["password"] = "Password must be greater than 6 characters";
     }
 
-    if (!password){
-      formIsValid = false;
-      errors["password"] = "This field is required!";
-    }
-
-    if (!confirmPassword){
-      formIsValid = false;
-      errors["confirmPassword"] = "This field is required!";
-    }
+    required(confirmPassword, "confirmPassword", formIsValid, errors);
 
     if (password !== confirmPassword){
       formIsValid = false;
@@ -95,8 +86,6 @@ function Signup() {
           (response) => {
             setMessage(response.data.message);
             setSuccessful(true);
-            history.push("/");
-            window.location.reload();
           },
           (error) => {
             const resMessage =
@@ -126,8 +115,12 @@ function Signup() {
             />
           </div>
           <div className="col-lg-5">
-            <h1 className="font-weight-light">Signup</h1>
-            <p>Start networking with iJane CRM</p>
+            {!successful ? (
+              <h1 className="font-weight-light">Signup</h1>
+            ) : (
+              <h1 className="font-weight-light">Success!</h1>
+            )}
+            {!successful ? <p>Start networking with iJane CRM</p> : null}
             <div>
               <Form onSubmit={handleRegister} ref={form}>
                 {!successful && (
@@ -141,11 +134,7 @@ function Signup() {
                         value={name}
                         onChange={onChangeName}
                       />
-                      <span
-                        style={{ color: "red" }}
-                      >
-                        {errors["name"]}
-                      </span>
+                      <span style={{ color: "red" }}>{errors["name"]}</span>
                     </div>
 
                     <div className="form-group">
@@ -211,9 +200,15 @@ function Signup() {
                 <CheckButton style={{ display: "none" }} ref={checkBtn} />
               </Form>
             </div>
-            <p>
-              Already have an account? <Link to="/">Log in</Link> here!
-            </p>
+            {successful ? (
+              <p>
+                Account made successfully! <Link to="/">Log in</Link> here
+              </p>
+            ) : (
+              <p>
+                Already have an account? <Link to="/">Log in</Link> here!
+              </p>
+            )}
           </div>
         </div>
       </div>
