@@ -29,11 +29,11 @@ const getUsers = () => {
 
 
 const editUser = (name, email, password, role) => {
-  return axios.put(API_URL + `editUser/${email}`, {
-    name,
+  return axios.put(API_URL + "editUser", {
     email,
-    password,
-    role
+    role,
+    name,
+    password    
   }, config);
 };
 
