@@ -13,7 +13,7 @@ const config = {
   headers: { Authorization: token},
 };
 
-const isAdmin = () => {
+const isAdmin = (user) => {
   console.log(user.role);
   if (user.role === "admin"){
     return true;
@@ -28,9 +28,8 @@ const getUsers = () => {
 }
 
 
-const editUser = (_id, name, email, password, role) => {
-  return axios.put(API_URL + "updateUser", {
-    _id,
+const editUser = (name, email, password, role) => {
+  return axios.put(API_URL + `editUser/${email}`, {
     name,
     email,
     password,

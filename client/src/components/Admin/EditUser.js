@@ -80,9 +80,8 @@ const EditUser = ( { show, handleClose, id, userName, userEmail, userPassword, u
       form.current.validateAll();
 
       if (checkBtn.current.context._errors.length === 0) {
-        console.log(id, name, email, password, role);
+        console.log(name, email, password, role);
         AdminService.editUser(
-          id, 
           name,
           email,
           password,
@@ -146,7 +145,7 @@ const EditUser = ( { show, handleClose, id, userName, userEmail, userPassword, u
                     className="form-control"
                     name="email"
                     value={email}
-                    validation={validEmail}
+                    validation={[validEmail]}
                     onChange={onChangeEmail}
                   />
                 </div>

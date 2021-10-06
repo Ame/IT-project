@@ -35,8 +35,8 @@ function Admin(props) {
     setCurrentUserId(id);
     setCurrentUserName(name);
     setCurrentUserEmail(email);
-    setCurrentUserEmail(password);
-    setCurrentUserEmail(role);
+    setCurrentUserPassword(password);
+    setCurrentUserRole(role);
 
     setModalIsOpen(true);
   };
@@ -79,12 +79,12 @@ function Admin(props) {
         <div className="row align-items-center my-5 relative-right">
           <div className="col-lg-7">
             <h1 className="font-weight-light">Admin </h1>
-            {AdminService.isAdmin === false ? (
+            {AdminService.isAdmin(currentUser) === false ? (
                           <h6>
                             User not an Admin!
                           </h6>
                         ) : 
-                        
+                      
                         <div id="container">
                         {users.length === 0 ? (
                          <p className="userList" id="notFound">

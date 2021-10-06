@@ -2,10 +2,12 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import { useHistory } from "react-router-dom"
+import AdminService from "../../services/admin.service";
 
 function Sidebar(props) {
 
-  // const currentUser = AuthService.getCurrentUser().user;
+   const currentUser = AuthService.getCurrentUser().user;
+   
 
   let history = useHistory();
   
@@ -43,14 +45,18 @@ function Sidebar(props) {
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
-              <li className={`side-item  ${
-                  props.location.pathname === "/admin" ? "active" : ""
-                }`}>
-                <Link className="side-link" to="/admin">
-                  Admin
-                  <span className="sr-only">(current)</span>
-                </Link>
-              </li>
+              {AdminService.isAdmin(currentUser) === true ? (
+                           <li className={`side-item  ${
+                            props.location.pathname === "/admin" ? "active" : ""
+                          }`}>
+                          <Link className="side-link" to="/admin">
+                            Admin
+                            <span className="sr-only">(current)</span>
+                          </Link>
+                        </li>
+                        ) : 
+                        null
+  }
             </ul>
           </div>
         </div>
