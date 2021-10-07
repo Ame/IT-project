@@ -19,7 +19,7 @@ const required = (value) => {
   }
 };
 
-function Home(props) {
+function Login(props) {
   let history = useHistory();
 
   const form = useRef();
@@ -77,7 +77,7 @@ function Home(props) {
   };
 
   return (
-    <div className="home vh-100">
+    <div className="login vh-100">
       <div className="container">
         <div className="row align-items-center my-5">
           <div className="col-lg-7">
@@ -147,4 +147,4 @@ function Home(props) {
   );
 }
 
-export default withRouter(Home);
+export default withRouter(Login);
