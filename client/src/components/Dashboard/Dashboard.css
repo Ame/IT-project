@@ -9,13 +9,13 @@
   display: flex;
   height: 100vh;
   width: 100%;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .dashboard {
-  background: url(https://images6.alphacoders.com/676/676713.jpg) no-repeat
+  background: url(https://images2.alphacoders.com/580/580153.jpg) no-repeat
     center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -24,14 +24,14 @@
 }
 
 .dash-content {
-  height: 400px;
+  height: 350px;
   width: 700px;
   border-radius: 5px;
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.09);
-  padding-top: 10%;
-
+  padding-top: 5%;
+  padding-bottom: 5%;
   border-top: 2px solid rgba(225, 225, 225, 0.3);
   border-left: 2px solid rgba(225, 225, 225, 0.1);
   border-right: 1px solid rgba(225, 225, 225, 0.2);

@@ -14,10 +14,9 @@ function Dashboard(props) {
 
   return (
     <div className="row">
-      <div className="col-lg-3">
+      <div className="hamburger">
         <Sidebar />
       </div>
-      <div className="col-lg-9">
         <div class="dashboard">
           <div class="dash-content">
           <div class="clock">
@@ -32,7 +31,7 @@ function Dashboard(props) {
               </div>
             </div>
           </div>
-        </div>
+     
   );
 }
 
