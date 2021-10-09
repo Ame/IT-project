@@ -12,7 +12,7 @@ module.exports = class ContactsController {
       (contact) => {
         // Contact already exists
         if (contact)
-          return res.status(400).json({ msg: "Contact already exists" });
+          return res.status(400).json({ message: "Contact already exists" });
 
         // Create new contact
         const newContact = new Contact({
@@ -39,7 +39,7 @@ module.exports = class ContactsController {
     Contact.findOne({ email: req.body.email, user: req.user.id }).then(
       (contact) => {
         if (!contact) {
-          return res.status(404).json({ msg: "Contact not found" });
+          return res.status(404).json({ message: "Contact not found" });
         }
         const tags = Array.from(req.body.tags);
         const cat = tags.concat(contact.tags);
@@ -63,7 +63,7 @@ module.exports = class ContactsController {
     Contact.findOne({ email: req.body.email, user: req.user.id }).then(
       (contact) => {
         if (!contact) {
-          return res.status(404).json({ msg: "Contact not found" });
+          return res.status(404).json({ message: "Contact not found" });
         }
         const tags = contact.tags;
         console.log(tags);

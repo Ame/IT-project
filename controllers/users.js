@@ -51,7 +51,7 @@ module.exports = class UsersController {
     User.findOne({ email }).then((user) => {
       // Make sure user exists
       if (!user) {
-        return res.status(404).json({ msg: "Email not found" });
+        return res.status(404).json({ message: "Email not found" });
       }
       // hash password later
       if (password === user.password) {
@@ -59,7 +59,7 @@ module.exports = class UsersController {
         const signedToken = issueToken(user);
         res.status(200).json({ success: true, user: user, token: signedToken });
       } else {
-        return res.status(400).json({ msg: "Invalid Credientials" });
+        return res.status(400).json({ message: "Invalid Credientials" });
       }
     });
   }
