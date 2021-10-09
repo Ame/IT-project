@@ -13,7 +13,8 @@ module.exports = class UsersController {
     }
     User.findOne({ email: req.body.email }).then((user) => {
       // User already exists
-      if (user) return res.status(400).json({ msg: "Email already exists" });
+      if (user)
+        return res.status(400).json({ message: "Email already exists" });
 
       // Create new user
       const newUser = new User({
