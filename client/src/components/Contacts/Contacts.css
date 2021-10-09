@@ -48,21 +48,6 @@ ul.ml {
   padding: 10px;
 }
 
-a.side-link:link,
-a.side-link:visited {
-  background-color: none;
-  color: rgb(0, 0, 0);
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-flex;
-}
-
-a.side-link:hover,
-a.side-link:active {
-  color: rgb(14, 212, 186);
-}
-
 h3.headings {
   text-align: center;
   padding: 1em;

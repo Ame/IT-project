@@ -2,3 +2,29 @@
   padding: 0;
   margin: 0;
 }
+
+.fullsize {
+  height: 100vh;
+}
+
+.eye {
+  background-image: url(https://img.freepik.com/free-vector/minimalistic-seamless-eye-pattern-pastel-pale-blue-background-with-grey-elements_97843-879.jpg?size=338&ext=jpg);
+  opacity: 100%;
+  height: 100vh;
+  padding-top: 0px;
+}
+
+#eye2 {
+  background-image: url(https://st3.depositphotos.com/26272052/32780/v/450/depositphotos_327808288-stock-illustration-blue-line-eye-scan-icon.jpg);
+  opacity: 80%;
+}
+
+#eye3 {
+  background-image: url(https://t3.ftcdn.net/jpg/01/87/65/26/360_F_187652629_jHecG7FGIxuF9tHEKkeaCmdAWW4YhrjH.jpg);
+  opacity: 90%;
+}
+
+.col-lg-6 {
+  padding-top: 0;
+  padding-bottom: 0;
+}

@@ -22,12 +22,12 @@ function Dashboard(props) {
           <div class="clock">
                   <Clock/>
                 </div>
-                <h1 className="font-weight-light">Dashboard</h1>
-                <p>Start networking with iJane CRM</p>
+                
                 <h3>
                   <strong>{currentUser.name}</strong> 's Profile{" "}
                 </h3>
                 <h4>Email: {currentUser.email}</h4>
+                <p>Start networking with iJane CRM</p>
               </div>
             </div>
           </div>

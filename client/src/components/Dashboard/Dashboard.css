@@ -15,12 +15,13 @@
 }
 
 .dashboard {
-  background: url(https://images2.alphacoders.com/580/580153.jpg) no-repeat
-    center center fixed;
+  background: url(https://wallpaper.dog/large/17125025.png) no-repeat center
+    center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  opacity: 90%;
 }
 
 .dash-content {

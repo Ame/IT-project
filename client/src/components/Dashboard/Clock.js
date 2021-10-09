@@ -34,7 +34,7 @@ const useDate = () => {
   const { date, time, wish } = useDate();
 
   return (
-      <div>   <p>{date},{time}</p>
+      <div>   <p>{date}, {time}</p>
       <strong>{wish}</strong>
   </div>
  

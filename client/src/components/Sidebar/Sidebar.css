@@ -6,12 +6,16 @@
 
 .navBar button {
   position: fixed;
-  left: 40px;
-  top: 40px;
+  left: 2%;
+  top: 10%;
   z-index: 10;
   cursor: pointer;
   background: transparent;
   border: none;
+}
+
+.navBar button:hover {
+  background-color: #68afa9;
 }
 
 .menuNav {
@@ -27,22 +31,48 @@
   overflow: hidden;
   max-width: 290px;
   z-index: 9;
+  transition: 0.3s;
 }
 
 .menuNav.showMenu {
   width: 100%;
+  transition: 1s;
 }
 
 .menuNav li:first-child {
-  margin-top: 7rem;
+  margin-top: 10rem;
+}
+
+#logout-box {
+  margin: 0;
+  position: absolute;
+  padding-left: 1.5rem;
 }
 
 #logout {
   background-color: #7dc598;
-  border: 5px solid;
-  color: white;
   text-align: center;
   text-decoration: none;
   margin: 20px auto;
   font-size: 16px;
+}
+
+#logout:hover {
+  color: #116156;
+}
+
+a.side-link:link,
+a.side-link:visited {
+  background-color: none;
+  color: rgb(255, 255, 255);
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  font-size: 12px;
+}
+
+a.side-link:hover,
+a.side-link:active {
+  color: rgb(14, 212, 186);
 }

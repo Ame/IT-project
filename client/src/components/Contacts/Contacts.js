@@ -96,7 +96,7 @@ function Contacts() {
   };
 
   return (
-    <div className="row">
+    <div class="row fullsize">
       <div className="col-lg-3">
         <Sidebar />
       </div>
@@ -192,10 +192,10 @@ function Contacts() {
                 ></EditContact>
               </>
             )}
-            <Link to="/addContact">
+          </div>
+          <Link to="/addContact">
               <button>Add Contact</button>{" "}
             </Link>
-          </div>
         </div>
       </div>
     </div>

@@ -39,7 +39,7 @@ function Sidebar(props) {
                   props.location.pathname === "/dashboard" ? "active" : ""
                 }`}>
                 <Link className="side-link" to="/dashboard" onClick={() => closeMenu()}>
-                  Dashboard
+                  <h5>Dashboard</h5>
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
@@ -47,7 +47,7 @@ function Sidebar(props) {
                   props.location.pathname === "/contacts" ? "active" : ""
                 }`}>
                 <Link className="side-link" to="/contacts" onClick={() => closeMenu()}>
-                  Contacts
+                <h5>Contacts</h5>
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
@@ -55,20 +55,18 @@ function Sidebar(props) {
                   props.location.pathname === "/editProfile" ? "active" : ""
                 }`}>
                 <Link className="side-link" to="/editProfile" onClick={() => closeMenu()}>
-                  Edit Profile
+                <h5>Edit Profile</h5>
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
-              <li className={`side-item  ${
-                  props.location.pathname === "/" ? "active" : ""
-                }`}>
+              
+              <li id="logout-box">
                 <Link id="logout" className="side-link" onClick={() => logoutHandler()}>
                 Logout
-                  <span className="sr-only">(current)</span>
                 </Link>
               </li>
-            
-    </ul>
+            </ul>
+   
   </nav>
   );
 }
