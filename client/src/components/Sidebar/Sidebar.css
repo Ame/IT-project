@@ -10,6 +10,8 @@
   top: 40px;
   z-index: 10;
   cursor: pointer;
+  background: transparent;
+  border: none;
 }
 
 .menuNav {
@@ -17,7 +19,7 @@
   list-style: none;
   position: fixed;
   top: 0;
-  background: darkcyan;
+  background: #116156;
   left: 0;
   bottom: 0;
   height: 100vh;
@@ -33,4 +35,14 @@
 
 .menuNav li:first-child {
   margin-top: 7rem;
+}
+
+#logout {
+  background-color: #7dc598;
+  border: 5px solid;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  margin: 20px auto;
+  font-size: 16px;
 }

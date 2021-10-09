@@ -26,12 +26,12 @@ function Sidebar(props) {
   }
   
   return (
-    <nav className="navBar">
+    <nav class="navBar">
     <button onClick={handleToggle}>
   {navbarOpen ? (
     <MdClose style={{ color: "#fff", width: "40px", height: "40px" }} />
   ) : (
-    <FiMenu style={{ color: "#7b7b7b", width: "40px", height: "40px" }} />
+    <FiMenu style={{ color: "#343A40", width: "40px", height: "40px" }} />
   )}</button>
 
     <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
@@ -59,24 +59,17 @@ function Sidebar(props) {
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
+              <li className={`side-item  ${
+                  props.location.pathname === "/" ? "active" : ""
+                }`}>
+                <Link id="logout" className="side-link" onClick={() => logoutHandler()}>
+                Logout
+                  <span className="sr-only">(current)</span>
+                </Link>
+              </li>
+            
     </ul>
   </nav>
-    /*
-    <div className="sidebar vh-100">
-      <nav className="bg-light vh-100">
-        <div className="container">
-          <div>
-            <ul className="ml">
-              
-        
-            </ul>
-          </div>
-        </div>
-        <div className = "container">
-         <button onClick={logoutHandler}>Logout</button>
-        </div>
-      </nav>
-    </div>*/
   );
 }
 
