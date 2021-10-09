@@ -101,7 +101,6 @@ function Contacts() {
       return contact._id !== id;
     });
     setContacts(removeItem);
-    togglePopup();
   };
   
 
@@ -125,14 +124,6 @@ function Contacts() {
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (
                     <li className="contact" key={contact._id}>
-                      {isOpen && <Popup content={<>
-                         <b>Are you sure you want to delete contact?</b>
-                          <p>{contact.name}, {contact.email}</p>
-                           <button onClick={(e)=> handleDeleteContact(e, contact._id)}>Yes</button>
-                           <button onClick={togglePopup}>No</button>
-                           </>}
-                         handleClose={togglePopup}
-                         />}
                       <div className="col-lg-5" id="contact">
                         <h6>
                           <strong>Name:</strong> {contact.name}
@@ -167,12 +158,14 @@ function Contacts() {
                             <ul>{contact.tags.join(", ")}</ul>
                           </div>
                         ) : null}
-
-                        <button
-                          onClick={(e) => togglePopup()}
-                        >
-                          Delete
-                        </button>
+<button
+    onClick={e =>
+        window.confirm("Are you sure you wish to delete this item?") &&
+        handleDeleteContact(e, contact._id)
+    }
+>
+    Delete
+</button>
                         <button
                           type="button"
                           onClick={() =>
