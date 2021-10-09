@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main]
+    branches: [main, addcontactfix]
   pull_request:
     branches: [main]
 
@@ -29,3 +29,6 @@ jobs:
         run: |
           brew install pre-commit
           pre-commit run --all-files --show-diff-on-failure
+      - name: Check for build
+          npm install
+          npm start
