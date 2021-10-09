@@ -155,16 +155,16 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
     }
 
     return (
-      <div className="modal display-block">
-        <section className="modal-main">
-          <h2>Edit Contact: {contactEmail}</h2>
-          <button type="button" onClick={handleClose}>
+      <div className="popup-box">
+          
+        <section className="box">
+        <button class="close-icon" onClick={handleClose}>
             x
           </button>
+          <h2>Edit Contact: {contactEmail}</h2>
           <Form
             onSubmit={handleEditContact}
             ref={form}
-            style={{ overflow: "scroll" }}
           >
             {!successful && (
               <div>

@@ -28,3 +28,20 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+
+.submit {
+  background: #7dc598;
+  border: none;
+}
+
+.submit:hover {
+  background: #116156;
+}
+
+a {
+  color: #7dc598;
+}
+
+a:hover {
+  color: #2e7048;
+}

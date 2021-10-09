@@ -110,7 +110,7 @@ function Home(props) {
 
                 <div className="form-group">
                   <button
-                    className="btn btn-primary btn-block"
+                    className="btn btn-primary btn-block submit" 
                     disabled={loading}
                   >
                     {loading && (
