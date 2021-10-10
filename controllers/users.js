@@ -67,9 +67,10 @@ static async apiLoginUser(req,res){
 static async apiEditProfile(req,res){
     const email = req.body.email
     const password = req.body.password
+    const name = req.body.name
     const id = req.user.id
     // edit the user with the id 
-    User.findOneAndUpdate({_id:id},{password:password,email:email},{returnNewDocument:true}).then(user => {
+    User.findOneAndUpdate({_id:id},{password:password,email:email,name:name},{returnNewDocument:true}).then(user => {
         res.status(200).json({success:true,user:user})
     })
     .catch(err => res.status(400).json({errors:err}))

@@ -114,7 +114,7 @@ function Contacts() {
               <>
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (
-                    <li className="contact" key={contact._id}>
+                    <li role = 'list' className="contact" key={contact._id}>
                       <div className="col-lg-5" id="contact">
                         <h6>
                           <strong>Name:</strong> {contact.name}

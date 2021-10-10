@@ -54,6 +54,7 @@ function Home(props) {
           // open the dashboard page once the Auth service has verified login
           history.push("/dashboard");
           window.location.reload();
+      
         },
 
         // if there is an error, display it
@@ -88,11 +89,12 @@ function Home(props) {
           <div className="col-lg-5">
             <div className="login-wrapper">
               <h1 className="font-weight-light">Please Log In</h1>
-              <Form onSubmit={handleLogin} ref={form}>
+              <Form onSubmit={handleLogin} ref={form} title = "login-form">
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
                   <Input
                     type="text"
+                    title="email"
                     className="form-control"
                     name="email"
                     value={email}
@@ -105,6 +107,7 @@ function Home(props) {
                   <label htmlFor="password">Password</label>
                   <Input
                     type="password"
+                    title="password"
                     className="form-control"
                     name="password"
                     value={password}
@@ -114,7 +117,7 @@ function Home(props) {
                 </div>
 
                 <div className="form-group">
-                  <button
+                  <button title = "submit"
                     className="btn btn-primary btn-block"
                     disabled={loading}
                   >
@@ -127,7 +130,7 @@ function Home(props) {
 
                 {message && (
                   <div className="form-group">
-                    <div className="alert alert-danger" role="alert">
+                    <div className="alert alert-danger" role="alert" title="alert">
                       {message}
                     </div>
                   </div>
