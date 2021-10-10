@@ -19,13 +19,16 @@ const required = (value) => {
 };
 
 const validPhoneNumber = (value) => {
-  if (!isMobilePhone(value,['en-AU'])) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid phone number.
-      </div>
-    );
+  if(value){
+    if (!isMobilePhone(value,['en-AU'])) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid phone number.
+        </div>
+      );
+    }
   }
+
 }
 
 const validEmail = (value) => {

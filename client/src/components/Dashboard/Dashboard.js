@@ -8,6 +8,7 @@ import Sidebar from "../Sidebar/Sidebar";
 function Dashboard(props) {
   const currentUser = AuthService.getCurrentUser().user;
   let history = useHistory();
+  
 
   return (
     <div className="row">

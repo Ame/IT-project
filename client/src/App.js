@@ -3,6 +3,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import { Navigation, Footer, Login, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile, EditContact, Admin} from "./components";
+import AuthService from "./services/auth.service";
 
 function App() {
 
@@ -12,7 +13,13 @@ function App() {
         <Navigation />
         
         <Switch>
-          <Route path="/" exact component={() => <Login />} />
+          {AuthService.isLoggedIn() === true ? (
+              <Route path="/" exact component={() => <Dashboard />} />
+             ) : (
+              <Route path="/" exact component={() => <Login />} />
+            )}
+
+
           <Route path="/signup" exact component={() => <Signup />} />
           <Route path="/about" exact component={() => <About/>} />
           <PrivateRoute path="/dashboard" exact component={() => <Dashboard/>}/>

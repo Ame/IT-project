@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import { Link, withRouter, useHistory } from "react-router-dom";
-
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -18,6 +17,7 @@ const required = (value) => {
     );
   }
 };
+
 
 function Login(props) {
   let history = useHistory();
@@ -58,17 +58,30 @@ function Login(props) {
 
         // if there is an error, display it
         (error) => {
-          const resMessage =
+
+          if(console.log(error.response.status) == 404){
+            setMessage("invalid email")
+            console.log(error.response);
+            return (
+              <div className="alert alert-danger" role="alert">
+                This is not a valid email.
+              </div>
+            );
+          }
+          else{
+            const resMessage =
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
             error.message ||
             error.toString();
 
-            console.log(error.response.status);
-
           setLoading(false);
           setMessage(resMessage);
+          }
+            
+
+          
         }
       );
     } else {

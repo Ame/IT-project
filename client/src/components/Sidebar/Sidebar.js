@@ -7,6 +7,7 @@ import AdminService from "../../services/admin.service";
 function Sidebar(props) {
 
    const currentUser = AuthService.getCurrentUser().user;
+   const reload=()=>window.location.reload();
    
 
   let history = useHistory();
@@ -14,6 +15,7 @@ function Sidebar(props) {
     const logoutHandler = () =>{
       history.push("/");
       AuthService.logout();
+      reload();
     }
   return (
     <div className="sidebar vh-100">
