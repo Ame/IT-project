@@ -1,7 +1,10 @@
 import axios from "axios";
 import AuthService from "../services/auth.service"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/abbey-edit-profile
 const API_URL = "http://localhost:3000/api/contacts/";
 
 const user = AuthService.getCurrentUser();

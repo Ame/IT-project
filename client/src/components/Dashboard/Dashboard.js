@@ -2,12 +2,10 @@
 
 import React from "react";
 import AuthService from "../../services/auth.service";
-import { useHistory } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 
-function Dashboard(props) {
+function Dashboard() {
   const currentUser = AuthService.getCurrentUser().user;
-  let history = useHistory();
 
   return (
     <div className="row">

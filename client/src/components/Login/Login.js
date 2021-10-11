@@ -19,7 +19,7 @@ export const required = (value) => {
   }
 };
 
-function Home(props) {
+function Login() {
   let history = useHistory();
 
   const form = useRef();
@@ -148,4 +148,4 @@ function Home(props) {
   );
 }
 
-export default withRouter(Home);
+export default withRouter(Login);

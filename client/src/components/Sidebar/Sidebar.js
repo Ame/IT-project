@@ -5,8 +5,6 @@ import { useHistory } from "react-router-dom"
 
 function Sidebar(props) {
 
-  // const currentUser = AuthService.getCurrentUser().user;
-
   let history = useHistory();
   
     const logoutHandler = () =>{

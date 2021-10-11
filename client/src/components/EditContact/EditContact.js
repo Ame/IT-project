@@ -10,16 +10,6 @@ import Tags from "../Tags/Tags"
 
 // A modal is a child window that will pop up on the contacts page in order to edit a contact
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
-
 const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
@@ -45,14 +35,13 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
     const [tags, setTags] = useState([]);
-    const [tagToDelete, setTagToDelete] = useState("");
 
     useEffect(() => { // initialise all values for contact with existing ones in the database
       setName(contactName);
       setEmail(contactEmail);
       setPhone(contactPhone);
       setAddress(contactAddress);
-      setBirthday(contactBirthday);
+      setBirthday(convertDate(contactBirthday).toString());
       setNotes(contactNotes);
       setTags(contactTags);
     }, [contactName, contactEmail, contactPhone, contactAddress, contactBirthday, contactNotes, contactTags]);
@@ -218,7 +207,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
                     type="text"
                     className="form-control"
                     name="birthday"
-                    value={convertDate(birthday)}
+                    value={birthday}
                     onChange={onChangeBirthday}
                   />
                 </div>
