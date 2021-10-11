@@ -64,24 +64,24 @@ function Sidebar(props) {
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
-              
-              <li id="logout-box">
-                <Link id="logout" className="side-link" onClick={() => logoutHandler()}>
-                Logout
-                </Link>
-              </li>
               {AdminService.isAdmin(currentUser) === true ? (
                            <li className={`side-item  ${
                             props.location.pathname === "/admin" ? "active" : ""
                           }`}>
                           <Link className="side-link" to="/admin">
-                            Admin
+                            <h5>Admin</h5>
                             <span className="sr-only">(current)</span>
                           </Link>
                         </li>
                         ) : 
                         null
   }
+              <li id="logout-box">
+                <Link id="logout" className="side-link" onClick={() => logoutHandler()}>
+                Logout
+                </Link>
+              </li>
+              
             </ul>
    
   </nav>

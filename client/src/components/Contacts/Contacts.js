@@ -7,6 +7,7 @@ import Form from "react-validation/build/form";
 import EditContact from "../EditContact/EditContact";
 import Sidebar from "../Sidebar/Sidebar";
 import Popup from './Popup';
+import '../Contacts/Contacts.css';
 
 const convertToDate = (date) => {
   const toDate = new Date(date);
