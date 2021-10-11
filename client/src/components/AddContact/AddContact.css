@@ -26,3 +26,7 @@
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+
+h3 {
+  padding-top: 10px;
+}
