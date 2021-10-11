@@ -97,7 +97,7 @@ function Signup(props) {
 
 
   return (
-    <div className="signup" class="fullsize">
+    <div className="signup" className="fullsize">
       <div className="row align-items-center">
           <div className="col-lg-6">
             <div class="eye"></div>

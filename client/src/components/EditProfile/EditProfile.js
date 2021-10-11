@@ -9,7 +9,7 @@ function EditProfile(props) {
 
   
   return (
-    <div className="editProfile" class="fullsize">
+    <div className="editProfile" className="fullsize">
       <div className="container">
         <div className="row align-items-center my-5 relative-right">
           <div className="col-lg-7">

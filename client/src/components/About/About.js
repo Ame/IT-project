@@ -2,10 +2,10 @@ import React from "react";
 
 function About() {
   return (
-    <div class="fullsize">
+    <div className="fullsize">
         <div className="row align-items-center">
           <div className="col-lg-6">
-            <div class="eye" id="eye3"></div>
+            <div className="eye" id="eye3"></div>
           </div>
           <div className="col-lg-5">
           <h1 className="font-weight-light">About</h1>

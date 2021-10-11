@@ -118,11 +118,14 @@ function Admin(props) {
                         </h6>
                       </div> 
                       <div className="col">
-                        <button
-                        onClick = {(e) => handleDeleteUser(e, user._id)}
-                        >
-                          Delete
-                        </button>
+                      <button className="delete"
+    onClick={e =>
+        window.confirm("Are you sure you wish to delete this user?") &&
+        handleDeleteUser(e, user._id)
+    }
+>
+    Delete
+</button>
                         <button
                           type="button"
                           onClick={() =>

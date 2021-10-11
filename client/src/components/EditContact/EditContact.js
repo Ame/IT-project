@@ -168,7 +168,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
       <div className="popup-box">
           
         <section className="box">
-        <button class="close-icon" onClick={handleClose}>
+        <button className="close-icon" onClick={handleClose}>
             x
           </button>
           <h2>Edit Contact: {contactEmail}</h2>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Navigation, Footer, Login, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile, EditContact, Admin, EditUser} from "./components";
+import { Navigation, Footer, Login, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, EditProfile, EditContact, Admin, EditUser} from "./components";
 import AuthService from "./services/auth.service";
 import "./App.css";
 
@@ -10,7 +10,7 @@ import "./App.css";
 function App() {
 
   return (
-    <div class="App">
+    <div className="App">
       <Router>
         <Navigation />
         

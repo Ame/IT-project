@@ -9,7 +9,7 @@ export {default as Contacts} from "./Contacts/Contacts";
 export {default as AddContact} from './AddContact/AddContact';
 export {default as Sidebar} from './Sidebar/Sidebar';
 export {default as EditProfile} from './EditProfile/EditProfile';
-export {default as Searchbar} from './Searchbar/Searchbar';
+export {default as Search} from './Contacts/Search';
 export {default as EditContact} from './EditContact/EditContact';
 export {default as Admin} from './Admin/Admin';
 export {default as EditUser} from './Admin/EditUser';

@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { Link, withRouter } from "react-router-dom";
 import AuthService from "../../services/auth.service";
-
 import { useHistory } from "react-router-dom"
 import AdminService from "../../services/admin.service";
 import { MdClose } from "react-icons/md"
@@ -31,7 +30,7 @@ function Sidebar(props) {
   }
   
   return (
-    <nav class="navBar">
+    <nav className="navBar">
     <button onClick={handleToggle}>
   {navbarOpen ? (
     <MdClose style={{ color: "#fff", width: "40px", height: "40px" }} />
@@ -77,7 +76,7 @@ function Sidebar(props) {
                         null
   }
               <li id="logout-box">
-                <Link id="logout" className="side-link" onClick={() => logoutHandler()}>
+                <Link id="logout" className="side-link" to="/" onClick={() => logoutHandler()}>
                 Logout
                 </Link>
               </li>

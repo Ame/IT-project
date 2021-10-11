@@ -6,7 +6,6 @@ import Search from './Search.js';
 import Form from "react-validation/build/form";
 import EditContact from "../EditContact/EditContact";
 import Sidebar from "../Sidebar/Sidebar";
-import Popup from './Popup';
 import '../Contacts/Contacts.css';
 
 const convertToDate = (date) => {
@@ -28,13 +27,6 @@ const filterContacts = (contacts, query) => {
 
 
 function Contacts() {
-
-    //states for popup
-    const [isOpen, setIsOpen] = useState(false);
- 
-    const togglePopup = () => {
-      setIsOpen(!isOpen);
-    }
 
   const [contacts, setContacts] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -106,12 +98,12 @@ function Contacts() {
   
 
   return (
-    <div class="fullsize">
+    <div className="fullsize">
       <div className="col-lg-3">
         <Sidebar />
       </div>
 
-      <div class="main">
+      <div className="main">
         <div>
           <h3 className="headings">Your contacts</h3>
           <div id="container">
@@ -160,7 +152,7 @@ function Contacts() {
                           </div>
                         ) : null}
                         </div><div className="col-lg-5">
-<button class="delete"
+<button className="delete"
     onClick={e =>
         window.confirm("Are you sure you wish to delete this item?") &&
         handleDeleteContact(e, contact._id)
@@ -168,7 +160,7 @@ function Contacts() {
 >
     Delete
 </button>
-                        <button class="edit"
+                        <button className="edit"
                           type="button"
                           onClick={() =>
                             showModal(

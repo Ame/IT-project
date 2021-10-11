@@ -90,10 +90,10 @@ function Login(props) {
   };
 
   return (
-    <div className="home" class="fullsize">
+    <div className="home" className="fullsize">
      <div className="row align-items-center">
           <div className="col-lg-6">
-            <div class="eye" id="eye2"></div>
+            <div className="eye" id="eye2"></div>
           </div>
           <div className="col-lg-5">
             <div className="login-wrapper">

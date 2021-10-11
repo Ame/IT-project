@@ -18,9 +18,9 @@ function Dashboard(props) {
       <div className="hamburger">
         <Sidebar />
       </div>
-        <div class="dashboard">
-          <div class="dash-content">
-          <div class="clock">
+        <div className="dashboard">
+          <div className="dash-content">
+          <div className="clock">
                   <Clock/>
                 </div>
                 
