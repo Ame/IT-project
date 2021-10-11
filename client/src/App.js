@@ -2,7 +2,7 @@
 
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Navigation, Footer, Login, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile, EditContact, Admin} from "./components";
+import { Navigation, Footer, Login, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile, EditContact, Admin, EditUser} from "./components";
 import AuthService from "./services/auth.service";
 import "./App.css";
 
@@ -30,6 +30,7 @@ function App() {
           <PrivateRoute path="/editContact" exact component={() => <EditContact/>} />
           <PrivateRoute path="/editProfile" exact component={() => <EditProfile />}/>
           <PrivateRoute path="/admin" exact component={() => <Admin />}/>
+          <PrivateRoute path="/editUser" exact component={() => <EditUser />}/>
         </Switch>
         <Footer />
       </Router>

@@ -65,11 +65,7 @@ function Sidebar(props) {
                 </Link>
               </li>
               
-              <li id="logout-box">
-                <Link id="logout" className="side-link" onClick={() => logoutHandler()}>
-                Logout
-                </Link>
-              </li>
+             
               {AdminService.isAdmin(currentUser) === true ? (
                            <li className={`side-item  ${
                             props.location.pathname === "/admin" ? "active" : ""
@@ -81,7 +77,12 @@ function Sidebar(props) {
                         </li>
                         ) : 
                         null
-  }
+                }
+   <li id="logout-box">
+                <Link id="logout" className="side-link" onClick={() => logoutHandler()}>
+                Logout
+                </Link>
+              </li>
             </ul>
    
   </nav>

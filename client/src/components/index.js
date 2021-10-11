@@ -12,3 +12,4 @@ export {default as EditProfile} from './EditProfile/EditProfile';
 export {default as Searchbar} from './Searchbar/Searchbar';
 export {default as EditContact} from './EditContact/EditContact';
 export {default as Admin} from './Admin/Admin';
+export {default as EditUser} from './Admin/EditUser';
