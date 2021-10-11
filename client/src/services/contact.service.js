@@ -1,10 +1,6 @@
 import axios from "axios";
 import AuthService from "../services/auth.service"
 
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 66d9bba7 (Merge pull request #26 from Ame/addcontactfix)
 const API_URL = "http://localhost:3000/api/contacts/";
 
 const user = AuthService.getCurrentUser();

@@ -1,12 +1,6 @@
-<<<<<<< HEAD:client/src/PrivateRoute/PrivateRoute.js
-import React, { Component } from "react";
-import { Route, Redirect } from "react-router-dom";
-import AuthService from "../services/auth.service";
-=======
 import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom'
-import AuthService from "../../services/auth.service";
->>>>>>> parent of 66d9bba7 (Merge pull request #26 from Ame/addcontactfix):client/src/components/PrivateRoute/PrivateRoute.js
+import AuthService from "../services/auth.service";
 
 const PrivateRoute = ({component: Component, ...rest}) => {
 

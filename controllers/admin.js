@@ -9,7 +9,6 @@ module.exports =  class AdminController {
         })
         .catch()
     }
-<<<<<<< HEAD
 
     static async apiDeleteUser(req,res){
         const email = req.params.id
@@ -36,6 +35,3 @@ module.exports =  class AdminController {
     }
 
 }
-=======
-}
->>>>>>> parent of 66d9bba7 (Merge pull request #26 from Ame/addcontactfix)
