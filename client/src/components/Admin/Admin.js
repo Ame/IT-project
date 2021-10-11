@@ -62,15 +62,16 @@ function Admin(props) {
   }, []);
 
    // deletes a specified User from the backend and updates the Users state in this component accordingly
-   const handleDeleteUser = (e, id) => {
+   const handleDeleteUser = (e, email) => {
     e.preventDefault();
     console.log("delete");
-    AdminService.deleteUser(id);
+    AdminService.deleteUser(email);
 
     const removeItem = users.filter((user) => {
-      return user._id !== id;
+      return user.email !== email;
     });
     setUsers(removeItem);
+    reload();
   };
 
   
@@ -121,7 +122,7 @@ function Admin(props) {
                       <button className="delete"
     onClick={e =>
         window.confirm("Are you sure you wish to delete this user?") &&
-        handleDeleteUser(e, user._id)
+        handleDeleteUser(e, user.email)
     }
 >
     Delete

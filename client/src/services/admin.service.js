@@ -37,9 +37,9 @@ const editUser = (name, email, password, role) => {
   }, config);
 };
 
-const deleteUser = (id) => {
-  console.log(id);
-  return axios.delete(API_URL + `removeUser/${id}`, config);
+const deleteUser = (email) => {
+  console.log(email);
+  return axios.delete(API_URL + `deleteUser/${email}`, config);
 }
 
 const exportedObjects = {
