@@ -105,12 +105,12 @@ function Contacts() {
   
 
   return (
-    <div class="row fullsize">
+    <div class="fullsize">
       <div className="col-lg-3">
         <Sidebar />
       </div>
 
-      <div className="col-lg-7">
+      <div class="main">
         <div>
           <h3 className="headings">Your contacts</h3>
           <div id="container">
@@ -123,7 +123,7 @@ function Contacts() {
               <>
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (
-                    <li className="contact" key={contact._id}>
+                    <li className="contact row" key={contact._id}>
                       <div className="col-lg-5" id="contact">
                         <h6>
                           <strong>Name:</strong> {contact.name}
@@ -158,7 +158,8 @@ function Contacts() {
                             <ul>{contact.tags.join(", ")}</ul>
                           </div>
                         ) : null}
-<button
+                        </div><div className="col-lg-5">
+<button class="delete"
     onClick={e =>
         window.confirm("Are you sure you wish to delete this item?") &&
         handleDeleteContact(e, contact._id)
@@ -166,7 +167,7 @@ function Contacts() {
 >
     Delete
 </button>
-                        <button
+                        <button class="edit"
                           type="button"
                           onClick={() =>
                             showModal(

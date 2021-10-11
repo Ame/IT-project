@@ -129,7 +129,7 @@ const AddContact = (e) => {
   }
 
   return (
-    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50" class="add">
+    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50 fullsize">
       <Link to="/contacts">
         <button id="back"><i class="arrow left"></i>  Back</button>
       </Link>

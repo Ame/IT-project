@@ -240,7 +240,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block">
+                  <button className="btn btn-primary btn-block submit">
                     Edit Contact
                   </button>
                 </div>
