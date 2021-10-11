@@ -11,10 +11,11 @@ const register = (name, email, password) => {
 };
 
 const login = async (email, password) => {
-  const response = await axios.post(API_URL + "login", {
-    email,
-    password,
-  });
+  const response = await axios
+    .post(API_URL + "login", {
+      email,
+      password,
+    });
   if (response.data.token) {
     localStorage.setItem("user", JSON.stringify(response.data));
   }
@@ -35,11 +36,11 @@ const getCurrentContact = () => {
 };
 
 const isLoggedIn = () => {
-  if (localStorage.getItem("user") !== null) {
+  if (localStorage.getItem("user") !== null){
     return true;
   }
   return false;
-};
+}
 
 const exportedObjects = {
   register,

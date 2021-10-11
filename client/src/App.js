@@ -8,11 +8,12 @@ import "./App.css";
 
 
 function App() {
+
   return (
     <div class="App">
       <Router>
         <Navigation />
-
+        
         <Switch>
           {AuthService.isLoggedIn() === true ? (
               <Route path="/" exact component={() => <Dashboard />} />

@@ -1,11 +1,12 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef} from "react";
+import {Link} from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
 import AuthService from "../../services/auth.service";
+
 
 export const required = (value) => {
   if (!value) {
@@ -27,6 +28,7 @@ const validEmail = (value) => {
   }
 };
 
+
 export const vpassword = (value) => {
   if (value.length < 6) {
     return (
@@ -38,6 +40,7 @@ export const vpassword = (value) => {
 };
 
 function Signup(props) {
+
   const form = useRef();
   const checkBtn = useRef();
 
@@ -91,6 +94,7 @@ function Signup(props) {
       );
     }
   };
+
 
   return (
     <div className="signup" class="fullsize">
@@ -161,9 +165,8 @@ function Signup(props) {
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
             </div>
-            <p>
-              Already have an account? <Link to="/">Log in</Link> here!
-            </p>
+            <p>Already have an account? <Link to="/">Log in</Link> here!</p>
+            
           </div>
         </div>
       </div>

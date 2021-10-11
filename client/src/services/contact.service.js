@@ -1,83 +1,71 @@
 import axios from "axios";
-import AuthService from "../services/auth.service";
+import AuthService from "../services/auth.service"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 66d9bba7 (Merge pull request #26 from Ame/addcontactfix)
 const API_URL = "http://localhost:3000/api/contacts/";
 
 const user = AuthService.getCurrentUser();
-var token = "";
+var token = ""
 if (user) {
   token = user.token.token;
-}
+} 
 
 const config = {
-  headers: { Authorization: token },
+  headers: { Authorization: token},
 };
 
 const addContact = (name, email, phone, address, birthday, notes) => {
-  return axios.post(
-    API_URL + "addContact",
-    {
-      name,
-      email,
-      phone,
-      address,
-      birthday,
-      notes,
-    },
-    config
-  );
+  return axios.post(API_URL + "addContact", {
+    name,
+    email,
+    phone,
+    address,
+    birthday,
+    notes,
+  }, config);
 };
 
 const editContact = (_id, name, email, phone, address, birthday, notes) => {
-  return axios.put(
-    API_URL + "updateContact",
-    {
-      _id,
-      name,
-      email,
-      phone,
-      address,
-      birthday,
-      notes,
-    },
-    config
-  );
+  return axios.put(API_URL + "updateContact", {
+    _id,
+    name,
+    email,
+    phone,
+    address,
+    birthday,
+    notes,
+  }, config);
 };
 
 const addTags = (email, tags) => {
-  return axios.put(
-    API_URL + "addTag",
-    {
-      email,
-      tags,
-    },
-    config
-  );
-};
+  return axios.put(API_URL + "addTag", {
+    email,
+    tags
+  }, config);
+}
 
 const deleteTag = (email, tag) => {
-  return axios.put(
-    API_URL + "deleteTag",
-    {
-      email,
-      tag,
-    },
-    config
-  );
-};
+  return axios.put(API_URL + "deleteTag", {
+    email,
+    tag
+  }, config);
+}
 
 const deleteContact = (id) => {
-  console.log(id);
-  return axios.delete(API_URL + `removeContact/${id}`, config);
-};
+    console.log(id);
+    return axios.delete(API_URL + `removeContact/${id}`, config);
+}
 
 const getContacts = () => {
-  return axios.get(API_URL + "getContacts", config);
-};
+    return axios.get(API_URL + "getContacts", config)
+}
 
 const getContact = () => {
-  return axios.get(API_URL + "getContact", config);
-};
+  return axios.get(API_URL + "getContact", config)
+}
 
 const exportedObjects = {
   addContact,
@@ -86,7 +74,11 @@ const exportedObjects = {
   getContacts,
   getContact,
   addTags,
-  deleteTag,
+  deleteTag
 };
 
 export default exportedObjects;
+
+
+
+
