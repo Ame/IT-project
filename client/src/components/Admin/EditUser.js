@@ -115,10 +115,10 @@ const EditUser = ( { show, handleClose, id, userName, userEmail, userPassword, u
     }
 
     return (
-      <div className="modal display-block">
-        <section className="modal-main">
+      <div className="popup-box">
+        <section className="box">
           <h2>Edit User: {userEmail}</h2>
-          <button type="button" onClick={handleClose}>
+          <button className="close-icon" type="button" onClick={handleClose}>
             x
           </button>
           <Form
