@@ -6,6 +6,8 @@ import Search from './Search.js';
 import Form from "react-validation/build/form";
 import EditContact from "../EditContact/EditContact";
 import Sidebar from "../Sidebar/Sidebar";
+import Popup from './Popup';
+import '../Contacts/Contacts.css';
 
 const convertToDate = (date) => {
   const toDate = new Date(date);
@@ -26,6 +28,13 @@ const filterContacts = (contacts, query) => {
 
 
 function Contacts() {
+
+    //states for popup
+    const [isOpen, setIsOpen] = useState(false);
+ 
+    const togglePopup = () => {
+      setIsOpen(!isOpen);
+    }
 
   const [contacts, setContacts] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -94,14 +103,15 @@ function Contacts() {
     });
     setContacts(removeItem);
   };
+  
 
   return (
-    <div class="row fullsize">
+    <div class="fullsize">
       <div className="col-lg-3">
         <Sidebar />
       </div>
 
-      <div className="col-lg-7">
+      <div class="main">
         <div>
           <h3 className="headings">Your contacts</h3>
           <div id="container">
@@ -114,7 +124,7 @@ function Contacts() {
               <>
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (
-                    <li className="contact" key={contact._id}>
+                    <li className="contact row" key={contact._id}>
                       <div className="col-lg-5" id="contact">
                         <h6>
                           <strong>Name:</strong> {contact.name}
@@ -149,13 +159,16 @@ function Contacts() {
                             <ul>{contact.tags.join(", ")}</ul>
                           </div>
                         ) : null}
-
-                        <button
-                          onClick={(e) => handleDeleteContact(e, contact._id)}
-                        >
-                          Delete
-                        </button>
-                        <button
+                        </div><div className="col-lg-5">
+<button class="delete"
+    onClick={e =>
+        window.confirm("Are you sure you wish to delete this item?") &&
+        handleDeleteContact(e, contact._id)
+    }
+>
+    Delete
+</button>
+                        <button class="edit"
                           type="button"
                           onClick={() =>
                             showModal(

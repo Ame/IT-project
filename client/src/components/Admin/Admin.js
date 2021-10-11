@@ -5,6 +5,7 @@ import AuthService from "../../services/auth.service";
 import AdminService from "../../services/admin.service";
 import EditUser from "../Admin/EditUser";
 import { useHistory } from "react-router-dom"
+import Sidebar from "../Sidebar/Sidebar";
 
 
 //Returns items from Users that contain the query
@@ -75,9 +76,8 @@ function Admin(props) {
   
   return (
     <div className="adminProfile">
-      <div className="container">
-        <div className="row align-items-center my-5 relative-right">
-          <div className="col-lg-7">
+      <div className="container" style={{justifyContent:"center", paddingTop: '1em'}}>
+          <Sidebar />
             <h1 className="font-weight-light">Admin </h1>
             {AdminService.isAdmin(currentUser) === false ? (
                           <h6>
@@ -102,8 +102,8 @@ function Admin(props) {
               <>
                 <ul className="userList" id="results">
                   {filteredUsers.map((user) => (
-                    <li className="user" key={user._id}>
-                      <div className="col-lg-5" id="user">
+                    <li className="user row" key={user._id}>
+                      <div className="col" id="user">
                         <h6>
                           <strong>Name:</strong> {user.name}
                         </h6>
@@ -116,8 +116,8 @@ function Admin(props) {
                         <h6>
                           <strong>Role:</strong> {user.role}
                         </h6>
-                        
-
+                      </div> 
+                      <div className="col">
                         <button
                         onClick = {(e) => handleDeleteUser(e, user._id)}
                         >
@@ -137,7 +137,8 @@ function Admin(props) {
                         >
                           Edit
                         </button>
-                      </div>
+                        </div>
+                      
                     </li>
                   ))}
                 </ul>
@@ -160,8 +161,7 @@ function Admin(props) {
           }
           </div>
         </div>
-      </div>
-    </div>
+      
   );
 }
 

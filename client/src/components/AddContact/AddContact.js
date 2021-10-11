@@ -142,13 +142,14 @@ const AddContact = (e) => {
   }
 
   return (
-    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50" class="add">
+    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50 fullsize">
       <Link to="/contacts">
         <button id="back"><i class="arrow left"></i>  Back</button>
       </Link>
-      <Form onSubmit={handleAddContact} ref={form}>
+      <Form onSubmit={handleAddContact} ref={form} class="main">
         {!successful && (
           <div>
+            <h3>Add Contact</h3>
             <div className="form-group">
               <label htmlFor="name">Name:</label>
               <Input

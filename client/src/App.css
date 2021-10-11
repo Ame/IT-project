@@ -45,3 +45,7 @@ a {
 a:hover {
   color: #2e7048;
 }
+
+a:future {
+  color: #2e7048;
+}
