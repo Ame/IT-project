@@ -118,7 +118,7 @@ function Contacts() {
               <p className="contactList" id="notFound">
                 No Contacts found. Add some!{" "}
               </p>
-            ) : (
+             ) : (
               <>
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (

@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, StrictMode } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import { isEmail } from "validator";
+import { isEmail, isMobilePhone} from "validator";
 import ContactService from "../../services/contact.service";
 import { useHistory } from "react-router-dom";
 import CheckButton from "react-validation/build/button";
@@ -18,6 +18,19 @@ const required = (value) => {
     );
   }
 };
+
+const validPhoneNumber = (value) => {
+  if(value){
+    if (!isMobilePhone(value,['en-AU'])) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid phone number.
+        </div>
+      );
+    }
+  }
+
+}
 
 const validEmail = (value) => {
   if (!isEmail(value)) {
@@ -167,6 +180,7 @@ const AddContact = (e) => {
                 name="phone"
                 value={phone}
                 onChange={onChangePhone}
+                validations = {[validPhoneNumber]}
                 placeholder="+61"
               />
             </div>

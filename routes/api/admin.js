@@ -4,7 +4,7 @@ const AdminCtrl = require("../../controllers/admin.js");
 const passport = require("passport");
 require("../../middleware/passport")(passport);
 
-// @route get api/users/admin..
+// @route get api/users/admin/viewUsers
 // @desc Gives a list of all the users
 // @access Public
 router.get(
@@ -13,6 +13,16 @@ router.get(
   authRole("admin"),
   AdminCtrl.apiViewUsers
 );
+
+// @route get api/admin/editUser
+// @desc Change permissions of specified user
+// @access Public
+router.put("/editUser",passport.authenticate('jwt', {session: false}),authRole("admin"),AdminCtrl.apiEditUser);
+
+// @route get api/admin/deleteUser
+// @desc Deletes a specified user
+// @access Public
+router.delete("/deleteUser/:id",passport.authenticate('jwt', {session: false}),authRole("admin"),AdminCtrl.apiDeleteUser);
 
 // function to auth admin
 function authRole(role) {

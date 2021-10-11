@@ -10,6 +10,7 @@ import Clock from "./Clock";
 function Dashboard(props) {
   const currentUser = AuthService.getCurrentUser().user;
   let history = useHistory();
+  
 
 
   return (
