@@ -24,6 +24,7 @@ function EditProfile() {
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -31,9 +32,11 @@ function EditProfile() {
     // initialise all values for contact with existing ones in the database
     setName(currentUser.name);
     setEmail(currentUser.email);
+    setPassword(currentUser.password);
   }, [
     currentUser.name,
     currentUser.email,
+    currentUser.password
   ]);
 
   const handleEditProfile = (e) => {
@@ -48,10 +51,13 @@ function EditProfile() {
       EditProfileService.editProfile(
         name,
         email,
+        password
       ).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
+          console.log(response);
+          //localStorage.setItem("user", JSON.stringify(response.data.user));
         },
         (error) => {
           const resMessage =
@@ -133,6 +139,7 @@ function EditProfile() {
             )}
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
           </Form>
+          {successful ? <p>Account updated successfully!</p> : null}
         </section>
       </div>
     );
