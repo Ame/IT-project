@@ -7,12 +7,7 @@ import { isEmail } from "validator";
 
 import AuthService from "../../services/auth.service";
 
-<<<<<<< HEAD
 export const required = (value) => {
-=======
-
-const required = (value) => {
->>>>>>> nat-admin-frontend
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -32,14 +27,8 @@ const validEmail = (value) => {
   }
 };
 
-<<<<<<< HEAD
 export const vpassword = (value) => {
   if (value.length < 6) {
-=======
-
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
->>>>>>> nat-admin-frontend
     return (
       <div className="alert alert-danger" role="alert">
         The password must be between 6 and 40 characters.

@@ -55,9 +55,6 @@
   font-family: cursive;
 }
 
-.display-none {
-  display: none;
-
 .close-icon:hover {
   color: black;
   background: grey;

@@ -1,17 +1,5 @@
 const User = require("../models/Users.js");
 
-<<<<<<< HEAD
-module.exports = class AdminController {
-  static async apiViewUsers(req, res, next) {
-    // returns all users in the database
-    User.find({})
-      .then((users) => {
-        res.status(200).json({ success: true, users: users });
-      })
-      .catch();
-  }
-};
-=======
 module.exports =  class AdminController {
 
     static async apiViewUsers(req,res,next){
@@ -47,4 +35,3 @@ module.exports =  class AdminController {
     }
 
 }
->>>>>>> nat-admin-frontend

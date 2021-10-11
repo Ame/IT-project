@@ -28,6 +28,7 @@ function App() {
           <PrivateRoute path="/addContact" exact component={() => <AddContact/>} />
           <PrivateRoute path="/editContact" exact component={() => <EditContact/>} />
           <PrivateRoute path="/editProfile" exact component={() => <EditProfile />}/>
+          <PrivateRoute path="/admin" exact component={() => <Admin />}/>
         </Switch>
         <Footer />
       </Router>

@@ -12,18 +12,11 @@ connectDB();
 
 const app = express();
 
-<<<<<<< HEAD
 app.use(cors());
 app.options("*", cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "client/build")));
-=======
-app.use(cors())
-app.use(express.urlencoded({extended: true})); 
-app.use(express.json());
-
->>>>>>> nat-admin-frontend
 
 // logger - only use in dev mode
 if (process.env.NODE_ENV === "development") {
@@ -44,14 +37,8 @@ app.use("/api/admin", require("./routes/api/admin"));
 
 app.use(express.static(path.join(__dirname, "public")));
 
-<<<<<<< HEAD
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
-=======
-app.use(express.static(path.join(__dirname, 'public')));
-
-
->>>>>>> nat-admin-frontend
 
 module.exports = app;
