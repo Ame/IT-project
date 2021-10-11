@@ -18,7 +18,7 @@ export const required = (value) => {
   }
 };
 
-export const validEmail = (value) => {
+const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -106,6 +106,7 @@ function Signup(props) {
             <h1 className="font-weight-light">Signup</h1>
             <p>Start networking with iJane CRM</p>
             <div>
+            {/*<Form onSubmit={handleRegister} ref={form}/>*/}
             <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>

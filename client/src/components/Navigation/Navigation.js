@@ -1,15 +1,22 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import AuthService from "../../services/auth.service";
 
 function Navigation(props) {
+  
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container">
-          <Link className="navbar-brand" to="/">
-            iJane CRM
-          </Link>
-
+          {AuthService.isLoggedIn() === true ? (
+              <Link className="navbar-brand" to="/dashboard">
+                iJane CRM
+              </Link>
+             ) : (
+              <Link className="navbar-brand" to="/">
+                iJane CRM
+              </Link>  
+            )}
           <div>
             <ul className="navbar-nav ml-auto">
               <li
@@ -18,7 +25,7 @@ function Navigation(props) {
                 }`}
               >
                 <Link className="nav-link" to="/">
-                  Home
+                  Login
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>

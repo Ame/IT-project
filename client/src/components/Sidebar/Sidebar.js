@@ -1,18 +1,23 @@
 import React, {useState} from "react";
 import { Link, withRouter } from "react-router-dom";
 import AuthService from "../../services/auth.service";
-import { useHistory } from "react-router-dom";
+
+import { useHistory } from "react-router-dom"
+import AdminService from "../../services/admin.service";
 import { MdClose } from "react-icons/md"
 import { FiMenu } from "react-icons/fi"
 import "./Sidebar.css";
 
 function Sidebar(props) {
 
+   const currentUser = AuthService.getCurrentUser().user;
+   const reload=()=>window.location.reload();
   let history = useHistory();
   
     const logoutHandler = () =>{
       history.push("/");
       AuthService.logout();
+      reload();
     }
 
   const [navbarOpen, setNavbarOpen] = useState(false)
@@ -65,6 +70,18 @@ function Sidebar(props) {
                 Logout
                 </Link>
               </li>
+              {AdminService.isAdmin(currentUser) === true ? (
+                           <li className={`side-item  ${
+                            props.location.pathname === "/admin" ? "active" : ""
+                          }`}>
+                          <Link className="side-link" to="/admin">
+                            Admin
+                            <span className="sr-only">(current)</span>
+                          </Link>
+                        </li>
+                        ) : 
+                        null
+  }
             </ul>
    
   </nav>

@@ -2,14 +2,13 @@
 
 import React, { useState, useRef } from "react";
 import { Link, withRouter, useHistory } from "react-router-dom";
-
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import AuthService from "../../services/auth.service";
 
-export const required = (value) => {
+const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -19,7 +18,8 @@ export const required = (value) => {
   }
 };
 
-function Home(props) {
+
+function Login(props) {
   let history = useHistory();
 
   const form = useRef();
@@ -58,7 +58,18 @@ function Home(props) {
 
         // if there is an error, display it
         (error) => {
-          const resMessage =
+
+          if(console.log(error.response.status) == 404){
+            setMessage("invalid email")
+            console.log(error.response);
+            return (
+              <div className="alert alert-danger" role="alert">
+                This is not a valid email.
+              </div>
+            );
+          }
+          else{
+            const resMessage =
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
@@ -67,6 +78,10 @@ function Home(props) {
 
           setLoading(false);
           setMessage(resMessage);
+          }
+            
+
+          
         }
       );
     } else {
@@ -139,4 +154,4 @@ function Home(props) {
   );
 }
 
-export default withRouter(Home);
+export default withRouter(Login);

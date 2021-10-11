@@ -1,0 +1,134 @@
+/* Style Notes
+- potentially add scrollbar
+- flexboxes!! (esp for sidebar) (move sidebar logic from App.js to indiv. pages)
+- vh-100 on body containers to push the damn footer to the bottom
+- use table (row/col) tags to align elements (e.g sidebar + content, contact info + buttons)
+- change from the default bootstrap to custom stylesheet??? maybe (to make the site look more original > template?)
+*/
+* {
+    padding: 0;
+    margin: 0;
+  }
+  
+  button {
+    background-color: #7dc598;
+    border: 5px solid;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    float: inline-end;
+    font-size: 16px;
+  }
+  
+  h3.headings {
+    padding-top: 1em;
+    padding-bottom: 2em;
+  }
+  
+  button:hover {
+    background-color: #4caf50;
+    font: lighter;
+  }
+  h6 {
+    text-align: left;
+  }
+  
+  h6 strong {
+    color: rgb(17, 97, 86);
+  }
+  ul.contactList {
+    list-style-type: none; /* removes bullets */
+    text-align: center;
+  }
+  
+  ul.ml {
+    list-style-type: none;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  a.side-link:link,
+  a.side-link:visited {
+    background-color: none;
+    color: rgb(0, 0, 0);
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+  }
+  
+  a.side-link:hover,
+  a.side-link:active {
+    color: rgb(14, 212, 186);
+  }
+  
+  h3.headings {
+    text-align: center;
+    padding: 1em;
+    padding-top: 2em;
+  }
+  
+  .back {
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+  
+  .contact {
+    padding-bottom: 2em;
+  }
+  
+  #notFound {
+    padding: 20px;
+    background-color: white;
+    font-weight: bold;
+  }
+  #container {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: rgb(104, 175, 169);
+  }
+  
+  #tags {
+    display: flex;
+    padding-bottom: 20px;
+    background-color: rgb(17, 97, 86);
+    color: white;
+  }
+  #tags strong {
+    color: rgb(104, 175, 169);
+  }
+  
+  #search {
+    display: flex;
+    padding: 20px;
+    background-color: rgb(17, 97, 86);
+  }
+  
+  #search label {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 15px;
+  }
+  
+  #searchInput {
+    display: inherit;
+    width: 100%;
+    padding: 1em 1em;
+  }
+  
+  #results {
+    display: block;
+    padding: 10px;
+  }
+  
+  #results .contact {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 10px;
+    list-style-type: none;
+  }
+  

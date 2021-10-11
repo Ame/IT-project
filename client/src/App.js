@@ -2,8 +2,10 @@
 
 import React from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Navigation, Footer, Home, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile, EditContact} from "./components";
+import { Navigation, Footer, Login, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, Sidebar, EditProfile, EditContact, Admin} from "./components";
+import AuthService from "./services/auth.service";
 import "./App.css";
+
 
 function App() {
 
@@ -13,7 +15,13 @@ function App() {
         <Navigation />
         
         <Switch>
-          <Route path="/" exact component={() => <Home />} />
+          {AuthService.isLoggedIn() === true ? (
+              <Route path="/" exact component={() => <Dashboard />} />
+             ) : (
+              <Route path="/" exact component={() => <Login />} />
+            )}
+
+
           <Route path="/signup" exact component={() => <Signup />} />
           <Route path="/about" exact component={() => <About/>} />
           <PrivateRoute path="/dashboard" exact component={() => <Dashboard/>}/>
@@ -21,6 +29,7 @@ function App() {
           <PrivateRoute path="/addContact" exact component={() => <AddContact/>} />
           <PrivateRoute path="/editContact" exact component={() => <EditContact/>} />
           <PrivateRoute path="/editProfile" exact component={() => <EditProfile />}/>
+          <PrivateRoute path="/admin" exact component={() => <Admin />}/>
         </Switch>
         <Footer />
       </Router>
