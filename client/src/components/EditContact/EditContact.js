@@ -205,6 +205,7 @@ const EditContact = ({
                   name="name"
                   value={name}
                   onChange={onChangeName}
+                  validation={[required]}
                 />
               </div>
               <div className="form-group">
@@ -214,8 +215,8 @@ const EditContact = ({
                   className="form-control"
                   name="email"
                   value={email}
-                  validation={validEmail}
                   onChange={onChangeEmail}
+                  validation={[required, validEmail]}
                 />
               </div>
 
@@ -226,8 +227,8 @@ const EditContact = ({
                   className="form-control"
                   name="phone"
                   value={phone}
-                  validation={validPhoneNumber}
                   onChange={onChangePhone}
+                  validation={[validPhoneNumber]}
                 />
               </div>
 
