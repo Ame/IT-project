@@ -141,6 +141,7 @@ const AddContact = (e) => {
                 type="text"
                 className="form-control"
                 name="name"
+                role="name"
                 value={name}
                 onChange={onChangeName}
                 validations={[required]}
@@ -150,6 +151,7 @@ const AddContact = (e) => {
               <label htmlFor="description">Email:</label>
               <Input
                 type="text"
+                role="email"
                 className="form-control"
                 name="email"
                 value={email}
@@ -162,6 +164,7 @@ const AddContact = (e) => {
               <label htmlFor="phone">Phone Number:</label>
               <Input
                 type="text"
+                role="phone"
                 className="form-control"
                 name="phone"
                 value={phone}
@@ -185,6 +188,7 @@ const AddContact = (e) => {
               <label htmlFor="birthday">Birthday:</label>
               <Input
                 type="text"
+                role="birthday"
                 className="form-control"
                 name="birthday"
                 value={birthday}
@@ -227,7 +231,7 @@ const AddContact = (e) => {
             </div>
           </div>
         )}
-        <CheckButton style={{ display: "none" }} ref={checkBtn} />
+        <CheckButton style={{ display: "none" }} ref={checkBtn} title="submit"/>
       </Form>
     </div>
   );

@@ -5,13 +5,17 @@ import AuthService from "../../../services/auth.service"
 
 
 describe('Test all contact functionality', () => {
-  render(
-  <BrowserRouter>
-    <Contacts/>
-  </BrowserRouter>)
+  
   it('List of contacts is rendered', () => {
-    const list = screen.getAllByRole('list')
+    render(
+    <BrowserRouter>
+      <Contacts/>
+    </BrowserRouter>)
+    AuthService.login("test@testing.com","test123")
     console.log(AuthService.getCurrentUser());
+    const list = screen.getAllByRole('list')
     expect(list.length > 0).toBe(true);
   })
+
+
 })

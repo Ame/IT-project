@@ -120,7 +120,7 @@ function Contacts() {
                           <strong>Name:</strong> {contact.name}
                         </h6>
                         <h6>
-                          <strong>Email:</strong> {contact.email}
+                          <strong title="email">Email:</strong> {contact.email}
                         </h6>
                         {contact.phone !== "" ? (
                           <h6>
