@@ -6,6 +6,7 @@ import Search from './Search.js';
 import Form from "react-validation/build/form";
 import EditContact from "../EditContact/EditContact";
 import Sidebar from "../Sidebar/Sidebar";
+import Popup from './Popup';
 
 const convertToDate = (date) => {
   const toDate = new Date(date);
@@ -26,6 +27,13 @@ const filterContacts = (contacts, query) => {
 
 
 function Contacts() {
+
+    //states for popup
+    const [isOpen, setIsOpen] = useState(false);
+ 
+    const togglePopup = () => {
+      setIsOpen(!isOpen);
+    }
 
   const [contacts, setContacts] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -94,6 +102,7 @@ function Contacts() {
     });
     setContacts(removeItem);
   };
+  
 
   return (
     <div class="row fullsize">
@@ -149,12 +158,14 @@ function Contacts() {
                             <ul>{contact.tags.join(", ")}</ul>
                           </div>
                         ) : null}
-
-                        <button
-                          onClick={(e) => handleDeleteContact(e, contact._id)}
-                        >
-                          Delete
-                        </button>
+<button
+    onClick={e =>
+        window.confirm("Are you sure you wish to delete this item?") &&
+        handleDeleteContact(e, contact._id)
+    }
+>
+    Delete
+</button>
                         <button
                           type="button"
                           onClick={() =>
