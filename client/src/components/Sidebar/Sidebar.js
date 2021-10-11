@@ -40,10 +40,12 @@ function Sidebar(props) {
                 }`}>
                 <Link className="side-link" to="/dashboard" onClick={() => closeMenu()}>
                   <h5>Dashboard</h5>
+
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
-              <li className={`side-item  ${
+              <li
+                className={`side-item  ${
                   props.location.pathname === "/contacts" ? "active" : ""
                 }`}>
                 <Link className="side-link" to="/contacts" onClick={() => closeMenu()}>
@@ -51,8 +53,10 @@ function Sidebar(props) {
                   <span className="sr-only">(current)</span>
                 </Link>
               </li>
-              <li className={`side-item  ${
+              <li
+                className={`side-item  ${
                   props.location.pathname === "/editProfile" ? "active" : ""
+
                 }`}>
                 <Link className="side-link" to="/editProfile" onClick={() => closeMenu()}>
                 <h5>Edit Profile</h5>

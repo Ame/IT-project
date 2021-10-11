@@ -4,31 +4,31 @@ import { Link, withRouter } from "react-router-dom";
 function Navigation(props) {
   return (
     <div className="navigation">
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
+      <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <div class="container">
+          <Link class="navbar-brand" to="/">
             iJane CRM
           </Link>
 
           <div>
-            <ul className="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto">
               <li
-                className={`nav-item  ${
+                class={`nav-item  ${
                   props.location.pathname === "/" ? "active" : ""
                 }`}
               >
-                <Link className="nav-link" to="/">
-                  Home
-                  <span className="sr-only">(current)</span>
+                <Link class="nav-link" to="/">
+                  Login
+                  <span class="sr-only">(current)</span>
                 </Link>
               </li>
               <li
-                className={`nav-item  ${
-                  props.location.pathname === "/about" ? "active" : ""
+                class={`nav-item  ${
+                  props.location.pathname === "/contact" ? "active" : ""
                 }`}
               >
-                <Link className="nav-link" to="/about">
-                  About
+                <Link class="nav-link" to="/contact">
+                  Contact
                 </Link>
               </li>
             </ul>

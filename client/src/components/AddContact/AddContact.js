@@ -117,16 +117,16 @@ const AddContact = (e) => {
 
   // updates the tags state with any added from the child component
   const fetchTags = (tag) => {
-      setTags([...tags, tag]);
+    setTags([...tags, tag]);
   };
 
   // add new tags for a contact to the database
   const addTags = (email, tagList) => {
-      ContactService.addTags(email, tagList).then((response) => {
-        setMessage(response.data.message);
-        setSuccessful(true);
-      });
-  }
+    ContactService.addTags(email, tagList).then((response) => {
+      setMessage(response.data.message);
+      setSuccessful(true);
+    });
+  };
 
   return (
     <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50" class="add">
@@ -207,7 +207,11 @@ const AddContact = (e) => {
 
             <div className="form-group">
               <label htmlFor="tags">Tags:</label>
-              <Tags sendTags={fetchTags} existingTags={tags} isEdit={false}></Tags>
+              <Tags
+                sendTags={fetchTags}
+                existingTags={tags}
+                isEdit={false}
+              ></Tags>
             </div>
 
             <div className="form-group">

@@ -1,12 +1,12 @@
-import { required, validEmail, vpassword } from '../Signup'
+import { required, validEmail, vpassword } from "../Signup";
 
-test('required function returns warning message if nothing is inputted', () => {
+test("required function returns warning message if nothing is inputted", () => {
   expect(required()).toStrictEqual(
     <div className="alert alert-danger" role="alert">
       This field is required!
     </div>
   );
-})
+});
 
 test("required function is undefined if there is input, as it is valid", () => {
   expect(required("hello")).toBeUndefined();
@@ -18,7 +18,7 @@ test("validEmail function displays warning message when email that is a string o
       This is not a valid email.
     </div>
   );
-})
+});
 
 test("validEmail function displays warning message when string of alphanumeric characters containing .com is entered", () => {
   expect(validEmail("hello.com")).toStrictEqual(
@@ -50,7 +50,7 @@ test("vpassword function returns warning when password of less than 6 characters
       The password must be between 6 and 40 characters.
     </div>
   );
-})
+});
 
 test("vpassword function returns undefined when password of greater than 6 characters is entered, as it is valid", () => {
   expect(vpassword("hello123")).toBeUndefined();

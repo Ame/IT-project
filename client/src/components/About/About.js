@@ -10,7 +10,8 @@ function About() {
           <div className="col-lg-5">
             <h1 className="font-weight-light">About Us</h1>
             <p>
-              This was developed by iJane! We are students at the Univeristy of Melbourne :)
+              This was developed by iJane! We are students at the Univeristy of
+              Melbourne :)
             </p>
           </div>
         </div>
