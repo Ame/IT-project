@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import AuthService from "../../services/auth.service";
 import Form from "react-validation/build/form";
-import { useHistory } from "react-router-dom"
 import { isEmail } from "validator";
 import CheckButton from "react-validation/build/button";
 import Input from "react-validation/build/input";
+import EditProfileService from "../../services/edit-profile-service"
 
 const validEmail = (value) => {
   if (!isEmail(value)) {
@@ -36,8 +36,36 @@ function EditProfile() {
     currentUser.email,
   ]);
 
-  const handleEditProfile = () => {
-    console.log("edit");
+  const handleEditProfile = (e) => {
+    e.preventDefault();
+
+    setMessage("");
+    setSuccessful(false);
+
+    form.current.validateAll();
+
+    if (checkBtn.current.context._errors.length === 0) {
+      EditProfileService.editProfile(
+        name,
+        email,
+      ).then(
+        (response) => {
+          setMessage(response.data.message);
+          setSuccessful(true);
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setMessage(resMessage);
+          setSuccessful(false);
+        }
+      );
+    }
   }
 
   const onChangeName = (e) => {
