@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import CheckButton from "react-validation/build/button";
 import { Link } from "react-router-dom";
 import Tags from "../Tags/Tags";
+import "./AddContact.css";
 
 const required = (value) => {
   if (!value) {
@@ -128,9 +129,9 @@ const AddContact = (e) => {
   };
 
   return (
-    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50">
+    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50" class="add">
       <Link to="/contacts">
-        <button>Back</button> <input type="text" value=" Add Contact" />
+        <button id="back"><i class="arrow left"></i>  Back</button>
       </Link>
       <Form onSubmit={handleAddContact} ref={form}>
         {!successful && (
@@ -214,7 +215,7 @@ const AddContact = (e) => {
             </div>
 
             <div className="form-group">
-              <button className="btn btn-primary btn-block">Submit</button>
+              <button className="btn btn-primary btn-block submit">Submit</button>
             </div>
           </div>
         )}

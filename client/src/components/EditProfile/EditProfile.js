@@ -1,16 +1,18 @@
 import React from "react";
 import AuthService from "../../services/auth.service";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"
+import Sidebar from "../Sidebar/Sidebar";
 
 function EditProfile(props) {
   const currentUser = AuthService.getCurrentUser().user;
   let history = useHistory();
 
   return (
-    <div className="editProfile">
+    <div className="editProfile" class="fullsize">
       <div className="container">
         <div className="row align-items-center my-5 relative-right">
           <div className="col-lg-7">
+            <Sidebar />
             <h1 className="font-weight-light">Edit Profile</h1>
             <p>Change your user details</p>
 

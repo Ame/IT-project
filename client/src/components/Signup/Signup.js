@@ -93,83 +93,72 @@ function Signup(props) {
   };
 
   return (
-    <div className="signup">
-      <div className="container">
-        <div className="row align-items-center my-5">
-          <div className="col-lg-7">
-            <img
-              className="img-fluid rounded mb-4 mb-lg-0"
-              src="http://placehold.it/900x400"
-              alt=""
-            />
+    <div className="signup" class="fullsize">
+      <div className="row align-items-center">
+          <div className="col-lg-6">
+            <div class="eye"></div>
           </div>
           <div className="col-lg-5">
             <h1 className="font-weight-light">Signup</h1>
             <p>Start networking with iJane CRM</p>
             <div>
-              <Form onSubmit={handleRegister} ref={form}>
-                {!successful && (
-                  <div>
-                    <div className="form-group">
-                      <label htmlFor="name">Name</label>
-                      <Input
-                        type="text"
-                        className="form-control"
-                        name="name"
-                        value={name}
-                        onChange={onChangeName}
-                        validations={[required]}
-                      />
-                    </div>
+            <Form onSubmit={handleRegister} ref={form}>
+          {!successful && (
+            <div>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  value={name}
+                  onChange={onChangeName}
+                  validations={[required]}
+                />
+              </div>
 
-                    <div className="form-group">
-                      <label htmlFor="email">Email</label>
-                      <Input
-                        type="text"
-                        className="form-control"
-                        name="email"
-                        value={email}
-                        onChange={onChangeEmail}
-                        validations={[required, validEmail]}
-                      />
-                    </div>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  name="email"
+                  value={email}
+                  onChange={onChangeEmail}
+                  validations={[required, validEmail]}
+                />
+              </div>
 
-                    <div className="form-group">
-                      <label htmlFor="password">Password</label>
-                      <Input
-                        type="password"
-                        className="form-control"
-                        name="password"
-                        value={password}
-                        onChange={onChangePassword}
-                        validations={[required, vpassword]}
-                      />
-                    </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <Input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  value={password}
+                  onChange={onChangePassword}
+                  validations={[required, vpassword]}
+                />
+              </div>
 
-                    <div className="form-group">
-                      <button className="btn btn-primary btn-block">
-                        Sign Up
-                      </button>
-                    </div>
-                  </div>
-                )}
+              <div className="form-group">
+                <button className="btn btn-primary btn-block submit">Sign Up</button>
+              </div>
+            </div>
+          )}
 
-                {message && (
-                  <div className="form-group">
-                    <div
-                      className={
-                        successful
-                          ? "alert alert-success"
-                          : "alert alert-danger"
-                      }
-                      role="alert"
-                    >
-                      {message}
-                    </div>
-                  </div>
-                )}
-                <CheckButton style={{ display: "none" }} ref={checkBtn} />
-              </Form>
+          {message && (
+            <div className="form-group">
+              <div
+                className={ successful ? "alert alert-success" : "alert alert-danger" }
+                role="alert"
+              >
+                {message}
+              </div>
+            </div>
+          )}
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+        </Form>
             </div>
             <p>
               Already have an account? <Link to="/">Log in</Link> here!
@@ -177,7 +166,6 @@ function Signup(props) {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

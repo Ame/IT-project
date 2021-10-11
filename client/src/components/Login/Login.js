@@ -75,15 +75,10 @@ function Home(props) {
   };
 
   return (
-    <div className="home vh-100">
-      <div className="container">
-        <div className="row align-items-center my-5">
-          <div className="col-lg-7">
-            <img
-              className="img-fluid rounded mb-4 mb-lg-0"
-              src="http://placehold.it/900x400"
-              alt=""
-            />
+    <div className="home" class="fullsize">
+     <div className="row align-items-center">
+          <div className="col-lg-6">
+            <div class="eye" id="eye2"></div>
           </div>
           <div className="col-lg-5">
             <div className="login-wrapper">
@@ -115,7 +110,7 @@ function Home(props) {
 
                 <div className="form-group">
                   <button
-                    className="btn btn-primary btn-block"
+                    className="btn btn-primary btn-block submit" 
                     disabled={loading}
                   >
                     {loading && (
@@ -141,7 +136,6 @@ function Home(props) {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
