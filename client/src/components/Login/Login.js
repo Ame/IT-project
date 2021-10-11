@@ -98,6 +98,7 @@ function Login(props) {
           <div className="col-lg-5">
             <div className="login-wrapper">
               <h1 className="font-weight-light">Please Log In</h1>
+            <p>Welcome to iJane CRM! Enjoy the benefits of staying organised.</p>
               <Form onSubmit={handleLogin} ref={form}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
