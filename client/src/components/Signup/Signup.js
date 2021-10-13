@@ -10,7 +10,6 @@ import AuthService from "../../services/auth.service";
 function Signup() {
   const form = useRef();
   const checkBtn = useRef();
-  let history = useHistory();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
