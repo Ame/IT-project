@@ -25,8 +25,9 @@ module.exports =  class AdminController {
         const role = req.body.role
         const name = req.body.name
         const password = req.body.password
+        const id = req.user.id
         // edit the user with the email
-        User.findOneAndUpdate({email:email},{role:role,name:name,password:password,email:email},{returnNewDocument:true}).then(user => {
+        User.findOneAndUpdate({_id:id},{role:role,name:name,password:password,email:email},{returnNewDocument:true}).then(user => {
             res.status(200).json({success:true,user:user})
         })
         .catch(err => res.status(400).json({errors:err}))
