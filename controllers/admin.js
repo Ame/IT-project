@@ -20,18 +20,25 @@ module.exports =  class AdminController {
         .catch(err => res.status(400).json({errors:err}))
     }
 
+    
     static async apiEditUser(req,res){
-        const email = req.body.email
-        const role = req.body.role
-        const name = req.body.name
-        const password = req.body.password
-        // edit the user with the email
-        User.findOneAndUpdate({email:email},{role:role,name:name,password:password,email:email},{returnNewDocument:true}).then(user => {
-            res.status(200).json({success:true,user:user})
-        })
-        .catch(err => res.status(400).json({errors:err}))
-
-
+        console.log(req.user);
+        var _id = req.body._id;
+        var user = {
+            name: req.body.name,
+            email: req.body.email,
+            password = req.body.password,
+            role = req.body.role
+        };
+        User.findByIdAndUpdate(_id, { $set: user }, { new: true }, function (err, contact) {
+            if (err) {
+                res.status(500);
+                res.send(err);
+            } else {
+                res.status(200);
+                res.send();
+            }
+        });
     }
 
 }
