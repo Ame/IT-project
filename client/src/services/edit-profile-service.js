@@ -14,14 +14,18 @@ const config = {
   headers: { Authorization: token },
 };
 
-const editProfile = (name) => {
+const editProfile = (name, email, password) => {
   return axios.put(
     API_URL + "editProfile",
     {
-      name
+      name, 
+      email, 
+      password,
     },
     config
   );
+
+  //console.log(response.data);
 };
 
 const exportedObjects = {

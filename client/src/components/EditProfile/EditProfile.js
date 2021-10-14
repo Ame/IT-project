@@ -4,37 +4,64 @@ import Form from "react-validation/build/form";
 import { isEmail } from "validator";
 import CheckButton from "react-validation/build/button";
 import Input from "react-validation/build/input";
-import EditProfileService from "../../services/edit-profile-service"
+import EditProfileService from "../../services/edit-profile-service";
 
-const validEmail = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
-      </div>
-    );
-  }
-};
 
 function EditProfile() {
   const currentUser = AuthService.getCurrentUser().user;
 
   const form = useRef();
   const checkBtn = useRef();
+  const reload = () => window.location.reload();
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     // initialise all values for contact with existing ones in the database
     setName(currentUser.name);
     setEmail(currentUser.email);
-  }, [
-    currentUser.name,
-    currentUser.email,
-  ]);
+    setPassword(currentUser.password);
+    setConfirmPassword(currentUser.password);
+  }, [currentUser.name, currentUser.email, currentUser.password]);
+
+  const required = (value, field, formIsValid, errors) => {
+    if (!value) {
+      formIsValid = false;
+      errors[field] = "This field is required!";
+    }
+  };
+
+  const handleValidation = () => {
+    const errors = {};
+    let formIsValid = true;
+
+    if (!isEmail(email)) {
+      formIsValid = false;
+      errors["email"] = "Invalid email";
+    }
+
+    if (password.length <= 6) {
+      formIsValid = false;
+      errors["password"] = "Password must be greater than 6 characters";
+    }
+
+    required(confirmPassword, "confirmPassword", formIsValid, errors);
+
+    if (password !== confirmPassword) {
+      formIsValid = false;
+      errors["confirmPassword"] = "Passwords don't match";
+    }
+
+    setErrors(errors);
+    return formIsValid;
+  };
+
 
   const handleEditProfile = (e) => {
     e.preventDefault();
@@ -44,29 +71,36 @@ function EditProfile() {
 
     form.current.validateAll();
 
-    if (checkBtn.current.context._errors.length === 0) {
-      EditProfileService.editProfile(
-        name,
-        email,
-      ).then(
-        (response) => {
-          setMessage(response.data.message);
-          setSuccessful(true);
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+    if (handleValidation()) {
+      if (checkBtn.current.context._errors.length === 0) {
+        EditProfileService.editProfile(name, email, password).then(
+          (response) => {
+            setMessage(response.data.message);
+            setSuccessful(true);
+            console.log(response);
+            const user = JSON.parse(localStorage.getItem("user"));
+            // update local storage with updated name, email & password values
+            user.user.name = name;
+            user.user.email = email;
+            user.user.password = password;
+            localStorage.setItem("user", JSON.stringify(user));
+            reload();
+          },
+          (error) => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
 
-          setMessage(resMessage);
-          setSuccessful(false);
-        }
-      );
+            setMessage(resMessage);
+            setSuccessful(false);
+          }
+        );
+      }
     }
-  }
+  };
 
   const onChangeName = (e) => {
     const name = e.target.value;
@@ -78,65 +112,97 @@ function EditProfile() {
     setEmail(email);
   };
 
-  
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+  const onChangeConfirmPassword = (e) => {
+    const confirmPassword = e.target.value;
+    setConfirmPassword(confirmPassword);
+  };
+
   return (
-      <div>
-        <section>
-          <h2>Edit your profile {currentUser.name}</h2>
-          <Form
-            onSubmit={handleEditProfile}
-            ref={form}
-          >
-            {!successful && (
-              <div>
-                <div className="form-group">
-                  <label htmlFor="name">Name:</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="name"
-                    value={name}
-                    onChange={onChangeName}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="description">Email:</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="email"
-                    value={email}
-                    validation={validEmail}
-                    onChange={onChangeEmail}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <button className="btn btn-primary btn-block">
-                    Edit Profile
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {message && (
+    <div>
+      <section>
+        <h2>Edit your profile {currentUser.name}</h2>
+        {successful ? <p>Account updated successfully!</p> : null}
+        <Form onSubmit={handleEditProfile} ref={form}>
+          {!successful && (
+            <div>
               <div className="form-group">
-                <div
-                  className={
-                    successful ? "alert alert-success" : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {message}
-                </div>
+                <label htmlFor="name">Name:</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  value={name}
+                  onChange={onChangeName}
+                />
               </div>
-            )}
-            <CheckButton style={{ display: "none" }} ref={checkBtn} />
-          </Form>
-        </section>
-      </div>
-    );
-}
+              <div className="form-group">
+                <label htmlFor="description">Email:</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  name="email"
+                  value={email}
+                  onChange={onChangeEmail}
+                />
+                <span style={{color: 'red'}}>{errors["email"]}</span>
+              </div>
 
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <Input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  value={password}
+                  onChange={onChangePassword}
+                />
+                <span style={{ color: "red" }}>{errors["password"]}</span>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <Input
+                  type="password"
+                  className="form-control"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={onChangeConfirmPassword}
+                />
+                <span style={{ color: "red" }}>
+                  {errors["confirmPassword"]}
+                </span>
+              </div>
+
+              <div className="form-group">
+                <button className="btn btn-primary btn-block">
+                  Edit Profile
+                </button>
+              </div>
+            </div>
+          )}
+
+          {message && (
+            <div className="form-group">
+              <div
+                className={
+                  successful ? "alert alert-success" : "alert alert-danger"
+                }
+                role="alert"
+              >
+                {message}
+              </div>
+            </div>
+          )}
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+        </Form>
+      </section>
+    </div>
+  );
+}
 
 export default EditProfile;
