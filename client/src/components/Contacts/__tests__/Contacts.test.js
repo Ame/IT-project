@@ -12,7 +12,6 @@ describe('Test all contact functionality', () => {
       <Contacts/>
     </BrowserRouter>)
     AuthService.login("test@testing.com","test123")
-    console.log(AuthService.getCurrentUser());
     const list = screen.getAllByRole('list')
     expect(list.length > 0).toBe(true);
   })

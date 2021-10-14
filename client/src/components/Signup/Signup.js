@@ -7,6 +7,13 @@ import { isEmail } from "validator";
 
 import AuthService from "../../services/auth.service";
 
+export const required = (value, field, formIsValid, errors) => {
+  if (!value){
+    formIsValid = false;
+    errors[field] = "This field is required!";
+  }
+}
+
 function Signup() {
   const form = useRef();
   const checkBtn = useRef();
@@ -39,13 +46,6 @@ function Signup() {
     const confirmPassword = e.target.value;
     setConfirmPassword(confirmPassword);
   };
-
-  const required = (value, field, formIsValid, errors) => {
-    if (!value){
-      formIsValid = false;
-      errors[field] = "This field is required!";
-    }
-  }
 
   const handleValidation = () => {
     const errors = {};

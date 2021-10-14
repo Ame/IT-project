@@ -219,11 +219,20 @@ const AddContact = (e) => {
           </div>
         )}
 
+        <div
+            title={
+              successful ? "success" : "error"
+            }>
+            </div>
+
         {message && (
           <div className="form-group">
             <div
               className={
                 successful ? "alert alert-success" : "alert alert-danger"
+              }
+              title={
+                successful ? "success" : "error"
               }
               role="alert"
             >
