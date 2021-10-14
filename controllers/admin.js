@@ -20,15 +20,15 @@ module.exports =  class AdminController {
         .catch(err => res.status(400).json({errors:err}))
     }
 
-    
+
     static async apiEditUser(req,res){
         console.log(req.user);
         var _id = req.body._id;
         var user = {
             name: req.body.name,
             email: req.body.email,
-            password = req.body.password,
-            role = req.body.role
+            password: req.body.password,
+            role: req.body.role
         };
         User.findByIdAndUpdate(_id, { $set: user }, { new: true }, function (err, contact) {
             if (err) {
