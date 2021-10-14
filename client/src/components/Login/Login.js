@@ -18,8 +18,7 @@ const required = (value) => {
   }
 };
 
-
-function Login(props) {
+function Login() {
   let history = useHistory();
 
   const form = useRef();
@@ -54,6 +53,7 @@ function Login(props) {
           // open the dashboard page once the Auth service has verified login
           history.push("/dashboard");
           window.location.reload();
+      
         },
 
         // if there is an error, display it
@@ -104,6 +104,7 @@ function Login(props) {
                   <label htmlFor="email">Email</label>
                   <Input
                     type="text"
+                    title="email"
                     className="form-control"
                     name="email"
                     value={email}
@@ -116,6 +117,7 @@ function Login(props) {
                   <label htmlFor="password">Password</label>
                   <Input
                     type="password"
+                    title="password"
                     className="form-control"
                     name="password"
                     value={password}
@@ -127,6 +129,7 @@ function Login(props) {
                 <div className="form-group">
                   <button
                     className="btn btn-primary btn-block submit" 
+                    title="submit"
                     disabled={loading}
                   >
                     {loading && (
@@ -138,7 +141,7 @@ function Login(props) {
 
                 {message && (
                   <div className="form-group">
-                    <div className="alert alert-danger" role="alert">
+                    <div className="alert alert-danger" role="alert" title="alert">
                       {message}
                     </div>
                   </div>

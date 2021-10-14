@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import ContactService from "../../services/contact.service";
 
 // https://dev.to/prvnbist/create-a-tags-input-component-in-reactjs-ki
 // https://blog.logrocket.com/building-a-tag-input-field-component-for-react/
@@ -10,17 +9,17 @@ const Tags = ({ sendTags, existingTags, isEdit, tagToBeDeleted}) => {
   const [input, setInput] = useState([]);
 
   useEffect(() => {
-    setTags(existingTags); // set tags to be displayed with any exisitng ones
+    setTags(existingTags);
   }, [existingTags]);
 
   const addTags = (e) => {
     const trimmedInput = input.trim(); //remove any whitespace
 
-    if (trimmedInput.length && !tags.includes(trimmedInput)) { // ensure this contact doesn't have any duplicate tags
+    if (trimmedInput.length && !tags.includes(trimmedInput)) {
         e.preventDefault();
         setTags(prevstate => [...prevstate, trimmedInput]); // update array of tags with this new value
         sendTags(trimmedInput); // send these new tags to the parent component to update
-        setInput(""); // reset input value
+        setInput("");
     }
   };
 

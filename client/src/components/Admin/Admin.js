@@ -1,6 +1,6 @@
 import React from "react";
 import { createRef, useEffect, useState } from "react";
-import Search from '../Contacts/Search.js';
+import Search from '../Search/Search.js';
 import AuthService from "../../services/auth.service";
 import AdminService from "../../services/admin.service";
 import EditUser from "../Admin/EditUser";

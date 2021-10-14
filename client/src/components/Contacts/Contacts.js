@@ -1,9 +1,8 @@
-import { createRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ContactService from "../../services/contact.service";
 import "./Contacts.css";
-import Search from './Search.js';
-import Form from "react-validation/build/form";
+import Search from '../Search/Search.js';
 import EditContact from "../EditContact/EditContact";
 import Sidebar from "../Sidebar/Sidebar";
 import '../Contacts/Contacts.css';
@@ -44,7 +43,7 @@ function Contacts() {
     setCurrentContactName(name);
     setCurrentContactEmail(email);
 
-    if (phone) { // all optional attributes, my be present or not
+    if (phone) { // all optional attributes, may be present or not
       setCurrentContactPhone(phone);
     }
 
@@ -122,7 +121,7 @@ function Contacts() {
                           <strong>Name:</strong> {contact.name}
                         </h6>
                         <h6>
-                          <strong>Email:</strong> {contact.email}
+                          <strong title="email">Email:</strong> {contact.email}
                         </h6>
                         {contact.phone !== "" ? (
                           <h6>

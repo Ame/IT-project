@@ -60,7 +60,26 @@ static async apiLoginUser(req,res){
             return res.status(400).json({msg: 'Invalid Credientials'});
         }
     })
-}}
+
+    
+}
+
+static async apiEditProfile(req,res){
+    const email = req.body.email
+    const password = req.body.password
+    const name = req.body.name
+    const id = req.user.id
+    // edit the user with the id 
+    User.findOneAndUpdate({_id:id},{password:password,email:email,name:name},{returnOriginal:false}).then(user => {
+        res.status(200).json({success:true,user:user})
+    })
+    .catch(err => res.status(400).json({errors:err}))
+
+
+}
+
+}
+
 
 // issues a token for the user 
 function issueToken(user) {
