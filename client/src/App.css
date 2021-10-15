@@ -1,38 +1,51 @@
 .App {
-  text-align: center;
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.fullsize {
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.eye {
+  background-image: url(https://img.freepik.com/free-vector/minimalistic-seamless-eye-pattern-pastel-pale-blue-background-with-grey-elements_97843-879.jpg?size=338&ext=jpg);
+  opacity: 100%;
+  height: 100vh;
+  padding-top: 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#eye2 {
+  background-image: url(https://st3.depositphotos.com/26272052/32780/v/450/depositphotos_327808288-stock-illustration-blue-line-eye-scan-icon.jpg);
+  opacity: 80%;
 }
 
-.App-link {
-  color: #61dafb;
+#eye3 {
+  background-image: url(https://t3.ftcdn.net/jpg/01/87/65/26/360_F_187652629_jHecG7FGIxuF9tHEKkeaCmdAWW4YhrjH.jpg);
+  opacity: 90%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.col-lg-6 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.submit {
+  background: #7dc598;
+  border: none;
+}
+
+.submit:hover {
+  background: #116156;
+}
+
+a {
+  color: #7dc598;
+}
+
+a:hover {
+  color: #2e7048;
+}
+
+a:future {
+  color: #2e7048;
 }

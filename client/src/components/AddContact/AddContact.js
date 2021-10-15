@@ -1,12 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, StrictMode } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import { isEmail } from "validator";
+import { isEmail, isMobilePhone} from "validator";
 import ContactService from "../../services/contact.service";
 import { useHistory } from "react-router-dom";
 import CheckButton from "react-validation/build/button";
 import { Link } from "react-router-dom";
 import Tags from "../Tags/Tags";
+import "./AddContact.css";
 
 const required = (value) => {
   if (!value) {
@@ -17,6 +18,19 @@ const required = (value) => {
     );
   }
 };
+
+const validPhoneNumber = (value) => {
+  if(value){
+    if (!isMobilePhone(value,['en-AU'])) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid phone number.
+        </div>
+      );
+    }
+  }
+
+}
 
 const validEmail = (value) => {
   if (!isEmail(value)) {
@@ -128,13 +142,14 @@ const AddContact = (e) => {
   }
 
   return (
-    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50">
+    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50 fullsize">
       <Link to="/contacts">
-        <button>Back</button> <input type="text" value=" Add Contact" />
+        <button id="back"><i className="arrow left"></i>  Back</button>
       </Link>
-      <Form onSubmit={handleAddContact} ref={form}>
+      <Form onSubmit={handleAddContact} ref={form} className="main">
         {!successful && (
           <div>
+            <h3>Add Contact</h3>
             <div className="form-group">
               <label htmlFor="name">Name:</label>
               <Input
@@ -169,6 +184,7 @@ const AddContact = (e) => {
                 name="phone"
                 value={phone}
                 onChange={onChangePhone}
+                validations = {[validPhoneNumber]}
                 placeholder="+61"
               />
             </div>
@@ -214,7 +230,7 @@ const AddContact = (e) => {
             </div>
 
             <div className="form-group">
-              <button className="btn btn-primary btn-block">Submit</button>
+              <button className="btn btn-primary btn-block submit">Submit</button>
             </div>
           </div>
         )}

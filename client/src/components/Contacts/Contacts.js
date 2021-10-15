@@ -5,6 +5,7 @@ import "./Contacts.css";
 import Search from '../Search/Search.js';
 import EditContact from "../EditContact/EditContact";
 import Sidebar from "../Sidebar/Sidebar";
+import '../Contacts/Contacts.css';
 
 const convertToDate = (date) => {
   const toDate = new Date(date);
@@ -93,14 +94,15 @@ function Contacts() {
     });
     setContacts(removeItem);
   };
+  
 
   return (
-    <div className="row">
+    <div className="fullsize">
       <div className="col-lg-3">
         <Sidebar />
       </div>
 
-      <div className="col-lg-7">
+      <div className="main">
         <div>
           <h3 className="headings">Your contacts</h3>
           <div id="container">
@@ -109,11 +111,11 @@ function Contacts() {
               <p className="contactList" id="notFound">
                 No Contacts found. Add some!{" "}
               </p>
-            ) : (
+             ) : (
               <>
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (
-                    <li role = 'list' className="contact" key={contact._id}>
+                    <li className="contact row" key={contact._id}>
                       <div className="col-lg-5" id="contact">
                         <h6>
                           <strong>Name:</strong> {contact.name}
@@ -148,13 +150,16 @@ function Contacts() {
                             <ul>{contact.tags.join(", ")}</ul>
                           </div>
                         ) : null}
-
-                        <button
-                          onClick={(e) => handleDeleteContact(e, contact._id)}
-                        >
-                          Delete
-                        </button>
-                        <button
+                        </div><div className="col-lg-5">
+<button className="delete"
+    onClick={e =>
+        window.confirm("Are you sure you wish to delete this item?") &&
+        handleDeleteContact(e, contact._id)
+    }
+>
+    Delete
+</button>
+                        <button className="edit"
                           type="button"
                           onClick={() =>
                             showModal(
@@ -191,10 +196,10 @@ function Contacts() {
                 ></EditContact>
               </>
             )}
-            <Link to="/addContact">
+          </div>
+          <Link to="/addContact">
               <button>Add Contact</button>{" "}
             </Link>
-          </div>
         </div>
       </div>
     </div>

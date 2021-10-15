@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import AuthService from "../../services/auth.service";
+import { useHistory } from "react-router-dom"
+import Sidebar from "../Sidebar/Sidebar";
 import Form from "react-validation/build/form";
 import { isEmail } from "validator";
 import CheckButton from "react-validation/build/button";
@@ -123,10 +125,14 @@ function EditProfile() {
   };
 
   return (
-    <div>
-      <section>
-        <h2>Edit your profile {currentUser.name}</h2>
-        {successful ? <p>Account updated successfully!</p> : null}
+    <div className="editProfile" className="fullsize">
+      <div className="container">
+        <div className="row align-items-center my-5 relative-right">
+          <div className="col-lg-7">
+            <Sidebar />
+            <h1 className="font-weight-light">Edit Profile {currentUser.name}</h1>
+            
+            {successful ? <p>Account updated successfully!</p> : null}
         <Form onSubmit={handleEditProfile} ref={form}>
           {!successful && (
             <div>
@@ -200,7 +206,10 @@ function EditProfile() {
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
-      </section>
+
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

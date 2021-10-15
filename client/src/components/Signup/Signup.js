@@ -14,7 +14,9 @@ export const required = (value, field, formIsValid, errors) => {
   }
 }
 
-function Signup() {
+
+function Signup(props) {
+
   const form = useRef();
   const checkBtn = useRef();
 

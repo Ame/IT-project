@@ -1,0 +1,25 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+ul.userList {
+  list-style-type: none; /* removes bullets */
+  text-align: center;
+}
+
+.user {
+  justify-self: center;
+  padding-bottom: 2em;
+  margin-right: 0.5%;
+  margin-left: 0.5%;
+}
+
+#results .user {
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  background-color: white;
+  margin-bottom: 10px;
+  list-style-type: none;
+}

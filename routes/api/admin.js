@@ -18,7 +18,7 @@ router.put("/editUser",passport.authenticate('jwt', {session: false}),authRole("
 // @route get api/admin/deleteUser
 // @desc Deletes a specified user
 // @access Public
-router.delete("/deleteUser/:id",passport.authenticate('jwt', {session: false}),authRole("admin"),AdminCtrl.apiDeleteUser);
+router.delete("/deleteUser/:email",passport.authenticate('jwt', {session: false}),authRole("admin"),AdminCtrl.apiDeleteUser);
 
 // function to auth admin
 function authRole(role){

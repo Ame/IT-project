@@ -2,13 +2,33 @@ import './EditContact.css'
 import Form from "react-validation/build/form";
 import React, { useState, useRef, useEffect } from "react";
 import Input from "react-validation/build/input";
-import { isEmail } from "validator";
+import { isEmail, isMobilePhone } from "validator";
 import CheckButton from "react-validation/build/button";
 import ContactService from "../../services/contact.service";
 import { useHistory } from "react-router-dom";
 import Tags from "../Tags/Tags"
 
 // A modal is a child window that will pop up on the contacts page in order to edit a contact
+
+const required = (value) => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
+
+const validPhoneNumber = (value) => {
+  if (!isMobilePhone(value,['en-AU'])) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This is not a valid phone number.
+      </div>
+    );
+  }
+}
 
 const validEmail = (value) => {
   if (!isEmail(value)) {
@@ -144,16 +164,16 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
     }
 
     return (
-      <div className="modal display-block">
-        <section className="modal-main">
-          <h2>Edit Contact: {contactEmail}</h2>
-          <button type="button" onClick={handleClose}>
+      <div className="popup-box">
+          
+        <section className="box">
+        <button className="close-icon" onClick={handleClose}>
             x
           </button>
+          <h2>Edit Contact: {contactEmail}</h2>
           <Form
             onSubmit={handleEditContact}
             ref={form}
-            style={{ overflow: "scroll" }}
           >
             {!successful && (
               <div>
@@ -229,7 +249,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block">
+                  <button className="btn btn-primary btn-block submit">
                     Edit Contact
                   </button>
                 </div>
