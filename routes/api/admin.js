@@ -31,4 +31,13 @@ function authRole(role){
         return res.status(401).json({msg:"Not allowed"})
     }
 }
+
+// @route GET api/contacts/getUser
+// @desc Gets a specific User
+// @access Private
+router.get('/getUser', passport.authenticate('jwt', {session: false}),authRole("admin"), async (req, res) => {
+    const user = await User.find({email: req.body.email});
+    res.json(user);
+});
+
 module.exports = router
