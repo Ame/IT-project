@@ -5,7 +5,7 @@ import { Link, withRouter, useHistory } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
+import { isEmail } from "validator";
 import AuthService from "../../services/auth.service";
 
 const required = (value) => {
@@ -13,6 +13,16 @@ const required = (value) => {
     return (
       <div className="alert alert-danger" role="alert">
         This field is required!
+      </div>
+    );
+  }
+};
+
+const validEmail = (value) => {
+  if (!isEmail(value)) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This is not a valid email.
       </div>
     );
   }
@@ -59,7 +69,7 @@ function Login() {
         // if there is an error, display it
         (error) => {
 
-          if(console.log(error.response.status) == 404){
+          if(console.log(error.response.status) == 400){
             setMessage("invalid email")
             console.log(error.response);
             return (
@@ -68,6 +78,7 @@ function Login() {
               </div>
             );
           }
+
           else{
             const resMessage =
             (error.response &&
@@ -109,7 +120,7 @@ function Login() {
                     name="email"
                     value={email}
                     onChange={onChangeEmail}
-                    validations={[required]}
+                    validations={[required, validEmail]}
                   />
                 </div>
 
