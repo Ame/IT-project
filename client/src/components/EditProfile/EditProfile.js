@@ -8,7 +8,6 @@ import CheckButton from "react-validation/build/button";
 import Input from "react-validation/build/input";
 import EditProfileService from "../../services/edit-profile-service";
 
-
 function EditProfile() {
   const currentUser = AuthService.getCurrentUser().user;
 
@@ -23,6 +22,8 @@ function EditProfile() {
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
+  const [font, setFont] = useState("");
+
 
   useEffect(() => {
     // initialise all values for contact with existing ones in the database
@@ -124,89 +125,105 @@ function EditProfile() {
     setConfirmPassword(confirmPassword);
   };
 
+  const onChangeFont = (e) => {
+    const newFont = e.target.value;
+    setFont(newFont);
+
+  }
+
   return (
     <div className="editProfile" className="fullsize">
       <div className="container">
         <div className="row align-items-center my-5 relative-right">
           <div className="col-lg-7">
             <Sidebar />
-            <h1 className="font-weight-light">Edit Profile {currentUser.name}</h1>
-            
+            <h1 className="font-weight-light">
+              Edit Profile, {currentUser.name}
+            </h1>
+
             {successful ? <p>Account updated successfully!</p> : null}
-        <Form onSubmit={handleEditProfile} ref={form}>
-          {!successful && (
-            <div>
-              <div className="form-group">
-                <label htmlFor="name">Name:</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="name"
-                  value={name}
-                  onChange={onChangeName}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="description">Email:</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="email"
-                  value={email}
-                  onChange={onChangeEmail}
-                />
-                <span style={{color: 'red'}}>{errors["email"]}</span>
-              </div>
+            <Form onSubmit={handleEditProfile} ref={form}>
+              {!successful && (
+                <div>
+                  <div className="form-group">
+                    <label htmlFor="toggle-font">Font Size: </label>
+                    <select name="toggle-font" id="toggle-font" className="form-control" value={font} onChange={onChangeFont}>
+                      <option value="default">Default</option>
+                      <option value="bigger">Bigger</option>
+                    </select>
+                  </div>
 
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={onChangePassword}
-                />
-                <span style={{ color: "red" }}>{errors["password"]}</span>
-              </div>
+                  <div className="form-group">
+                    <label htmlFor="name">Name:</label>
+                    <Input
+                      type="text"
+                      className="form-control"
+                      name="name"
+                      value={name}
+                      onChange={onChangeName}
+                    />
+                  </div>
 
-              <div className="form-group">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <Input
-                  type="password"
-                  className="form-control"
-                  name="confirmPassword"
-                  value={confirmPassword}
-                  onChange={onChangeConfirmPassword}
-                />
-                <span style={{ color: "red" }}>
-                  {errors["confirmPassword"]}
-                </span>
-              </div>
+                  <div className="form-group">
+                    <label htmlFor="description">Email:</label>
+                    <Input
+                      type="text"
+                      className="form-control"
+                      name="email"
+                      value={email}
+                      onChange={onChangeEmail}
+                    />
+                    <span style={{ color: "red" }}>{errors["email"]}</span>
+                  </div>
 
-              <div className="form-group">
-                <button className="btn btn-primary btn-block">
-                  Edit Profile
-                </button>
-              </div>
-            </div>
-          )}
+                  <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <Input
+                      type="password"
+                      className="form-control"
+                      name="password"
+                      value={password}
+                      onChange={onChangePassword}
+                    />
+                    <span style={{ color: "red" }}>{errors["password"]}</span>
+                  </div>
 
-          {message && (
-            <div className="form-group">
-              <div
-                className={
-                  successful ? "alert alert-success" : "alert alert-danger"
-                }
-                role="alert"
-              >
-                {message}
-              </div>
-            </div>
-          )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
+                  <div className="form-group">
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <Input
+                      type="password"
+                      className="form-control"
+                      name="confirmPassword"
+                      value={confirmPassword}
+                      onChange={onChangeConfirmPassword}
+                    />
+                    <span style={{ color: "red" }}>
+                      {errors["confirmPassword"]}
+                    </span>
+                  </div>
 
+                  <div className="form-group">
+                    <button className="btn btn-primary btn-block">
+                      Edit Profile
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {message && (
+                <div className="form-group">
+                  <div
+                    className={
+                      successful ? "alert alert-success" : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    {message}
+                  </div>
+                </div>
+              )}
+              <CheckButton style={{ display: "none" }} ref={checkBtn} />
+            </Form>
           </div>
         </div>
       </div>
