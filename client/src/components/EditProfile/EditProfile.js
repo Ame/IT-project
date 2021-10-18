@@ -203,7 +203,7 @@ function EditProfile() {
                   </div>
 
                   <div className="form-group">
-                    <button className="btn btn-primary btn-block">
+                    <button className="btn btn-primary btn-block submit">
                       Edit Profile
                     </button>
                   </div>
