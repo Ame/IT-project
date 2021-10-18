@@ -14,7 +14,7 @@ static async apiRegisterUser(req,res,next){
     }
     User.findOne({ email: req.body.email }).then(user => {
     // User already exists
-    if (user) return res.status(400).json({ msg: "Email already exists" });
+    if (user) return res.status(400).json({ message: "Email already exists" });
 
     // Create new user 
     const newUser = new User({
@@ -49,7 +49,7 @@ static async apiLoginUser(req,res){
     User.findOne({ email }).then(user => {
         // Make sure user exists
         if (!user) {
-            return res.status(404).json({ msg: "Email not found" });
+            return res.status(404).json({ message: "Email not found" });
         }
         // hash password later
         if (password === user.password) {
@@ -57,7 +57,7 @@ static async apiLoginUser(req,res){
             const signedToken = issueToken(user);
             res.status(200).json({success:true,user:user,token:signedToken}); 
         } else{
-            return res.status(400).json({msg: 'Invalid Credientials'});
+            return res.status(400).json({message: 'Invalid Credientials'});
         }
     })
 
