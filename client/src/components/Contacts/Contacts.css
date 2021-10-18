@@ -127,6 +127,9 @@ h3.headings {
   margin-bottom: 10px;
   list-style-type: none;
 }
+.contacts {
+  padding-bottom: 7em;
+}
 
 /* Popup style 
 .popup-box {

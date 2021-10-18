@@ -136,15 +136,10 @@ function Signup(props) {
   };
 
   return (
-    <div className="signup">
-      <div className="container">
-        <div className="row align-items-center my-5">
-          <div className="col-lg-7">
-            <img
-              className="img-fluid rounded mb-4 mb-lg-0"
-              src="http://placehold.it/900x400"
-              alt=""
-            />
+    <div className="signup fullsize">
+     <div className="row align-items-center">
+          <div className="col-lg-6">
+            <div className="eye"></div>
           </div>
           <div className="col-lg-5">
             {!successful ? (
@@ -208,7 +203,7 @@ function Signup(props) {
                     </div>
 
                     <div className="form-group">
-                      <button className="btn btn-primary btn-block">
+                      <button className="btn btn-primary btn-block submit">
                         Sign Up
                       </button>
                     </div>
@@ -244,7 +239,7 @@ function Signup(props) {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 

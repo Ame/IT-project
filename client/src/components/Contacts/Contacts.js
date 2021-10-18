@@ -93,16 +93,15 @@ function Contacts() {
       return contact._id !== id;
     });
     setContacts(removeItem);
-  };
-  
+  };  
 
   return (
-    <div className="fullsize">
+    <div className="contacts">
       <div className="col-lg-3">
         <Sidebar />
       </div>
 
-      <div className="main">
+      <div className="main fullsize">
         <div>
           <h3 className="headings">Your contacts</h3>
           <div id="container">
@@ -200,6 +199,7 @@ function Contacts() {
           <Link to="/addContact">
               <button>Add Contact</button>{" "}
             </Link>
+            <div className="padding"></div>
         </div>
       </div>
     </div>

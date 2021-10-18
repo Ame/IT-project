@@ -74,6 +74,8 @@ function Admin(props) {
     reload();
   };
 
+  const hide = "*";
+
   
   return (
     <div className="adminProfile">
@@ -112,7 +114,7 @@ function Admin(props) {
                           <strong>Email:</strong> {user.email}
                         </h6>
                         <h6>
-                          <strong>Password:</strong> {user.password}
+                        <strong>Password:</strong> <p id="hide">{hide.repeat(user.password.length)}</p>
                         </h6>
                         <h6>
                           <strong>Role:</strong> {user.role}
