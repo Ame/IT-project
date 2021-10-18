@@ -61,7 +61,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
       setEmail(contactEmail);
       setPhone(contactPhone);
       setAddress(contactAddress);
-      setBirthday(convertDate(contactBirthday).toString());
+      setBirthday(contactBirthday ? convertDate(contactBirthday).toString() : null);
       setNotes(contactNotes);
       setTags(contactTags);
     }, [contactName, contactEmail, contactPhone, contactAddress, contactBirthday, contactNotes, contactTags]);
@@ -228,6 +228,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
                     className="form-control"
                     name="birthday"
                     value={birthday}
+                    placeholder="DD-MM-YYYY"
                     onChange={onChangeBirthday}
                   />
                 </div>
