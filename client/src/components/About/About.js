@@ -11,7 +11,7 @@ function About() {
           <h1 className="font-weight-light">About</h1>
             <h3 className="font-weight-light">About Us</h3>
             <p>
-              This project was developed by <strong>iJane</strong>! We are students at the University of Melbourne :) 
+              This project was developed by <strong>iJane</strong>! We are students at the University of Melbourne!  
               We see H1 as more than just a HTML tag.
             </p>
             <hr />

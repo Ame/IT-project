@@ -88,7 +88,9 @@ h3.headings {
 
 #tags {
   display: flex;
-  padding-bottom: 20px;
+  padding-bottom: 1em;
+  padding-left: 1.5em;
+  padding-right: 2em;
   background-color: rgb(17, 97, 86);
   color: white;
 }
@@ -120,7 +122,7 @@ h3.headings {
 }
 
 #results .contact {
-  width: 100%;
+  width: 97%;
   padding: 10px 0;
   text-align: center;
   background-color: white;
@@ -129,6 +131,18 @@ h3.headings {
 }
 .contacts {
   padding-bottom: 7em;
+}
+
+#tagButton {
+  background-color: rgb(17, 97, 86);
+  border: none;
+  color: white;
+  padding: 0px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  float: inline-end;
+  font-size: 16px;
 }
 
 /* Popup style 

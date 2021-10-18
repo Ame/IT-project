@@ -143,7 +143,7 @@ function Signup(props) {
           </div>
           <div className="col-lg-5">
             {!successful ? (
-              <h1 className="font-weight-light">Signup</h1>
+              <h1 className="font-weight-light">Signup </h1>
             ) : (
               <h1 className="font-weight-light">Success!</h1>
             )}

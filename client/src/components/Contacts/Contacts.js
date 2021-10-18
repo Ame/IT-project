@@ -13,15 +13,25 @@ const convertToDate = (date) => {
 };
 
 //Returns items from contacts that contain the query
-const filterContacts = (contacts, query) => {
+const filterContacts = (contacts, query, tags) => {
   if (!query.toLowerCase()) {
       return contacts;
   }
 
-  return contacts.filter((contact) => {
-      const contactName = contact.name.toLowerCase();
-      return contactName.includes(query.toLowerCase());
+  const filteredContacts = contacts.filter((contact) => {
+    const contactName = contact.name.toLowerCase();
+    return contactName.includes(query.toLowerCase());
+});
+  if (!tags) {
+    return filteredContacts;
+  }
+
+  return filteredContacts.filter((contact) => {
+    const contactTags = contact.currentContactTags;
+    console.log(contactTags);
+    return contactTags.includes(tags);
   });
+
 };
 
 
@@ -95,6 +105,17 @@ function Contacts() {
     setContacts(removeItem);
   };  
 
+  const getAllTags = (contacts) => {
+    const tags = contacts.map((contact) => contact.tags.join(", "))
+ 
+    var result = [];
+    result = tags.filter(function(item, pos, self) {
+      return self.indexOf(item) == pos;
+    })
+    var items = result.map((item) => item);
+  return items;
+  };
+
   return (
     <div className="contacts">
       <div className="col-lg-3">
@@ -112,6 +133,13 @@ function Contacts() {
               </p>
              ) : (
               <>
+              <div id="tags">
+            <strong>Filter by tags:&nbsp; </strong> 
+            {getAllTags(contacts).map((tag) => (
+              <button id="tagButton" onClick={() =>filterContacts(filteredContacts, "", tag)}>{tag}</button>
+              )
+            )}  
+        </div>
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (
                     <li className="contact row" key={contact._id}>
@@ -145,8 +173,9 @@ function Contacts() {
                         ) : null}
                         {contact.tags.length > 0 ? (
                           <div>
-                            <h6>Tags: </h6>
-                            <ul>{contact.tags.join(", ")}</ul>
+                            <h6><strong>Tags: </strong>
+                            <i>{contact.tags.join(", ")}</i>
+                            </h6>
                           </div>
                         ) : null}
                         </div><div className="col-lg-5">
