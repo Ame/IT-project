@@ -27,9 +27,14 @@ const getUsers = () => {
     return axios.get(API_URL + "viewUsers", config)
 }
 
+const getUser = () => {
+  return axios.get(API_URL + "getUser", config)
+}
 
-const editUser = (name, email, password, role) => {
+
+const editUser = (_id, name, email, password, role) => {
   return axios.put(API_URL + "editUser", {
+    _id,
     email,
     role,
     name,
@@ -44,6 +49,7 @@ const deleteUser = (email) => {
 
 const exportedObjects = {
   getUsers,
+  getUser,
   isAdmin,
   editUser,
   deleteUser

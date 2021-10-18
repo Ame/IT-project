@@ -30,7 +30,7 @@ module.exports =  class AdminController {
             password: req.body.password,
             role: req.body.role
         };
-        User.findByIdAndUpdate(_id, { $set: user }, { new: true }, function (err, contact) {
+        User.findByIdAndUpdate(_id, { $set: user }, { new: true }, function (err, user) {
             if (err) {
                 res.status(500);
                 res.send(err);
