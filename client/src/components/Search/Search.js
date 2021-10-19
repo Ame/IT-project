@@ -10,10 +10,6 @@ const Search = ({ searchQuery, setSearchQuery }) => (
                 value={searchQuery} onInput={e => setSearchQuery(e.target.value)}/>
               <button type="submit">Search</button>
         </div>
-        <div className="container" id="tags">
-            <strong>Filter by tags:&nbsp; </strong> 
-            
-        </div>
     </form>
 );
 

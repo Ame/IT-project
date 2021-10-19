@@ -174,7 +174,7 @@ const EditUser = ( { show, handleClose, id, userName, userEmail, userPassword, u
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block">
+                  <button className="btn btn-primary btn-block submit">
                     Edit User
                   </button>
                 </div>

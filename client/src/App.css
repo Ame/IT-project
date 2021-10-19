@@ -21,8 +21,11 @@
 }
 
 #eye3 {
-  background-image: url(https://t3.ftcdn.net/jpg/01/87/65/26/360_F_187652629_jHecG7FGIxuF9tHEKkeaCmdAWW4YhrjH.jpg);
-  opacity: 90%;
+  background-image: url(https://i.imgur.com/G4Xm71L.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: none center;
+  opacity: 100%;
 }
 
 .col-lg-6 {

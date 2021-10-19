@@ -11,8 +11,7 @@ module.exports =  class AdminController {
     }
 
     static async apiDeleteUser(req,res){
-        const email = req.params.id
-        console.log(email)
+        const email = req.params.email
         // delete the user with the email
         User.deleteOne({email:email}).then(user => {
             res.status(200).json({success:true,user:user})

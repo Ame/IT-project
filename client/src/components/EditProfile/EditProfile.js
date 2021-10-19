@@ -30,9 +30,8 @@ function EditProfile( { getFontSize, currentFont } ) {
     setEmail(currentUser.email);
     setPassword(currentUser.password);
     setConfirmPassword(currentUser.password);
-    setFont(currentFont);
-  }, [currentUser.name, currentUser.email, currentUser.password]);
-
+    setFont(currentUser.font);
+  }, [currentUser.name, currentUser.email, currentUser.password, currentUser.font]);
   const required = (value, field, formIsValid, errors) => {
     if (!value) {
       formIsValid = false;
@@ -76,7 +75,7 @@ function EditProfile( { getFontSize, currentFont } ) {
 
     if (handleValidation()) {
       if (checkBtn.current.context._errors.length === 0) {
-        EditProfileService.editProfile(name, email, password).then(
+        EditProfileService.editProfile(name, email, password,font).then(
           (response) => {
             setMessage(response.data.message);
             setSuccessful(true);
@@ -86,7 +85,7 @@ function EditProfile( { getFontSize, currentFont } ) {
             user.user.name = name;
             user.user.email = email;
             user.user.password = password;
-            // user.user.font = font;
+            user.user.font = font;
             localStorage.setItem("user", JSON.stringify(user));
             getFontSize(font);
             reload();
@@ -206,7 +205,7 @@ function EditProfile( { getFontSize, currentFont } ) {
                   </div>
 
                   <div className="form-group">
-                    <button className="btn btn-primary btn-block">
+                    <button className="btn btn-primary btn-block submit">
                       Edit Profile
                     </button>
                   </div>
