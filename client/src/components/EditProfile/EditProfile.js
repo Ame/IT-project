@@ -31,7 +31,8 @@ function EditProfile() {
     setEmail(currentUser.email);
     setPassword(currentUser.password);
     setConfirmPassword(currentUser.password);
-  }, [currentUser.name, currentUser.email, currentUser.password]);
+    setFont(currentUser.font);
+  }, [currentUser.name, currentUser.email, currentUser.password, currentUser.font]);
 
   const required = (value, field, formIsValid, errors) => {
     if (!value) {
@@ -76,7 +77,7 @@ function EditProfile() {
 
     if (handleValidation()) {
       if (checkBtn.current.context._errors.length === 0) {
-        EditProfileService.editProfile(name, email, password).then(
+        EditProfileService.editProfile(name, email, password,font).then(
           (response) => {
             setMessage(response.data.message);
             setSuccessful(true);
@@ -86,6 +87,7 @@ function EditProfile() {
             user.user.name = name;
             user.user.email = email;
             user.user.password = password;
+            user.user.font = font;
             localStorage.setItem("user", JSON.stringify(user));
             reload();
           },
