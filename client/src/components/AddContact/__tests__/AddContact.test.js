@@ -8,20 +8,19 @@ import { ExpectationFailed } from 'http-errors';
 
 
 describe('Test you can add a contact', () => {
-  render(
-    <BrowserRouter>
-      <AddContact/>
-    </BrowserRouter>)
+
   const email = "test@testguy.com"
   it('Add a contact', async () => {
     const login = await AuthService.login("testing@test.com","test123")
+    render(
+      <BrowserRouter>
+        <AddContact/>
+      </BrowserRouter>)
 
-    const nameInput = screen.getByRole('name')
     const emailInput = screen.getByRole('email')
     const phoneInput = screen.getByRole('phone')
     const birthdayInput = screen.getByRole('birthday');
 
-    fireEvent.change(nameInput,{target: {value: "test guy"}});
     fireEvent.change(emailInput,{target: {value: email}});
     fireEvent.change(phoneInput,{target: {value: "+6126998827"}});
     fireEvent.change(birthdayInput,{target: {value: "19-02-2008"}});

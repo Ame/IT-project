@@ -23,7 +23,7 @@ function Dashboard() {
                 <h3>
                   <strong>{currentUser.name}</strong> 's Profile{" "}
                 </h3>
-                <h4>Email: {currentUser.email}</h4>
+                <h4 data-testid="heading">Email: {currentUser.email}</h4>
                 <p>Start networking with iJane CRM</p>
               </div>
             </div>

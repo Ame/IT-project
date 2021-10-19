@@ -8,7 +8,7 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "../../services/auth.service";
 
-const required = (value) => {
+export const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
