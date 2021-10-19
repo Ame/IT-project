@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import AuthService from "../../services/auth.service";
-import { useHistory } from "react-router-dom"
 import Sidebar from "../Sidebar/Sidebar";
 import Form from "react-validation/build/form";
 import { isEmail } from "validator";
@@ -8,7 +7,7 @@ import CheckButton from "react-validation/build/button";
 import Input from "react-validation/build/input";
 import EditProfileService from "../../services/edit-profile-service";
 
-function EditProfile() {
+function EditProfile( { getFontSize, currentFont } ) {
   const currentUser = AuthService.getCurrentUser().user;
 
   const form = useRef();
@@ -33,7 +32,6 @@ function EditProfile() {
     setConfirmPassword(currentUser.password);
     setFont(currentUser.font);
   }, [currentUser.name, currentUser.email, currentUser.password, currentUser.font]);
-
   const required = (value, field, formIsValid, errors) => {
     if (!value) {
       formIsValid = false;
@@ -89,6 +87,7 @@ function EditProfile() {
             user.user.password = password;
             user.user.font = font;
             localStorage.setItem("user", JSON.stringify(user));
+            getFontSize(font);
             reload();
           },
           (error) => {
@@ -130,7 +129,6 @@ function EditProfile() {
   const onChangeFont = (e) => {
     const newFont = e.target.value;
     setFont(newFont);
-
   }
 
   return (
@@ -154,6 +152,8 @@ function EditProfile() {
                       <option value="bigger">Bigger</option>
                     </select>
                   </div>
+
+                  <p>Current font size: {font}</p>
 
                   <div className="form-group">
                     <label htmlFor="name">Name:</label>
