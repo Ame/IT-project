@@ -32,6 +32,7 @@ function EditProfile( { getFontSize, currentFont } ) {
     setConfirmPassword(currentUser.password);
     setFont(currentUser.font);
   }, [currentUser.name, currentUser.email, currentUser.password, currentUser.font]);
+
   const required = (value, field, formIsValid, errors) => {
     if (!value) {
       formIsValid = false;
@@ -87,7 +88,7 @@ function EditProfile( { getFontSize, currentFont } ) {
             user.user.password = password;
             user.user.font = font;
             localStorage.setItem("user", JSON.stringify(user));
-            getFontSize(font);
+            //getFontSize(font);
             reload();
           },
           (error) => {

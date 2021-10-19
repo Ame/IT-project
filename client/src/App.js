@@ -1,6 +1,6 @@
 // https://www.techomoro.com/how-to-create-a-multi-page-website-with-react-in-5-minutes/ for whole general structure
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import { Navigation, Footer, Login, Signup, Dashboard, About, PrivateRoute, Contacts, AddContact, EditProfile, EditContact, Admin, EditUser} from "./components";
 import AuthService from "./services/auth.service";
@@ -9,13 +9,14 @@ import "./App.css";
 
 function App() {
 
-  const [font, setFont] = useState("default");
+  // const [font, setFont] = useState("");
 
-  const getFontSize = (childData) => {
-    setFont(childData);
-  }
+  // if (AuthService.isLoggedIn()){
+  //   setFont(AuthService.getCurrentUser().font);
+  // }
+  
   return (
-    <div className="App" style={font === "bigger" ? {fontSize: "150%"} : {fontSize: "100%"}}>
+    <div className="App" style={AuthService.getCurrentUser().font === "bigger" ? {fontSize: "150%"} : {fontSize: "100%"}}>
       <Router>
         <Navigation />
         
@@ -33,7 +34,7 @@ function App() {
           <PrivateRoute path="/contacts" exact component={() => <Contacts/>}/>
           <PrivateRoute path="/addContact" exact component={() => <AddContact/>} />
           <PrivateRoute path="/editContact" exact component={() => <EditContact/>} />
-          <PrivateRoute path="/editProfile" exact component={() => <EditProfile getFontSize={getFontSize} currentFont={font} />}/>
+          <PrivateRoute path="/editProfile" exact component={() => <EditProfile/>}/>
           <PrivateRoute path="/admin" exact component={() => <Admin />}/>
           <PrivateRoute path="/editUser" exact component={() => <EditUser />}/>
         </Switch>
