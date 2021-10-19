@@ -24,7 +24,7 @@ router.get('/protected',passport.authenticate('jwt', {session: false}), (req,res
 
 // @route POST api/users/editProfile
 // @desc Edit the users profile
-// @access Public
+// @access Private
 router.put("/editProfile", passport.authenticate('jwt', {session: false}),UsersCtrl.apiEditProfile);
 
 module.exports = router
