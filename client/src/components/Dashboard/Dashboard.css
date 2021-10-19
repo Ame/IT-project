@@ -5,7 +5,8 @@
   color: #fff;
   font-family: Arial;
   text-align: center;
-  font-size: 12px;
+  /*font-size: 12px;*/
+  font-size: 1rem;
   display: flex;
   height: 100vh;
   width: 100%;
