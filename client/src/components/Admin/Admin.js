@@ -58,13 +58,11 @@ function Admin(props) {
     // get the existing user data from the server
     useEffect(() => {
     AdminService.getUsers().then((res) => setUsers(res.data.users));
-    console.log(users);
   }, []);
 
    // deletes a specified User from the backend and updates the Users state in this component accordingly
    const handleDeleteUser = (e, email) => {
     e.preventDefault();
-    console.log("delete");
     AdminService.deleteUser(email);
 
     const removeItem = users.filter((user) => {
@@ -103,7 +101,7 @@ function Admin(props) {
               </p>
              ) : (
               <>
-                <ul className="userList" id="results">
+                <ul className="userList" id="results" role='list'>
                   {filteredUsers.map((user) => (
                     <li className="user row" key={user._id}>
                       <div className="col" id="user">
