@@ -7,37 +7,13 @@ import { isEmail } from "validator";
 
 import AuthService from "../../services/auth.service";
 
-
-export const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
+export const required = (value, field, formIsValid, errors) => {
+  if (!value){
+    formIsValid = false;
+    errors[field] = "This field is required!";
   }
-};
+}
 
-const validEmail = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
-      </div>
-    );
-  }
-};
-
-
-export const vpassword = (value) => {
-  if (value.length < 6) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
-    );
-  }
-};
 
 function Signup(props) {
 
@@ -71,13 +47,6 @@ function Signup(props) {
     const confirmPassword = e.target.value;
     setConfirmPassword(confirmPassword);
   };
-
-  const required = (value, field, formIsValid, errors) => {
-    if (!value){
-      formIsValid = false;
-      errors[field] = "This field is required!";
-    }
-  }
 
   const handleValidation = () => {
     const errors = {};

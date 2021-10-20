@@ -103,7 +103,7 @@ function Admin(props) {
               </p>
              ) : (
               <>
-                <ul className="userList" id="results">
+                <ul className="userList" id="results" role='list'>
                   {filteredUsers.map((user) => (
                     <li className="user row" key={user._id}>
                       <div className="col" id="user">
