@@ -9,14 +9,9 @@ import "./App.css";
 
 function App() {
 
-  // const [font, setFont] = useState("");
-
-  // if (AuthService.isLoggedIn()){
-  //   setFont(AuthService.getCurrentUser().font);
-  // }
   
   return (
-    <div className="App" style={AuthService.getCurrentUser().font === "bigger" ? {fontSize: "150%"} : {fontSize: "100%"}}>
+    <div className="App">
       <Router>
         <Navigation />
         

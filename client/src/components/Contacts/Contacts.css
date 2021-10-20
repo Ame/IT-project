@@ -24,7 +24,7 @@ button {
   text-align: center;
   text-decoration: none;
   float: inline-end;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 h3.headings {
@@ -105,7 +105,7 @@ h3.headings {
 }
 
 #search label {
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: bold;
   margin-right: 15px;
 }
