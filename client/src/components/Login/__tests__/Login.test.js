@@ -45,14 +45,5 @@ describe('Test Login: valid login, invalid login', () => {
     await expect(login("test123")).rejects.toThrow();
   })
 
-  it('Invalid Login: Wrong password', async () => {
-
-    // fill in the form with email and wrong password
-
-    // activate the submit button 
-
-    // check the response from server states credentials are invalid
-  })
-
 })
 

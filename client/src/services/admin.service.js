@@ -14,7 +14,6 @@ const config = {
 };
 
 const isAdmin = (user) => {
-  console.log(user.role);
   if (user.role === "admin"){
     return true;
   }
@@ -43,7 +42,6 @@ const editUser = (_id, name, email, password, role) => {
 };
 
 const deleteUser = (email) => {
-  console.log(email);
   return axios.delete(API_URL + `deleteUser/${email}`, config);
 }
 

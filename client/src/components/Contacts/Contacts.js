@@ -28,7 +28,6 @@ const filterContacts = (contacts, query, tags) => {
 
   return filteredContacts.filter((contact) => {
     const contactTags = contact.currentContactTags;
-    console.log(contactTags);
     return contactTags.includes(tags);
   });
 
@@ -96,7 +95,6 @@ function Contacts() {
   // deletes a specified contact from the backend and updates the contacts state in this component accordingly
   const handleDeleteContact = (e, id) => {
     e.preventDefault();
-    console.log("delete");
     ContactService.deleteContact(id);
 
     const removeItem = contacts.filter((contact) => {
