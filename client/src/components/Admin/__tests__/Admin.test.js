@@ -7,7 +7,7 @@ import { ExpectationFailed } from 'http-errors';
 
 
 test("Test if users viewed", async () => {
-    const login = await AuthService.login("admin@admin.com","admin")
+    const login = await AuthService.login("admin@admin.com","adminadmin")
     render(
         <BrowserRouter>
           <Admin/>
