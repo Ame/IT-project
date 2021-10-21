@@ -86,7 +86,7 @@ function Contacts() {
     ContactService.getContacts().then((res) => setContacts(res.data));
   }, []);
 
-  //parameters for search
+  // parameters for search
   const { search } = window.location;
   const query = new URLSearchParams(search).get('s');
   const [searchQuery, setSearchQuery] = useState(query || '');

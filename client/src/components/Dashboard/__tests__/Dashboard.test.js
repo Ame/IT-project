@@ -7,6 +7,7 @@ import { ExpectationFailed } from 'http-errors';
 
 
 test("Test if dashboard loads correctly", async () => {
+    // Login then render dashboard
     const email = "testing@test.com"
     const login = await AuthService.login(email,"test123")
     render(
@@ -14,5 +15,6 @@ test("Test if dashboard loads correctly", async () => {
           <Dashboard/>
         </BrowserRouter>)  
     const emailHeading = screen.getByTestId('heading')
+    // users email should appear on the page
     expect(emailHeading.innerHTML).toEqual("Email: "+email);
 })
