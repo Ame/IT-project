@@ -7,7 +7,7 @@ import CheckButton from "react-validation/build/button";
 import Input from "react-validation/build/input";
 import EditProfileService from "../../services/edit-profile-service";
 
-function EditProfile( { getFontSize, currentFont } ) {
+function EditProfile({ getFontSize, currentFont }) {
   const currentUser = AuthService.getCurrentUser().user;
 
   const form = useRef();
@@ -23,7 +23,6 @@ function EditProfile( { getFontSize, currentFont } ) {
   const [errors, setErrors] = useState({});
   const [font, setFont] = useState("");
 
-
   useEffect(() => {
     // initialise all values for contact with existing ones in the database
     setName(currentUser.name);
@@ -31,7 +30,12 @@ function EditProfile( { getFontSize, currentFont } ) {
     setPassword(currentUser.password);
     setConfirmPassword(currentUser.password);
     setFont(currentUser.font);
-  }, [currentUser.name, currentUser.email, currentUser.password, currentUser.font]);
+  }, [
+    currentUser.name,
+    currentUser.email,
+    currentUser.password,
+    currentUser.font,
+  ]);
 
   const required = (value, field, formIsValid, errors) => {
     if (!value) {
@@ -65,7 +69,6 @@ function EditProfile( { getFontSize, currentFont } ) {
     return formIsValid;
   };
 
-
   const handleEditProfile = (e) => {
     e.preventDefault();
 
@@ -76,7 +79,7 @@ function EditProfile( { getFontSize, currentFont } ) {
 
     if (handleValidation()) {
       if (checkBtn.current.context._errors.length === 0) {
-        EditProfileService.editProfile(name, email, password,font).then(
+        EditProfileService.editProfile(name, email, password, font).then(
           (response) => {
             setMessage(response.data.message);
             setSuccessful(true);
@@ -130,7 +133,7 @@ function EditProfile( { getFontSize, currentFont } ) {
   const onChangeFont = (e) => {
     const newFont = e.target.value;
     setFont(newFont);
-  }
+  };
 
   return (
     <div className="editProfile" className="fullsize">
@@ -148,7 +151,13 @@ function EditProfile( { getFontSize, currentFont } ) {
                 <div>
                   <div className="form-group">
                     <label htmlFor="toggle-font">Font Size: </label>
-                    <select name="toggle-font" id="toggle-font" className="form-control" value={font} onChange={onChangeFont}>
+                    <select
+                      name="toggle-font"
+                      id="toggle-font"
+                      className="form-control"
+                      value={font}
+                      onChange={onChangeFont}
+                    >
                       <option value="default">Default</option>
                       <option value="bigger">Bigger</option>
                     </select>

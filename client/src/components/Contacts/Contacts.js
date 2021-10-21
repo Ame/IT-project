@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ContactService from "../../services/contact.service";
 import "./Contacts.css";
-import Search from '../Search/Search.js';
+import Search from "../Search/Search.js";
 import EditContact from "../EditContact/EditContact";
 import Sidebar from "../Sidebar/Sidebar";
-import '../Contacts/Contacts.css';
+import "../Contacts/Contacts.css";
 
 const convertToDate = (date) => {
   const toDate = new Date(date);
@@ -15,13 +15,13 @@ const convertToDate = (date) => {
 //Returns items from contacts that contain the query
 const filterContacts = (contacts, query, tags) => {
   if (!query.toLowerCase()) {
-      return contacts;
+    return contacts;
   }
 
   const filteredContacts = contacts.filter((contact) => {
     const contactName = contact.name.toLowerCase();
     return contactName.includes(query.toLowerCase());
-});
+  });
   if (!tags) {
     return filteredContacts;
   }
@@ -30,12 +30,9 @@ const filterContacts = (contacts, query, tags) => {
     const contactTags = contact.currentContactTags;
     return contactTags.includes(tags);
   });
-
 };
 
-
 function Contacts() {
-
   const [contacts, setContacts] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentContactId, setCurrentContactId] = useState("");
@@ -47,12 +44,22 @@ function Contacts() {
   const [currentContactNotes, setCurrentContactNotes] = useState("");
   const [currentContactTags, setCurrentContactTags] = useState([]);
 
-  const showModal = (id, name, email, phone, address, birthday, notes, tags) => {
+  const showModal = (
+    id,
+    name,
+    email,
+    phone,
+    address,
+    birthday,
+    notes,
+    tags
+  ) => {
     setCurrentContactId(id);
     setCurrentContactName(name);
     setCurrentContactEmail(email);
 
-    if (phone) { // all optional attributes, may be present or not
+    if (phone) {
+      // all optional attributes, may be present or not
       setCurrentContactPhone(phone);
     }
 
@@ -68,13 +75,13 @@ function Contacts() {
       setCurrentContactNotes(notes);
     }
 
-    if (tags){
+    if (tags) {
       setCurrentContactTags(tags);
     }
     setModalIsOpen(true);
   };
 
-  const reload=()=>window.location.reload();
+  const reload = () => window.location.reload();
 
   const setModalIsOpenToFalse = () => {
     setModalIsOpen(false);
@@ -88,8 +95,8 @@ function Contacts() {
 
   //parameters for search
   const { search } = window.location;
-  const query = new URLSearchParams(search).get('s');
-  const [searchQuery, setSearchQuery] = useState(query || '');
+  const query = new URLSearchParams(search).get("s");
+  const [searchQuery, setSearchQuery] = useState(query || "");
   const filteredContacts = filterContacts(contacts, searchQuery);
 
   // deletes a specified contact from the backend and updates the contacts state in this component accordingly
@@ -101,17 +108,17 @@ function Contacts() {
       return contact._id !== id;
     });
     setContacts(removeItem);
-  };  
+  };
 
   const getAllTags = (contacts) => {
-    const tags = contacts.map((contact) => contact.tags.join(", "))
- 
+    const tags = contacts.map((contact) => contact.tags.join(", "));
+
     var result = [];
-    result = tags.filter(function(item, pos, self) {
+    result = tags.filter(function (item, pos, self) {
       return self.indexOf(item) == pos;
-    })
+    });
     var items = result.map((item) => item);
-  return items;
+    return items;
   };
 
   return (
@@ -129,15 +136,19 @@ function Contacts() {
               <p className="contactList" id="notFound">
                 No Contacts found. Add some!{" "}
               </p>
-             ) : (
+            ) : (
               <>
-              <div id="tags">
-            <strong>Filter by tags:&nbsp; </strong> 
-            {getAllTags(contacts).map((tag) => (
-              <button id="tagButton" onClick={() =>filterContacts(filteredContacts, "", tag)}>{tag}</button>
-              )
-            )}  
-        </div>
+                <div id="tags">
+                  <strong>Filter by tags:&nbsp; </strong>
+                  {getAllTags(contacts).map((tag) => (
+                    <button
+                      id="tagButton"
+                      onClick={() => filterContacts(filteredContacts, "", tag)}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (
                     <li className="contact row" key={contact._id}>
@@ -171,21 +182,26 @@ function Contacts() {
                         ) : null}
                         {contact.tags.length > 0 ? (
                           <div>
-                            <h6><strong>Tags: </strong>
-                            <i>{contact.tags.join(", ")}</i>
+                            <h6>
+                              <strong>Tags: </strong>
+                              <i>{contact.tags.join(", ")}</i>
                             </h6>
                           </div>
                         ) : null}
-                        </div><div className="col-lg-5">
-<button className="delete"
-    onClick={e =>
-        window.confirm("Are you sure you wish to delete this item?") &&
-        handleDeleteContact(e, contact._id)
-    }
->
-    Delete
-</button>
-                        <button className="edit"
+                      </div>
+                      <div className="col-lg-5">
+                        <button
+                          className="delete"
+                          onClick={(e) =>
+                            window.confirm(
+                              "Are you sure you wish to delete this item?"
+                            ) && handleDeleteContact(e, contact._id)
+                          }
+                        >
+                          Delete
+                        </button>
+                        <button
+                          className="edit"
                           type="button"
                           onClick={() =>
                             showModal(
@@ -224,9 +240,9 @@ function Contacts() {
             )}
           </div>
           <Link to="/addContact">
-              <button>Add Contact</button>{" "}
-            </Link>
-            <div className="padding"></div>
+            <button>Add Contact</button>{" "}
+          </Link>
+          <div className="padding"></div>
         </div>
       </div>
     </div>

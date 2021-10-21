@@ -8,27 +8,26 @@ import Clock from "./Clock";
 
 function Dashboard() {
   const currentUser = AuthService.getCurrentUser().user;
-  
+
   return (
     <div className="row">
       <div className="hamburger">
         <Sidebar />
       </div>
-        <div className="dashboard">
-          <div className="dash-content">
+      <div className="dashboard">
+        <div className="dash-content">
           <div className="clock">
-                  <Clock/>
-                </div>
-                
-                <h3>
-                  <strong>{currentUser.name}</strong> 's Profile{" "}
-                </h3>
-                <h4 data-testid="heading">Email: {currentUser.email}</h4>
-                <p>Start networking with iJane CRM</p>
-              </div>
-            </div>
+            <Clock />
           </div>
-     
+
+          <h3>
+            <strong>{currentUser.name}</strong> 's Profile{" "}
+          </h3>
+          <h4 data-testid="heading">Email: {currentUser.email}</h4>
+          <p>Start networking with iJane CRM</p>
+        </div>
+      </div>
+    </div>
   );
 }
 

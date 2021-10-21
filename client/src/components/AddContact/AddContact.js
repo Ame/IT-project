@@ -1,7 +1,7 @@
 import React, { useState, useRef, StrictMode } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import { isEmail, isMobilePhone} from "validator";
+import { isEmail, isMobilePhone } from "validator";
 import ContactService from "../../services/contact.service";
 import { useHistory } from "react-router-dom";
 import CheckButton from "react-validation/build/button";
@@ -20,8 +20,8 @@ const required = (value) => {
 };
 
 const validPhoneNumber = (value) => {
-  if(value){
-    if (!isMobilePhone(value,['en-AU'])) {
+  if (value) {
+    if (!isMobilePhone(value, ["en-AU"])) {
       return (
         <div className="alert alert-danger" role="alert">
           This is not a valid phone number.
@@ -29,8 +29,7 @@ const validPhoneNumber = (value) => {
       );
     }
   }
-
-}
+};
 
 const validEmail = (value) => {
   if (!isEmail(value)) {
@@ -130,21 +129,23 @@ const AddContact = (e) => {
 
   // updates the tags state with any added from the child component
   const fetchTags = (tag) => {
-      setTags([...tags, tag]);
+    setTags([...tags, tag]);
   };
 
   // add new tags for a contact to the database
   const addTags = (email, tagList) => {
-      ContactService.addTags(email, tagList).then((response) => {
-        setMessage(response.data.message);
-        setSuccessful(true);
-      });
-  }
+    ContactService.addTags(email, tagList).then((response) => {
+      setMessage(response.data.message);
+      setSuccessful(true);
+    });
+  };
 
   return (
     <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50 fullsize">
       <Link to="/contacts">
-        <button id="back"><i className="arrow left"></i>  Back</button>
+        <button id="back">
+          <i className="arrow left"></i> Back
+        </button>
       </Link>
       <Form onSubmit={handleAddContact} ref={form} className="main">
         {!successful && (
@@ -184,7 +185,7 @@ const AddContact = (e) => {
                 name="phone"
                 value={phone}
                 onChange={onChangePhone}
-                validations = {[validPhoneNumber]}
+                validations={[validPhoneNumber]}
                 placeholder="+61"
               />
             </div>
@@ -226,20 +227,22 @@ const AddContact = (e) => {
 
             <div className="form-group">
               <label htmlFor="tags">Tags:</label>
-              <Tags sendTags={fetchTags} existingTags={tags} isEdit={false}></Tags>
+              <Tags
+                sendTags={fetchTags}
+                existingTags={tags}
+                isEdit={false}
+              ></Tags>
             </div>
 
             <div className="form-group">
-              <button className="btn btn-primary btn-block submit">Submit</button>
+              <button className="btn btn-primary btn-block submit">
+                Submit
+              </button>
             </div>
           </div>
         )}
 
-        <div
-            title={
-              successful ? "success" : "error"
-            }>
-            </div>
+        <div title={successful ? "success" : "error"}></div>
 
         {message && (
           <div className="form-group">
@@ -247,16 +250,18 @@ const AddContact = (e) => {
               className={
                 successful ? "alert alert-success" : "alert alert-danger"
               }
-              title={
-                successful ? "success" : "error"
-              }
+              title={successful ? "success" : "error"}
               role="alert"
             >
               {message}
             </div>
           </div>
         )}
-        <CheckButton style={{ display: "none" }} ref={checkBtn} title="submit"/>
+        <CheckButton
+          style={{ display: "none" }}
+          ref={checkBtn}
+          title="submit"
+        />
       </Form>
     </div>
   );
