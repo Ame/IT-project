@@ -13,7 +13,7 @@ const convertToDate = (date) => {
 };
 
 //Returns items from contacts that contain the query
-const filterContacts = (contacts, query, tags) => {
+const filterContacts = (contacts, query) => {
   if (!query.toLowerCase()) {
       return contacts;
   }
@@ -22,16 +22,9 @@ const filterContacts = (contacts, query, tags) => {
     const contactName = contact.name.toLowerCase();
     return contactName.includes(query.toLowerCase());
 });
-  if (!tags) {
-    return filteredContacts;
-  }
-
-  return filteredContacts.filter((contact) => {
-    const contactTags = contact.currentContactTags;
-    return contactTags.includes(tags);
-  });
 
 };
+
 
 
 function Contacts() {
@@ -103,15 +96,13 @@ function Contacts() {
     setContacts(removeItem);
   };  
 
+  //gets all tags from existing contacts, removing duplicates
   const getAllTags = (contacts) => {
-    const tags = contacts.map((contact) => contact.tags.join(", "))
- 
-    var result = [];
-    result = tags.filter(function(item, pos, self) {
+    const tags = contacts.map((contact) => contact.tags.join(', ')).join(', ');
+
+    return tags.split(', ').filter(function(item, pos, self) {
       return self.indexOf(item) == pos;
-    })
-    var items = result.map((item) => item);
-  return items;
+    });
   };
 
   return (
@@ -134,9 +125,14 @@ function Contacts() {
               <div id="tags">
             <strong>Filter by tags:&nbsp; </strong> 
             {getAllTags(contacts).map((tag) => (
-              <button id="tagButton" onClick={() =>filterContacts(filteredContacts, "", tag)}>{tag}</button>
-              )
-            )}  
+              <button onClick={() => {
+                return contacts.filter((contact) => {
+                  return contact.currentContactTags.includes(tag);
+                });
+              }}>
+              {tag}</button>
+              
+            ))}  
         </div>
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (
