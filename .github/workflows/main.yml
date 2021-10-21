@@ -34,6 +34,7 @@ jobs:
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
+          PORT: ${{ secrets.PORT }}
         run: |
           npm install
           npm start &
