@@ -9,14 +9,14 @@
 
 .eye {
   background-image: url(https://img.freepik.com/free-vector/minimalistic-seamless-eye-pattern-pastel-pale-blue-background-with-grey-elements_97843-879.jpg?size=338&ext=jpg);
-  opacity: 100%;
+  opacity: 1;
   height: 100vh;
   padding-top: 0px;
 }
 
 #eye2 {
   background-image: url(https://st3.depositphotos.com/26272052/32780/v/450/depositphotos_327808288-stock-illustration-blue-line-eye-scan-icon.jpg);
-  opacity: 80%;
+  opacity: 0.8;
 }
 
 #eye3 {
@@ -24,7 +24,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: none center;
-  opacity: 100%;
+  opacity: 1;
 }
 
 .col-lg-6 {
@@ -46,9 +46,5 @@ a {
 }
 
 a:hover {
-  color: #2e7048;
-}
-
-a:future {
   color: #2e7048;
 }
