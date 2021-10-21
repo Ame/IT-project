@@ -1,7 +1,7 @@
 import axios from "axios";
 import AuthService from "../services/auth.service";
 
-const API_URL = "http://localhost:3000/api/users/";
+const API_URL = "/api/users/";
 
 const user = AuthService.getCurrentUser();
 var token = "";
@@ -14,12 +14,12 @@ const config = {
   headers: { Authorization: token },
 };
 
-const editProfile = (name, email, password,font) => {
+const editProfile = (name, email, password, font) => {
   return axios.put(
     API_URL + "editProfile",
     {
-      name, 
-      email, 
+      name,
+      email,
       password,
       font,
     },
@@ -28,7 +28,7 @@ const editProfile = (name, email, password,font) => {
 };
 
 const exportedObjects = {
-    editProfile
+  editProfile,
 };
 
 export default exportedObjects;
