@@ -41,4 +41,4 @@ jobs:
           cd client
           npm install
       - name: running tests
-          npm test
+        run: npm test
