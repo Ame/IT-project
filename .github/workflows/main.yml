@@ -43,4 +43,4 @@ jobs:
       - name: running tests
         run: |
           cd client
-          npm test --silent
+          npm --silent test
