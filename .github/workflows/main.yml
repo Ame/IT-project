@@ -30,7 +30,7 @@ jobs:
           brew install pre-commit
           pre-commit run --all-files --show-diff-on-failure
 
-      - name: starting server and frontend and running tests
+      - name: starting server and frontend
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
