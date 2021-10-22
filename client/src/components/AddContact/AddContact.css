@@ -30,3 +30,8 @@
 h3 {
   padding-top: 10px;
 }
+
+.main {
+  max-height: 100%;
+  overflow: auto;
+}
