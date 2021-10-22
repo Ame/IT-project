@@ -43,4 +43,4 @@ jobs:
       - name: running tests
         run: |
           cd client
-          npm test &> /dev/null
+          npm test
