@@ -40,4 +40,5 @@ jobs:
           npm start &
           cd client
           npm install
-          npm test
+      - name: running tests
+        run: npm test --silent
