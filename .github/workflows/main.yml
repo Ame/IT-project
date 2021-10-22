@@ -30,7 +30,7 @@ jobs:
           brew install pre-commit
           pre-commit run --all-files --show-diff-on-failure
 
-      - name: starting server
+      - name: starting server and frontend
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
@@ -40,4 +40,5 @@ jobs:
           npm start &
           cd client
           npm install
+      - name: running tests
           npm test
