@@ -125,7 +125,7 @@ function Contacts() {
               <div id="tags">
             <strong>Filter by tags:&nbsp; </strong> 
             {getAllTags(contacts).map((tag) => (
-              <button onClick={() => {
+              <button id="tagButton" onClick={() => {
                 return contacts.filter((contact) => {
                   return contact.currentContactTags.includes(tag);
                 });
