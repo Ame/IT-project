@@ -124,15 +124,16 @@ function Contacts() {
               <p className="contactList" id="notFound">
                 No Contacts found. Add some!{" "}
               </p>
-             ) : (
+            ) : (
               <>
-              <div id="tags">
-            <strong>Available Tags:&nbsp; </strong> 
-            {getAllTags(contacts).map((tag) => (
-              <p>{tag}</p>
-              
-            ))}  
-        </div>
+                <div id="tags">
+                  <strong>Available Tags:&nbsp; </strong>
+                  {getAllTags(contacts).map((tag) => (
+                    <p id="tags-display">
+                      {tag}
+                    </p>
+                  ))}
+                </div>
                 <ul className="contactList" id="results">
                   {filteredContacts.map((contact) => (
                     <li className="contact row" key={contact._id}>
@@ -166,21 +167,26 @@ function Contacts() {
                         ) : null}
                         {contact.tags.length > 0 ? (
                           <div>
-                            <h6><strong>Tags: </strong>
-                            <i>{contact.tags.join(", ")}</i>
+                            <h6>
+                              <strong>Tags: </strong>
+                              <i>{contact.tags.join(", ")}</i>
                             </h6>
                           </div>
                         ) : null}
-                        </div><div className="col-lg-5">
-<button className="delete"
-    onClick={e =>
-        window.confirm("Are you sure you wish to delete this item?") &&
-        handleDeleteContact(e, contact._id)
-    }
->
-    Delete
-</button>
-                        <button className="edit"
+                      </div>
+                      <div className="col-lg-5">
+                        <button
+                          className="delete"
+                          onClick={(e) =>
+                            window.confirm(
+                              "Are you sure you wish to delete this item?"
+                            ) && handleDeleteContact(e, contact._id)
+                          }
+                        >
+                          Delete
+                        </button>
+                        <button
+                          className="edit"
                           type="button"
                           onClick={() =>
                             showModal(
@@ -219,9 +225,9 @@ function Contacts() {
             )}
           </div>
           <Link to="/addContact">
-              <button>Add Contact</button>{" "}
-            </Link>
-            <div className="padding"></div>
+            <button>Add Contact</button>{" "}
+          </Link>
+          <div className="padding"></div>
         </div>
       </div>
     </div>

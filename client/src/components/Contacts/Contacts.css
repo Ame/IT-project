@@ -98,6 +98,13 @@ h3.headings {
   color: rgb(104, 175, 169);
 }
 
+#tags-display {
+  padding-left: 0.7em;
+  padding-right: 0.7em;
+  color: white;
+  font-weight: bold;
+}
+
 #search {
   display: flex;
   padding: 20px;

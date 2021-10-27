@@ -1,6 +1,7 @@
 .App {
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 .fullsize {
@@ -47,4 +48,17 @@ a {
 
 a:hover {
   color: #2e7048;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+.body {
+  display:flex;
+  flex-direction:column;
+}
+
+.content {
+  flex-grow: 1;
 }

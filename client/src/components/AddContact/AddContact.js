@@ -142,14 +142,17 @@ const AddContact = (e) => {
   }
 
   return (
-    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50 fullsize">
+    <div className="max-w-xl mx-auto border border-gray-200 rounded-md bg-gray-50">
       <Link to="/contacts">
         <button id="back"><i className="arrow left"></i>  Back</button>
       </Link>
+
+      <div className="main fullsize">
       <Form onSubmit={handleAddContact} ref={form} className="main">
         {!successful && (
           <div>
-            <h3>Add Contact</h3>
+            <h3 className="headings">Add Contact</h3>
+            <div id="addContact">
             <div className="form-group">
               <label htmlFor="name">Name:</label>
               <Input
@@ -232,6 +235,7 @@ const AddContact = (e) => {
             <div className="form-group">
               <button className="btn btn-primary btn-block submit">Submit</button>
             </div>
+            </div>
           </div>
         )}
 
@@ -258,6 +262,7 @@ const AddContact = (e) => {
         )}
         <CheckButton style={{ display: "none" }} ref={checkBtn} title="submit"/>
       </Form>
+      </div>
     </div>
   );
 };
