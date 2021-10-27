@@ -13,17 +13,21 @@ const convertToDate = (date) => {
 };
 
 //Returns items from contacts that contain the query
-const filterContacts = (contacts, query) => {
+const filterContacts = (contacts,query) => {
   if (!query.toLowerCase()) {
       return contacts;
   }
 
+  // case when search tag
   const filteredContacts = contacts.filter((contact) => {
-    const contactName = contact.name.toLowerCase();
-    return contactName.includes(query.toLowerCase());
-});
+    const name = contact.name.toLowerCase();
+    const tags = contact.tags.map((x) => {return x.toLowerCase()});
+    console.log(JSON.stringify(tags));
+    return name.includes(query.toLowerCase()) || tags.includes(query.toLowerCase());
+  });
+  return filteredContacts
+  };
 
-};
 
 
 
@@ -83,7 +87,7 @@ function Contacts() {
   const { search } = window.location;
   const query = new URLSearchParams(search).get('s');
   const [searchQuery, setSearchQuery] = useState(query || '');
-  const filteredContacts = filterContacts(contacts, searchQuery);
+  const filteredContacts = filterContacts(contacts,searchQuery);
 
   // deletes a specified contact from the backend and updates the contacts state in this component accordingly
   const handleDeleteContact = (e, id) => {
@@ -96,7 +100,7 @@ function Contacts() {
     setContacts(removeItem);
   };  
 
-  //gets all tags from existing contacts, removing duplicates
+  // gets all tags from existing contacts, removing duplicates
   const getAllTags = (contacts) => {
     const tags = contacts.map((contact) => contact.tags.join(', ')).join(', ');
 
@@ -123,14 +127,9 @@ function Contacts() {
              ) : (
               <>
               <div id="tags">
-            <strong>Filter by tags:&nbsp; </strong> 
+            <strong>Available Tags:&nbsp; </strong> 
             {getAllTags(contacts).map((tag) => (
-              <button onClick={() => {
-                return contacts.filter((contact) => {
-                  return contact.currentContactTags.includes(tag);
-                });
-              }}>
-              {tag}</button>
+              <p>{tag}</p>
               
             ))}  
         </div>
