@@ -50,3 +50,8 @@ h3.headings {
   overflow: scroll;
   max-height: 50rem;
 }
+
+.main {
+  max-height: 100%;
+  overflow: auto;
+}
