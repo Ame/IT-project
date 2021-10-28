@@ -1,5 +1,5 @@
 import React from "react";
-
+// description for our website
 function About() {
   return (
     <div className="fullsize">

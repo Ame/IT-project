@@ -17,7 +17,6 @@ const filterContacts = (contacts,query) => {
   if (!query.toLowerCase()) {
       return contacts;
   }
-
   // case when search tag
   const filteredContacts = contacts.filter((contact) => {
     const name = contact.name.toLowerCase();
@@ -28,11 +27,7 @@ const filterContacts = (contacts,query) => {
   return filteredContacts
   };
 
-
-
-
 function Contacts() {
-
   const [contacts, setContacts] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentContactId, setCurrentContactId] = useState("");
@@ -93,7 +88,6 @@ function Contacts() {
   const handleDeleteContact = (e, id) => {
     e.preventDefault();
     ContactService.deleteContact(id);
-
     const removeItem = contacts.filter((contact) => {
       return contact._id !== id;
     });
@@ -103,7 +97,6 @@ function Contacts() {
   // gets all tags from existing contacts, removing duplicates
   const getAllTags = (contacts) => {
     const tags = contacts.map((contact) => contact.tags.join(', ')).join(', ');
-
     return tags.split(', ').filter(function(item, pos, self) {
       return self.indexOf(item) == pos;
     });
@@ -114,7 +107,6 @@ function Contacts() {
       <div className="col-lg-3">
         <Sidebar />
       </div>
-
       <div className="main fullsize">
         <div>
           <h3 className="headings">Your contacts</h3>

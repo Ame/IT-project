@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Tags from "../Tags/Tags";
 import "./AddContact.css";
 
+// function that is called if a field is requried to ensure that it contains an input
 const required = (value) => {
   if (!value) {
     return (
@@ -19,6 +20,7 @@ const required = (value) => {
   }
 };
 
+// function that is called to check if value entered is a valid phone number
 const validPhoneNumber = (value) => {
   if(value){
     if (!isMobilePhone(value,['en-AU'])) {
@@ -32,6 +34,7 @@ const validPhoneNumber = (value) => {
 
 }
 
+// function that is called to check if value entered is a valid email
 const validEmail = (value) => {
   if (!isEmail(value)) {
     return (

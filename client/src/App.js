@@ -8,8 +8,7 @@ import "./App.css";
 
 
 function App() {
-
-  
+  // This is the file for App Component. App Component is the main component in React which acts as a container for all other components.
   return (
     <div className="App body">
       <Router>
@@ -22,8 +21,6 @@ function App() {
              ) : (
               <Route path="/" exact component={() => <Login />} />
             )}
-
-
           <Route path="/signup" exact component={() => <Signup />} />
           <Route path="/about" exact component={() => <About/>} />
           <PrivateRoute path="/dashboard" exact component={() => <Dashboard/>}/>

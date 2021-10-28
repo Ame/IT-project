@@ -11,7 +11,7 @@ function Sidebar(props) {
 
    const currentUser = AuthService.getCurrentUser().user;
    const reload=()=>window.location.reload();
-  let history = useHistory();
+   let history = useHistory();
   
     const logoutHandler = () =>{
       history.push("/");

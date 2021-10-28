@@ -53,7 +53,7 @@ h6 strong {
 ul.contactList {
   list-style-type: none; /* removes bullets */
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   max-height: 40rem;
 }
 

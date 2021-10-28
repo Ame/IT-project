@@ -7,6 +7,7 @@ import { isEmail } from "validator";
 
 import AuthService from "../../services/auth.service";
 
+// function called when field is required to ensure it has been filled out
 export const required = (value, field, formIsValid, errors) => {
   if (!value){
     formIsValid = false;
@@ -15,11 +16,9 @@ export const required = (value, field, formIsValid, errors) => {
 }
 
 
-function Signup(props) {
-
+function Signup() {
   const form = useRef();
   const checkBtn = useRef();
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

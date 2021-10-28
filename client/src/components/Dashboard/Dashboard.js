@@ -8,7 +8,6 @@ import Clock from "./Clock";
 
 function Dashboard() {
   const currentUser = AuthService.getCurrentUser().user;
-  
   return (
     <div className="row">
       <div className="hamburger">

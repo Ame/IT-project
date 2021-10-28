@@ -10,6 +10,7 @@ import Tags from "../Tags/Tags"
 
 // A modal is a child window that will pop up on the contacts page in order to edit a contact
 
+// function called when field is requried to ensure that a value has been entered
 const required = (value) => {
   if (!value) {
     return (
@@ -20,6 +21,7 @@ const required = (value) => {
   }
 };
 
+// function called to ensure that a value entered is a valid phone number
 const validPhoneNumber = (value) => {
   if (!isMobilePhone(value,['en-AU'])) {
     return (
@@ -30,6 +32,7 @@ const validPhoneNumber = (value) => {
   }
 }
 
+// function called to ensure that a value entered is a valid email address
 const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
@@ -157,12 +160,9 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
       ContactService.deleteTag(email, tagToDelete); // deletes the specified tag from the backend for this particular contact
       setTags([...tags.filter((tag) => tag !== tagToDelete)]); // update the tags array to reflect deletion
     }
-
-
     if (!show){
         return null;
     }
-
     return (
       <div className="popup-box">
           
@@ -185,6 +185,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
                     name="name"
                     value={name}
                     onChange={onChangeName}
+                    validations={[required]}
                   />
                 </div>
                 <div className="form-group">
@@ -194,8 +195,8 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
                     className="form-control"
                     name="email"
                     value={email}
-                    validation={validEmail}
                     onChange={onChangeEmail}
+                    validation={[required, validEmail]}
                   />
                 </div>
 
@@ -207,6 +208,7 @@ const EditContact = ( { show, handleClose, id, contactName, contactEmail, contac
                     name="phone"
                     value={phone}
                     onChange={onChangePhone}
+                    validation={[required, validPhoneNumber]}
                   />
                 </div>
 
