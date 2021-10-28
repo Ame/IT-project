@@ -23,7 +23,6 @@ static async apiRegisterUser(req,res,next){
     password: req.body.password
     });
    
-    // TO-DO hash password
     newUser
     .save()
     .then(user => {
@@ -51,7 +50,6 @@ static async apiLoginUser(req,res){
         if (!user) {
             return res.status(404).json({ message: "Email not found" });
         }
-        // hash password later
         if (password === user.password) {
             // Create token
             const signedToken = issueToken(user);

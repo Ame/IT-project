@@ -29,6 +29,7 @@ module.exports =  class AdminController {
             password: req.body.password,
             role: req.body.role
         };
+        // Find the user by id and update values accordingly
         User.findByIdAndUpdate(_id, { $set: user }, { new: true }, function (err, user) {
             if (err) {
                 res.status(500);

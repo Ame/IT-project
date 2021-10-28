@@ -34,7 +34,7 @@ module.exports =  class ContactsController {
             })
 
     }
-    // tested
+    
     static async apiAddTag(req,res,next){
         Contact.findOne({ email: req.body.email , user: req.user.id}).then( contact => {
 
@@ -55,7 +55,7 @@ module.exports =  class ContactsController {
         })
 
     }
-    // tested
+
     static async apiDeleteTag(req,res){
         // Find contact 
         Contact.findOne({ email: req.body.email , user: req.user.id}).then(contact => {
@@ -75,7 +75,7 @@ module.exports =  class ContactsController {
         })
 
     }
-    // tested
+
     static async apiGetContactTag(req,res){
         const tags = req.body.tags
         // get all contacts that match tags
