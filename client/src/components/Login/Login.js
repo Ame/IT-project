@@ -2,13 +2,13 @@
 
 import React, { useState, useRef } from "react";
 import { Link, withRouter, useHistory } from "react-router-dom";
-
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
+import { isEmail } from "validator";
 import AuthService from "../../services/auth.service";
 
+// function that is called when field is required to ensure it has been filled
 export const required = (value) => {
   if (!value) {
     return (
@@ -19,7 +19,18 @@ export const required = (value) => {
   }
 };
 
-function Home(props) {
+// function that is called to check if the value entered is a valid email
+const validEmail = (value) => {
+  if (!isEmail(value)) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This is not a valid email.
+      </div>
+    );
+  }
+};
+
+function Login() {
   let history = useHistory();
 
   const form = useRef();
@@ -42,12 +53,9 @@ function Home(props) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     setMessage("");
     setLoading(true);
-
     form.current.validateAll();
-
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(email, password).then(
         () => {
@@ -58,91 +66,105 @@ function Home(props) {
 
         // if there is an error, display it
         (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+          if (console.log(error.response.status) == 400) {
+            setMessage("invalid email");
+            console.log(error.response);
+            return (
+              <div className="alert alert-danger" role="alert">
+                This is not a valid email.
+              </div>
+            );
+          } else {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
 
-          setLoading(false);
-          setMessage(resMessage);
+            setLoading(false);
+            setMessage(resMessage);
+          }
         }
       );
     } else {
       setLoading(false);
     }
   };
-
+  // render elements for the login page such form for email and password
   return (
-    <div className="home vh-100">
-      <div className="container">
-        <div className="row align-items-center my-5">
-          <div className="col-lg-7">
-            <img
-              className="img-fluid rounded mb-4 mb-lg-0"
-              src="http://placehold.it/900x400"
-              alt=""
-            />
-          </div>
-          <div className="col-lg-5">
-            <div className="login-wrapper">
-              <h1 className="font-weight-light">Please Log In</h1>
-              <Form onSubmit={handleLogin} ref={form}>
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="email"
-                    value={email}
-                    onChange={onChangeEmail}
-                    validations={[required]}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <Input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    value={password}
-                    onChange={onChangePassword}
-                    validations={[required]}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <button
-                    className="btn btn-primary btn-block"
-                    disabled={loading}
-                  >
-                    {loading && (
-                      <span className="spinner-border spinner-border-sm"></span>
-                    )}
-                    <span>Login</span>
-                  </button>
-                </div>
-
-                {message && (
-                  <div className="form-group">
-                    <div className="alert alert-danger" role="alert">
-                      {message}
-                    </div>
-                  </div>
-                )}
-                <CheckButton style={{ display: "none" }} ref={checkBtn} />
-              </Form>
-            </div>
+    <div className="home" className="fullsize">
+      <div className="row align-items-center">
+        <div className="col-lg-6">
+          <div className="eye" id="eye2"></div>
+        </div>
+        <div className="col-lg-5">
+          <div className="login-wrapper">
+            <h1 className="font-weight-light">Please Log In</h1>
             <p>
-              Don't have an account? <Link to="/signup">Sign up</Link> here!
+              Welcome to iJane CRM! Enjoy the benefits of staying organised.
             </p>
+            <Form onSubmit={handleLogin} ref={form}>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <Input
+                  type="text"
+                  title="email"
+                  className="form-control"
+                  name="email"
+                  value={email}
+                  onChange={onChangeEmail}
+                  validations={[required, validEmail]}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <Input
+                  type="password"
+                  title="password"
+                  className="form-control"
+                  name="password"
+                  value={password}
+                  onChange={onChangePassword}
+                  validations={[required]}
+                />
+              </div>
+
+              <div className="form-group">
+                <button
+                  className="btn btn-primary btn-block submit"
+                  title="submit"
+                  disabled={loading}
+                >
+                  {loading && (
+                    <span className="spinner-border spinner-border-sm"></span>
+                  )}
+                  <span>Login</span>
+                </button>
+              </div>
+
+              {message && (
+                <div className="form-group">
+                  <div
+                    className="alert alert-danger"
+                    role="alert"
+                    title="alert"
+                  >
+                    {message}
+                  </div>
+                </div>
+              )}
+              <CheckButton style={{ display: "none" }} ref={checkBtn} />
+            </Form>
           </div>
+          <p>
+            Don't have an account? <Link to="/signup">Sign up</Link> here!
+          </p>
         </div>
       </div>
     </div>
   );
 }
 
-export default withRouter(Home);
+export default withRouter(Login);

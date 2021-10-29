@@ -1,0 +1,56 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.main {
+  justify-content: "center";
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.add {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  height: 100vh;
+  max-height: 100vh;
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+#back {
+  position: fixed;
+  left: 2%;
+  top: 10%;
+}
+
+.arrow {
+  border: solid rgb(255, 255, 255);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+h3.headings {
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 1em;
+}
+
+#addContact {
+  text-align: left;
+  overflow: scroll;
+  max-height: 50rem;
+}
+
+.main {
+  max-height: 100%;
+  overflow: auto;
+}
