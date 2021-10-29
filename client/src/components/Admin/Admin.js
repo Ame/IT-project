@@ -1,5 +1,5 @@
 import React from "react";
-import { createRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Search from "../Search/Search.js";
 import AuthService from "../../services/auth.service";
 import AdminService from "../../services/admin.service";
@@ -72,6 +72,8 @@ function Admin(props) {
 
   const hide = "*";
 
+  // if user is not an admin, do not show list of users
+  // if user is an admin, render list of users
   return (
     <div className="adminProfile">
       <div

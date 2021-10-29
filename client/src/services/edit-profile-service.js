@@ -14,6 +14,7 @@ const config = {
   headers: { Authorization: token },
 };
 
+// accepts name, email, password, and updates current user's information based on stuff entered
 const editProfile = (name, email, password, font) => {
   return axios.put(
     API_URL + "editProfile",

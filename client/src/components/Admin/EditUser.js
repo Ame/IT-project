@@ -6,10 +6,10 @@ import { isEmail } from "validator";
 import CheckButton from "react-validation/build/button";
 import AdminService from "../../services/admin.service";
 import { useHistory } from "react-router-dom";
-import Tags from "../Tags/Tags";
 
 // A modal is a child window that will pop up on the admin page in order to edit a user
 
+// function that is called when a field is required to ensure its contains a value
 const required = (value) => {
   if (!value) {
     return (
@@ -20,6 +20,7 @@ const required = (value) => {
   }
 };
 
+// function that is called to check if a value is a valid email address
 const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
@@ -81,12 +82,9 @@ const EditUser = ({
   // function adds a new User to the backend for the currently logged in user
   const handleEditUser = (e) => {
     e.preventDefault();
-
     setMessage("");
     setSuccessful(false);
-
     form.current.validateAll();
-
     if (checkBtn.current.context._errors.length === 0) {
       console.log(id, name, email, password, role);
       AdminService.editUser(id, name, email, password, role).then(
@@ -108,7 +106,6 @@ const EditUser = ({
         }
       );
     }
-
     handleClose();
   };
 
@@ -137,6 +134,7 @@ const EditUser = ({
                   className="form-control"
                   name="name"
                   value={name}
+                  validation={[required]}
                   onChange={onChangeName}
                 />
               </div>
@@ -147,7 +145,7 @@ const EditUser = ({
                   className="form-control"
                   name="email"
                   value={email}
-                  validation={[validEmail]}
+                  validation={[required, validEmail]}
                   onChange={onChangeEmail}
                 />
               </div>
@@ -159,6 +157,7 @@ const EditUser = ({
                   className="form-control"
                   name="password"
                   value={password}
+                  validation={[required]}
                   onChange={onChangePassword}
                 />
               </div>

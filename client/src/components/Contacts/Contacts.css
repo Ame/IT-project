@@ -53,7 +53,7 @@ h6 strong {
 ul.contactList {
   list-style-type: none; /* removes bullets */
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
   max-height: 40rem;
 }
 
@@ -96,6 +96,13 @@ h3.headings {
 }
 #tags strong {
   color: rgb(104, 175, 169);
+}
+
+#tags-display {
+  padding-left: 0.7em;
+  padding-right: 0.7em;
+  color: white;
+  font-weight: bold;
 }
 
 #search {

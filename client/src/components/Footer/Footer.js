@@ -1,6 +1,7 @@
 import React from "react";
 
 function Footer() {
+  // footer that is also at the bottom of the website
   return (
     <div className="footer">
       <footer className="py-2 bg-dark relative-bottom">

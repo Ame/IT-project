@@ -8,6 +8,7 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import AuthService from "../../services/auth.service";
 
+// function that is called when field is required to ensure it has been filled
 export const required = (value) => {
   if (!value) {
     return (
@@ -18,6 +19,7 @@ export const required = (value) => {
   }
 };
 
+// function that is called to check if the value entered is a valid email
 const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
@@ -51,12 +53,9 @@ function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     setMessage("");
     setLoading(true);
-
     form.current.validateAll();
-
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(email, password).then(
         () => {
@@ -92,7 +91,7 @@ function Login() {
       setLoading(false);
     }
   };
-
+  // render elements for the login page such form for email and password
   return (
     <div className="home" className="fullsize">
       <div className="row align-items-center">

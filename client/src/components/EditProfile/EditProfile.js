@@ -129,12 +129,7 @@ function EditProfile({ getFontSize, currentFont }) {
     const confirmPassword = e.target.value;
     setConfirmPassword(confirmPassword);
   };
-
-  const onChangeFont = (e) => {
-    const newFont = e.target.value;
-    setFont(newFont);
-  };
-
+  // form to edit your own profile
   return (
     <div className="editProfile" className="fullsize">
       <div className="container">
@@ -144,27 +139,10 @@ function EditProfile({ getFontSize, currentFont }) {
             <h1 className="font-weight-light">
               Edit Profile, {currentUser.name}
             </h1>
-
             {successful ? <p>Account updated successfully!</p> : null}
             <Form onSubmit={handleEditProfile} ref={form}>
               {!successful && (
                 <div>
-                  <div className="form-group">
-                    <label htmlFor="toggle-font">Font Size: </label>
-                    <select
-                      name="toggle-font"
-                      id="toggle-font"
-                      className="form-control"
-                      value={font}
-                      onChange={onChangeFont}
-                    >
-                      <option value="default">Default</option>
-                      <option value="bigger">Bigger</option>
-                    </select>
-                  </div>
-
-                  <p>Current font size: {font}</p>
-
                   <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <Input
@@ -216,7 +194,7 @@ function EditProfile({ getFontSize, currentFont }) {
 
                   <div className="form-group">
                     <button className="btn btn-primary btn-block submit">
-                      Edit Profile
+                      Save Changes
                     </button>
                   </div>
                 </div>

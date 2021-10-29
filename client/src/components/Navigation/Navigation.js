@@ -2,16 +2,17 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import { useHistory } from "react-router-dom";
-
+// the bar up the top of the website, rendered on every page
 function Navigation(props) {
   let history = useHistory();
   const reload = () => window.location.reload();
-
+  // handles logout and reloads page
   const logoutHandler = () => {
     history.push("/");
     AuthService.logout();
     reload();
   };
+
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">

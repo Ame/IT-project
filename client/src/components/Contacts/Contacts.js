@@ -13,23 +13,22 @@ const convertToDate = (date) => {
 };
 
 //Returns items from contacts that contain the query
-const filterContacts = (contacts, query, tags) => {
+const filterContacts = (contacts, query) => {
   if (!query.toLowerCase()) {
     return contacts;
   }
-
+  // case when search tag
   const filteredContacts = contacts.filter((contact) => {
-    const contactName = contact.name.toLowerCase();
-    return contactName.includes(query.toLowerCase());
+    const name = contact.name.toLowerCase();
+    const tags = contact.tags.map((x) => {
+      return x.toLowerCase();
+    });
+    console.log(JSON.stringify(tags));
+    return (
+      name.includes(query.toLowerCase()) || tags.includes(query.toLowerCase())
+    );
   });
-  if (!tags) {
-    return filteredContacts;
-  }
-
-  return filteredContacts.filter((contact) => {
-    const contactTags = contact.currentContactTags;
-    return contactTags.includes(tags);
-  });
+  return filteredContacts;
 };
 
 function Contacts() {
@@ -93,7 +92,7 @@ function Contacts() {
     ContactService.getContacts().then((res) => setContacts(res.data));
   }, []);
 
-  //parameters for search
+  // parameters for search
   const { search } = window.location;
   const query = new URLSearchParams(search).get("s");
   const [searchQuery, setSearchQuery] = useState(query || "");
@@ -103,22 +102,18 @@ function Contacts() {
   const handleDeleteContact = (e, id) => {
     e.preventDefault();
     ContactService.deleteContact(id);
-
     const removeItem = contacts.filter((contact) => {
       return contact._id !== id;
     });
     setContacts(removeItem);
   };
 
+  // gets all tags from existing contacts, removing duplicates
   const getAllTags = (contacts) => {
-    const tags = contacts.map((contact) => contact.tags.join(", "));
-
-    var result = [];
-    result = tags.filter(function (item, pos, self) {
+    const tags = contacts.map((contact) => contact.tags.join(", ")).join(", ");
+    return tags.split(", ").filter(function (item, pos, self) {
       return self.indexOf(item) == pos;
     });
-    var items = result.map((item) => item);
-    return items;
   };
 
   return (
@@ -126,7 +121,6 @@ function Contacts() {
       <div className="col-lg-3">
         <Sidebar />
       </div>
-
       <div className="main fullsize">
         <div>
           <h3 className="headings">Your contacts</h3>
@@ -139,14 +133,9 @@ function Contacts() {
             ) : (
               <>
                 <div id="tags">
-                  <strong>Filter by tags:&nbsp; </strong>
+                  <strong>Available Tags:&nbsp; </strong>
                   {getAllTags(contacts).map((tag) => (
-                    <button
-                      id="tagButton"
-                      onClick={() => filterContacts(filteredContacts, "", tag)}
-                    >
-                      {tag}
-                    </button>
+                    <p id="tags-display">{tag}</p>
                   ))}
                 </div>
                 <ul className="contactList" id="results">

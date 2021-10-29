@@ -7,7 +7,7 @@ const Search = ({ searchQuery, setSearchQuery }) => (
       <input
         id="searchInput"
         type="text"
-        placeholder="Search by Name"
+        placeholder="Search by Name/ Tags"
         name="s"
         value={searchQuery}
         onInput={(e) => setSearchQuery(e.target.value)}
